@@ -56,6 +56,6 @@ export class Query {
     get uuid() {
         const sortedQuery = this.include.slice().sort().join("");
 
-        return createHash("sha256").update(sortedQuery).digest("hex");
+        return `${this.type}:${createHash("sha256").update(sortedQuery).digest("hex")}`;
     }
 };
