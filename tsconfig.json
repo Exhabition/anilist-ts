@@ -15,9 +15,12 @@
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"],
-    "tsdocsOptions": {
-      "entryPoints": ["src/index"],
-      "out": "docs"
+    "typedocOptions": {
+      "name": "AniList-TS",
+      "out": "./docs",
+      "entryPoints": [
+        "./src"
+      ]
     }
   }
   
