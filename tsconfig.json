@@ -19,8 +19,9 @@
       "name": "AniList-TS",
       "out": "./docs",
       "entryPoints": [
-        "./src"
-      ]
+        "./src",
+      ],
+      "excludeExternals": true
     }
   }
   

@@ -1,9 +1,9 @@
 import { Character } from "../Characters";
 import { Media } from "../Media";
-import { PageInfo, AniListCharacter, AniListMedia } from "../types/aniList";
+import { PageInfo } from "../types/aniList";
 
-const allowedLoops = ["characters", "media"] as const;
-export type AllowedQuery = typeof allowedLoops[number];
+export const allowedQueries = ["characters", "media"] as const;
+export type AllowedQuery = typeof allowedQueries[number];
 
 interface QueryInfo {
     document: string;

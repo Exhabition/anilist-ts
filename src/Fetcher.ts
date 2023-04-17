@@ -1,4 +1,4 @@
-import { Client } from ".";
+import { Client, LoggingLevel } from ".";
 
 import { GraphQLClient } from 'graphql-request'
 import { Query } from "./util/Query";
@@ -8,6 +8,7 @@ import { Character } from "./Characters";
 import { Media } from "./Media";
 
 const BASE_URL = "https://graphql.anilist.co/";
+
 
 export class Fetcher {
     client: Client;
@@ -22,11 +23,13 @@ export class Fetcher {
         [x: string]: PageInfo | (Character | Media)[];
         pageInfo: PageInfo;
     } : (Character | Media)[]> {
-        console.log("Querying " + query.uuid);
+        if (this.client.settings.logging === LoggingLevel.ALL) console.log("Querying " + query.uuid);
+        
         let response: AniListResponse | null = null;
         if (this.client.redis) {
             const cachedEntry = await this.client.redis.get(query.uuid);
             if (cachedEntry) {
+                if (this.client.settings.logging === LoggingLevel.ALL) console.log("Returning cache hit " + query.uuid);
                 response = JSON.parse(cachedEntry);
             }
         }
@@ -40,6 +43,7 @@ export class Fetcher {
 
                 if (this.client.redis) {
                     this.client.redis.set(query.uuid, JSON.stringify(response))
+                    this.client.redis.expire(query.uuid, this.client.settings.redis?.expire?.[query.type] || 60 * 5)
                 }
             }
         }
