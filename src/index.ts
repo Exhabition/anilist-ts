@@ -1,8 +1,8 @@
 import { RedisClientOptions, createClient } from "redis";
 
-import { CharactersSearch } from "./Characters";
+import { CharactersSearch } from "./classes/Characters";
 import { Fetcher } from "./Fetcher";
-import { MediaSearch } from "./Media";
+import { MediaSearch } from "./classes/Media";
 
 import { allowedQueries } from "./constants/queries";
 
@@ -98,3 +98,8 @@ export class Client {
         }
     }
 }
+
+const client = new Client()
+client.characters.getById(11, ["id", "description"]).then(character => {
+    character.toggleFavourite();
+});

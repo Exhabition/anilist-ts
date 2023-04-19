@@ -4,8 +4,9 @@ import { GraphQLClient } from 'graphql-request'
 import { Query } from "./util/Query";
 
 import { AniListResponse, PageInfo } from "./types/aniList";
-import { Character } from "./Characters";
-import { Media } from "./Media";
+import { Character } from "./classes/Characters";
+import { Media } from "./classes/Media";
+import { Mutation } from "./util/Mutation";
 
 const BASE_URL = "https://graphql.anilist.co/";
 
@@ -24,7 +25,7 @@ export class Fetcher {
         pageInfo: PageInfo;
     } : (Character | Media)[]> {
         if (this.client.settings.logging === LoggingLevel.ALL) console.log("Querying " + query.uuid);
-        
+
         let response: AniListResponse | null = null;
         if (this.client.redis) {
             const cachedEntry = await this.client.redis.get(query.uuid);
@@ -55,7 +56,7 @@ export class Fetcher {
         if (pageInfo && pageDetails) {
             for (const info of pageDetails) {
                 info._type = query.type;
-                const normalDetails = query.normalize(info);
+                const normalDetails = query.normalize(this.client, info);
                 results.push(normalDetails);
             }
         }
@@ -65,5 +66,9 @@ export class Fetcher {
             [x: string]: PageInfo | (Character | Media)[];
             pageInfo: PageInfo;
         } : (Character | Media)[];
+    }
+
+    async mutate(mutation: Mutation) {
+        return this.graphQLClient.request(mutation.document, mutation.variables);
     }
 }

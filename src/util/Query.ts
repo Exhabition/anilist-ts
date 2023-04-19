@@ -3,16 +3,17 @@ import { Variables } from "graphql-request";
 import { createHash } from "crypto";
 
 import { AllowedQuery, QUERIES } from "../constants/queries";
-import { Character } from "../Characters";
-import { Media } from "../Media";
+import { Character } from "../classes/Characters";
+import { Media } from "../classes/Media";
 import { AniListCharacter, AniListMedia } from "../types/aniList";
+import { Client } from "..";
 
 export class Query {
     type: AllowedQuery
     document: string;
     variables?: Variables
     include: string[];
-    NormalizeClass: typeof Character | typeof Media;
+    NormalizeClass?: typeof Character | typeof Media;
 
     constructor(typeOfQuery: AllowedQuery) {
         const queryInfo = QUERIES[typeOfQuery];
@@ -29,11 +30,12 @@ export class Query {
         const cleanKeys = [];
         for (let key of include) {
             // TODO
-            if (typeof key === "object") {
-                key = `${key} { ${Object.keys(key)} }`
-            };
-
-            cleanKeys.push(key)
+            if (key.includes(".")) {
+                const [objKey, value] = key.split(".");
+                cleanKeys.push(`${objKey} { ${value} }`);
+            } else {
+                cleanKeys.push(key)
+            }
         }
 
         this.document = this.document.replace(/INCLUDE/, cleanKeys.join(", "));
@@ -43,11 +45,11 @@ export class Query {
         this.variables = variables;
     }
 
-    normalize(aniListResponse: AniListCharacter | AniListMedia) {
+    normalize(client: Client, aniListResponse: AniListCharacter | AniListMedia) {
         if (this.type === "characters" && aniListResponse._type === "characters") {
-            return new Character(aniListResponse);
+            return new Character(client, aniListResponse);
         } else if (this.type === "media" && aniListResponse._type === "media") {
-            return new Media(aniListResponse);
+            return new Media(client, aniListResponse);
         } else {
             throw new Error(`Invalid loopOver value: ${this.type}`);
         }

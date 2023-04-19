@@ -1,5 +1,5 @@
-import { Character } from "../Characters";
-import { Media } from "../Media";
+import { Character } from "../classes/Characters";
+import { Media } from "../classes/Media";
 import { PageInfo } from "../types/aniList";
 
 export const allowedQueries = ["characters", "media"] as const;
@@ -14,9 +14,10 @@ interface Queries {
     [key: string]: QueryInfo;
 }
 
-export type QueryResult<T extends string, K extends Record<T, unknown>> = Pick<K, T>
-export type QueryResults<T extends boolean, K extends string, V extends Record<K, unknown>> = 
-  T extends true ? { pageInfo: PageInfo, characters: QueryResult<K, V>[] } : QueryResult<K, V>[];
+export type QueryResult<T extends string, K extends Record<T, unknown>> =
+  Pick<K, T | {[P in keyof K]: K[P] extends Function ? P : never}[keyof K]>;
+export type QueryResults<T extends boolean, K extends string, V extends Record<K, unknown>> =
+    T extends true ? { pageInfo: PageInfo, characters: QueryResult<K, V>[] } : QueryResult<K, V>[];
 
 export const QUERIES: Queries = {
     characters: {
@@ -36,5 +37,5 @@ export const QUERIES: Queries = {
             }
         }`,
         normalize: Media,
-    }
+    },
 }

@@ -39,7 +39,7 @@ export type AniListCharacterConnection = {
     pageInfo: PageInfo
 }
 
-export type AniListCharacter = {
+export interface AniListCharacter {
     _type: "characters",
     id: number;
     name: AniListName & {
