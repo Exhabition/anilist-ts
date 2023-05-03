@@ -1,21 +1,14 @@
-import { Client } from "../index";
-import { Search } from "./Search";
-import { AllowedQuery } from "../constants/queries";
-import { AniListMedia } from "../types/aniList";
-
-export class MediaSearch extends Search<Media> {
-    constructor(client: Client) {
-        super(client, "media");
-    }
-}
+import { Client } from '../index';
+import { Search } from './Search';
+import { AniListMedia } from '../types/aniList';
 
 export class Media {
-    id?: number;
-    private _client: Client
+  id?: number;
+  private _client: Client;
 
-    constructor(client: Client, aniListResponse: AniListMedia) {
-        if (aniListResponse.id) this.id = aniListResponse.id;
+  constructor(client: Client, aniListResponse: AniListMedia) {
+    if (aniListResponse.id) this.id = aniListResponse.id;
 
-        this._client = client;
-    }
+    this._client = client;
+  }
 }
