@@ -9,35 +9,35 @@ import {
 import { Mutation } from '../util/Mutation';
 
 export class Character implements Omit<AniListCharacter, '_type'> {
-  id: number;
-  name: AniListName & {
+  id!: number;
+  name!: AniListName & {
     alternativeSpoiler: string[];
   };
-  image: AniListImage;
-  description: string;
-  gender: string;
-  dateOfBirth: AniListFuzzyDate;
-  age: string;
-  bloodType: string;
+  image!: AniListImage;
+  description!: string;
+  gender!: string;
+  dateOfBirth!: AniListFuzzyDate;
+  age!: string;
+  bloodType!: string;
   isFavorite?: boolean;
   isFavoriteBlocked?: boolean;
-  siteUrl: string;
-  media: AniListMediaConnection;
+  siteUrl!: string;
+  media!: AniListMediaConnection;
   private _client: Client;
 
   constructor(client: Client, aniListResponse: AniListCharacter) {
-    this.id = aniListResponse.id;
-    this.name = aniListResponse.name;
-    this.image = aniListResponse.image;
-    this.description = aniListResponse.description;
-    this.gender = aniListResponse.gender;
-    this.dateOfBirth = aniListResponse.dateOfBirth;
-    this.age = aniListResponse.age;
-    this.bloodType = aniListResponse.bloodType;
-    this.isFavorite = aniListResponse.isFavorite;
-    this.isFavoriteBlocked = aniListResponse.isFavoriteBlocked;
-    this.siteUrl = aniListResponse.siteUrl;
-    this.media = aniListResponse.media;
+    if (aniListResponse.id) this.id = aniListResponse.id;
+    if (aniListResponse.name) this.name = aniListResponse.name;
+    if (aniListResponse.image) this.image = aniListResponse.image;
+    if (aniListResponse.description) this.description = aniListResponse.description;
+    if (aniListResponse.gender) this.gender = aniListResponse.gender;
+    if (aniListResponse.dateOfBirth) this.dateOfBirth = aniListResponse.dateOfBirth;
+    if (aniListResponse.age) this.age = aniListResponse.age;
+    if (aniListResponse.bloodType) this.bloodType = aniListResponse.bloodType;
+    if (aniListResponse.isFavorite) this.isFavorite = aniListResponse.isFavorite;
+    if (aniListResponse.isFavoriteBlocked) this.isFavoriteBlocked = aniListResponse.isFavoriteBlocked;
+    if (aniListResponse.siteUrl) this.siteUrl = aniListResponse.siteUrl;
+    if (aniListResponse.media) this.media = aniListResponse.media;
 
     this._client = client;
   }
