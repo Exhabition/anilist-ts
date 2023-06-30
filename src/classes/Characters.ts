@@ -19,8 +19,8 @@ export class Character implements Omit<AniListCharacter, '_type'> {
   dateOfBirth!: AniListFuzzyDate;
   age!: string;
   bloodType!: string;
-  isFavorite?: boolean;
-  isFavoriteBlocked?: boolean;
+  isFavourite?: boolean;
+  isFavouriteBlocked?: boolean;
   siteUrl!: string;
   media!: AniListMediaConnection;
   private _client: Client;
@@ -34,8 +34,8 @@ export class Character implements Omit<AniListCharacter, '_type'> {
     if (aniListResponse.dateOfBirth) this.dateOfBirth = aniListResponse.dateOfBirth;
     if (aniListResponse.age) this.age = aniListResponse.age;
     if (aniListResponse.bloodType) this.bloodType = aniListResponse.bloodType;
-    if (aniListResponse.isFavorite) this.isFavorite = aniListResponse.isFavorite;
-    if (aniListResponse.isFavoriteBlocked) this.isFavoriteBlocked = aniListResponse.isFavoriteBlocked;
+    if (aniListResponse.isFavourite) this.isFavourite = aniListResponse.isFavourite;
+    if (aniListResponse.isFavouriteBlocked) this.isFavouriteBlocked = aniListResponse.isFavouriteBlocked;
     if (aniListResponse.siteUrl) this.siteUrl = aniListResponse.siteUrl;
     if (aniListResponse.media) this.media = aniListResponse.media;
 
@@ -43,7 +43,7 @@ export class Character implements Omit<AniListCharacter, '_type'> {
   }
 
   async toggleFavourite(): Promise<boolean | Error> {
-    if (!this.id || this._client._apiKey) {
+    if (!this.id || !this._client._apiKey) {
       throw new Error("Character doesn't have ID or authorization");
     }
 
@@ -52,9 +52,9 @@ export class Character implements Omit<AniListCharacter, '_type'> {
       characterId: this.id,
     });
 
-    this._client.fetcher.graphQLClient.request(favouriteQuery.document, favouriteQuery.variables);
-    // TODO update here
+    const response = await this._client.fetcher.graphQLClient.request<Pick<Character, "isFavourite" | "isFavouriteBlocked">>(favouriteQuery.document, favouriteQuery.variables);
+    this.isFavourite = response.isFavourite;
 
-    return this.isFavorite || false;
+    return this.isFavourite || false;
   }
 }
