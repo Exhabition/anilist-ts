@@ -4,7 +4,9 @@ import { CharactersSearch } from './classes/search/CharactersSearch';
 import { Fetcher } from './Fetcher';
 import { MediaSearch } from './classes/search/MediaSearch';
 
-import { allowedQueries } from './constants/queries';
+import { allowedQueries } from './types/aniList';
+import { UsersSearch } from './classes/search/UsersSearch';
+import { StatsSearch } from './classes/search/StatsSearch';
 
 export enum LoggingLevel {
   WARNINGS = 1,
@@ -53,6 +55,16 @@ export class Client {
    */
   media: MediaSearch;
   /**
+   * The media search object for searching for users.
+   * @public
+   */
+  users: UsersSearch;
+  /**
+   * The media search object for searching for stats.
+   * @public
+   */
+  stats: StatsSearch;
+  /**
    * The Redis client object used for caching.
    * @public
    */
@@ -88,6 +100,8 @@ export class Client {
 
     this.characters = new CharactersSearch(this);
     this.media = new MediaSearch(this);
+    this.users = new UsersSearch(this);
+    this.stats = new StatsSearch(this);
 
     if ((this.settings.redis?.settings || this.settings.redis?.client) && !this.redis) {
       this.redis = this.settings.redis?.client || createClient(this.settings.redis.settings);

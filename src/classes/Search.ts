@@ -1,10 +1,9 @@
 import { Client } from '..';
 import { AllowedQuery, QueryResult, QueryResults } from '../constants/queries';
+import { AniListReturnable } from '../types/aniList';
 import { Query } from '../util/Query';
-import { Character } from './Characters';
-import { Media } from './Media';
 
-export class Search<R extends Character | Media> {
+export class Search<R extends AniListReturnable> {
   type: AllowedQuery;
   client: Client;
 

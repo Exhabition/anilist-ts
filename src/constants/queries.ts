@@ -1,13 +1,12 @@
 import { Character } from '../classes/Characters';
 import { Media } from '../classes/Media';
-import { PageInfo } from '../types/aniList';
+import { AniListReturnableTypes, PageInfo, allowedQueries } from '../types/aniList';
 
-export const allowedQueries = ['characters', 'media'] as const;
 export type AllowedQuery = (typeof allowedQueries)[number];
 
 interface QueryInfo {
   document: string;
-  normalize: typeof Character | typeof Media;
+  normalize: AniListReturnableTypes;
 }
 
 interface Queries {

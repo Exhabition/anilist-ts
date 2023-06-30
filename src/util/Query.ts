@@ -4,15 +4,17 @@ import { createHash } from 'crypto';
 import { AllowedQuery, QUERIES } from '../constants/queries';
 import { Character } from '../classes/Characters';
 import { Media } from '../classes/Media';
-import { AniListCharacter, AniListMedia } from '../types/aniList';
+import { AniListRequestable, AniListReturnableTypes } from '../types/aniList';
 import { Client } from '..';
+import { User } from '../classes/Users';
+import { Stats } from '../classes/Stats';
 
 export class Query {
   type: AllowedQuery;
   document: string;
   variables?: Variables;
   include: string[];
-  NormalizeClass?: typeof Character | typeof Media;
+  NormalizeClass?: AniListReturnableTypes;
 
   constructor(typeOfQuery: AllowedQuery) {
     const queryInfo = QUERIES[typeOfQuery];
@@ -44,12 +46,16 @@ export class Query {
     this.variables = variables;
   }
 
-  normalize(client: Client, aniListResponse: AniListCharacter | AniListMedia) {
+  normalize(client: Client, aniListResponse: AniListRequestable) {
     if (this.type === 'characters' && aniListResponse._type === 'characters') {
       return new Character(client, aniListResponse);
     } else if (this.type === 'media' && aniListResponse._type === 'media') {
       return new Media(client, aniListResponse);
-    } else {
+    } else if (this.type === 'users' && aniListResponse._type === 'users') {
+      return new User(client, aniListResponse);
+    } else if (this.type === 'stats' && aniListResponse._type === 'stats') {
+      return new Stats(client, aniListResponse);
+    }  else {
       throw new Error(`Invalid loopOver value: ${this.type}`);
     }
   }

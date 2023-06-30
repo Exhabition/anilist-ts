@@ -3,9 +3,7 @@ import { Client, LoggingLevel } from '.';
 import { GraphQLClient } from 'graphql-request';
 import { Query } from './util/Query';
 
-import { AniListResponse, PageInfo } from './types/aniList';
-import { Character } from './classes/Characters';
-import { Media } from './classes/Media';
+import { AniListResponse, AniListReturnable, PageInfo } from './types/aniList';
 import { Mutation } from './util/Mutation';
 
 const BASE_URL = 'https://graphql.anilist.co/';
@@ -17,6 +15,10 @@ export class Fetcher {
   constructor(client: Client) {
     this.client = client;
     this.graphQLClient = new GraphQLClient(BASE_URL);
+
+    if (client._apiKey) {
+      this.graphQLClient.setHeader("Authorization", `Bearer ${client._apiKey}`);
+    }
   }
 
   async fetch<T extends boolean>(
@@ -25,10 +27,10 @@ export class Fetcher {
   ): Promise<
     T extends true
       ? {
-          [x: string]: PageInfo | (Character | Media)[];
+          [x: string]: PageInfo | AniListReturnable[];
           pageInfo: PageInfo;
         }
-      : (Character | Media)[]
+      : AniListReturnable[]
   > {
     // if (this.client.settings.logging === LoggingLevel.ALL) console.info("Querying " + query.uuid);
 
@@ -70,10 +72,10 @@ export class Fetcher {
     const result = showPageInfo ? { pageInfo, [loopOver]: results } : results;
     return result as T extends true
       ? {
-          [x: string]: PageInfo | (Character | Media)[];
+          [x: string]: PageInfo | AniListReturnable[];
           pageInfo: PageInfo;
         }
-      : (Character | Media)[];
+      : AniListReturnable[];
   }
 
   async mutate(mutation: Mutation) {

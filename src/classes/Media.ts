@@ -1,5 +1,4 @@
 import { Client } from '../index';
-import { Search } from './Search';
 import { AniListMedia } from '../types/aniList';
 
 export class Media {

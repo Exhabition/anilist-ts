@@ -1,9 +1,33 @@
+import { Character } from "../classes/Characters";
+import { Media } from "../classes/Media";
+import { Stats } from "../classes/Stats";
+import { User } from "../classes/Users";
+
 export interface PageInfo {
   total: number;
   currentPage: number;
   lastPage: number;
   hasNextPage: number;
   perPage: number;
+}
+
+export type AniListRequestable = AniListCharacter | AniListMedia | AniListUser | AniListStats;
+
+export type AniListReturnable = Character | Media | User | Stats;
+
+// TODO probably a better way to do this
+export type AniListReturnableTypes = typeof Character | typeof Media | typeof User | typeof Stats;
+
+export const allowedQueries = ['characters', 'media', 'users', 'stats'] as const;
+
+export interface AniListResponse {
+  Page: {
+    pageInfo: PageInfo;
+    characters?: AniListCharacter[];
+    media?: AniListMedia[];
+    users?: AniListUser[];
+    stats?: AniListStats[];
+  };
 }
 
 export type AniListFuzzyDate = {
@@ -51,8 +75,8 @@ export interface AniListCharacter {
   dateOfBirth: AniListFuzzyDate;
   age: string;
   bloodType: string;
-  isFavorite?: boolean;
-  isFavoriteBlocked?: boolean;
+  isFavourite?: boolean;
+  isFavouriteBlocked?: boolean;
   siteUrl: string;
   media: AniListMediaConnection;
 }
@@ -85,6 +109,16 @@ export interface AniListMediaEdge {
   favouriteOrder: number;
 }
 
+export interface AniListStudio {
+  id: number;
+  name: string;
+  isAnimationStudio: boolean;
+  media: AniListMediaConnection;
+  siteUrl: string;
+  isFavourite: boolean;
+  favourites: number;
+}
+
 export interface AniListStaff {
   id?: number;
   name: AniListName;
@@ -100,8 +134,8 @@ export interface AniListStaff {
   yearsActive: number[];
   homeTown: string;
   bloodType: string;
-  isFavorite?: boolean;
-  isFavoriteBlocked?: boolean;
+  isFavourite?: boolean;
+  isFavouriteBlocked?: boolean;
   siteUrl: string;
   staffMedia: AniListMediaConnection;
   characters: AniListCharacterConnection;
@@ -171,6 +205,18 @@ export type AniListMediaTrailer = {
   thumbnail: string;
 };
 
+export interface AniListMediaTag {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  rank: number;
+  isGeneralSpoiler: boolean;
+  isMediaSpoiler: boolean;
+  isAdult: boolean;
+  userId: number;
+}
+
 export type AniListMediaType = 'ANIME' | 'MANGA';
 
 export type AniListMediaFormat =
@@ -221,15 +267,105 @@ export type AniListMediaRelation =
   | 'COMPILATION'
   | 'CONTAINS';
 
-export interface AniListResponse {
-  Page: {
-    pageInfo: PageInfo;
-    characters?: AniListCharacter[];
-    media?: AniListMedia[];
-  };
+export interface AniListStatsShared {
+  count: number;
+  meanScore: number;
+  standardDeviation: number;
+  formats: AniListFormatStats[];
+  statuses: AniListStatusStats[];
+  scores: AniListScoreStats[];
+  lengths: AniListLengthStats[];
+  releaseYears: AniListReleaseYearStats[];
+  startYears: AniListStartYearStats[];
+  genres: AniListGenreStats[];
+  tags: AniListTagStats[];
+  countries: AniListCountryStats[];
+  staff: AniListStaffStats[];
+  studios: AniListStudioStats[];
+}
+
+export interface AniListStats {
+  _type: "stats";
+  anime: AniListAnimeStats;
+  manga: AniListMangaStats;
+}
+
+export type AniListAnimeStats = {
+  minutesWatched: number;
+  episodesWatched: number;
+  voiceActors: AniListVoiceActorStats[];
+} & AniListStatsShared;
+
+export type AniListMangaStats = {
+  chaptersRead: number;
+  volumesRead: number;
+} & AniListStatsShared;
+
+export interface AniListStatsBase {
+  count?: number;
+  meanScore?: number;
+  minutesWatched?: number;
+  chaptersRead?: number;
+  mediaIds?: number[];
+}
+
+export type AniListFormatStats = {
+  format: AniListMediaFormat;
+} & AniListStatsBase;
+
+export type AniListStatusStats = {
+  status: AniListMediaListStatus;
+} & AniListStatsBase;
+
+export type AniListScoreStats = {
+  score: number;
+} & AniListStatsBase;
+
+export type AniListLengthStats = {
+  length: string;
+} & AniListStatsBase;
+
+export type AniListReleaseYearStats = {
+  releaseYear: number;
+} & AniListStatsBase;
+
+export type AniListStartYearStats = {
+  startYear: number;
+} & AniListStatsBase;
+
+export type AniListGenreStats = {
+  genre: string;
+} & AniListStatsBase;
+
+export type AniListTagStats = {
+  tag: AniListMediaTag;
+} & AniListStatsBase;
+
+export type AniListCountryStats = {
+  country: AniListCountryCode;
+} & AniListStatsBase;
+
+export type AniListVoiceActorStats = {
+  voiceActor: AniListStaff;
+  characterIds?: number[];
+} & AniListStatsBase;
+
+export type AniListStaffStats = {
+  staff: AniListStaff;
+} & AniListStatsBase;
+
+export type AniListStudioStats = {
+  studio: AniListStudio
+} & AniListStatsBase;
+
+export interface AniListUserActivity {
+  date: number;
+  amount: number;
+  level: number;
 }
 
 export interface AniListUser {
+  _type: "users";
   id?: number;
   name?: string;
   about: string;
