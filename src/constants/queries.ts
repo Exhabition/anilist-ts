@@ -1,5 +1,6 @@
 import { Character } from '../classes/Characters';
 import { Media } from '../classes/Media';
+import { User } from '../classes/Users';
 import { AniListReturnableTypes, PageInfo, allowedQueries } from '../types/aniList';
 
 export type AllowedQuery = (typeof allowedQueries)[number];
@@ -40,4 +41,13 @@ export const QUERIES: Queries = {
         }`,
     normalize: Media,
   },
+  users: {
+    document: `query ($page: Int, $perPage: Int, $id: Int) {        
+        Page (page: $page, perPage: $perPage) { 
+          pageInfo { total currentPage lastPage hasNextPage perPage } 
+          users (id: $id) { INCLUDE }
+        }
+    }`,
+    normalize: User,
+  }
 };

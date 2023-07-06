@@ -7,7 +7,6 @@ import { Media } from '../classes/Media';
 import { AniListRequestable, AniListReturnableTypes } from '../types/aniList';
 import { Client } from '..';
 import { User } from '../classes/Users';
-import { Stats } from '../classes/Stats';
 
 export class Query {
   type: AllowedQuery;
@@ -53,9 +52,7 @@ export class Query {
       return new Media(client, aniListResponse);
     } else if (this.type === 'users' && aniListResponse._type === 'users') {
       return new User(client, aniListResponse);
-    } else if (this.type === 'stats' && aniListResponse._type === 'stats') {
-      return new Stats(client, aniListResponse);
-    }  else {
+    } else {
       throw new Error(`Invalid loopOver value: ${this.type}`);
     }
   }

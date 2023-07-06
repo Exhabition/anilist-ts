@@ -1,6 +1,5 @@
 import { Character } from "../classes/Characters";
 import { Media } from "../classes/Media";
-import { Stats } from "../classes/Stats";
 import { User } from "../classes/Users";
 
 export interface PageInfo {
@@ -11,14 +10,14 @@ export interface PageInfo {
   perPage: number;
 }
 
-export type AniListRequestable = AniListCharacter | AniListMedia | AniListUser | AniListStats;
+export type AniListRequestable = AniListCharacter | AniListMedia | AniListUser;
 
-export type AniListReturnable = Character | Media | User | Stats;
+export type AniListReturnable = Character | Media | User;
 
 // TODO probably a better way to do this
-export type AniListReturnableTypes = typeof Character | typeof Media | typeof User | typeof Stats;
+export type AniListReturnableTypes = typeof Character | typeof Media | typeof User;
 
-export const allowedQueries = ['characters', 'media', 'users', 'stats'] as const;
+export const allowedQueries = ['characters', 'media', 'users'] as const;
 
 export interface AniListResponse {
   Page: {
@@ -26,7 +25,6 @@ export interface AniListResponse {
     characters?: AniListCharacter[];
     media?: AniListMedia[];
     users?: AniListUser[];
-    stats?: AniListStats[];
   };
 }
 
@@ -285,7 +283,6 @@ export interface AniListStatsShared {
 }
 
 export interface AniListStats {
-  _type: "stats";
   anime: AniListAnimeStats;
   manga: AniListMangaStats;
 }
@@ -376,6 +373,7 @@ export interface AniListUser {
   isBlocked: boolean;
   bans: JSON;
   options: AniListUserOptions;
+  statistics: AniListStats;
 }
 
 export type AniListUserOptions = {

@@ -30,15 +30,15 @@ export class Search<R extends AniListReturnable> {
     showPageInfo: T,
     include: Extract<keyof R, string>[],
   ): Promise<QueryResults<T, K, R>> {
-    const characterQuery = new Query(this.type);
-    characterQuery.setInclude(include);
-    characterQuery.setVariables({
+    const searchQuery = new Query(this.type);
+    searchQuery.setInclude(include);
+    searchQuery.setVariables({
       name,
       page: 1,
       perPage: 25,
     });
 
-    const result = await this.client.fetcher.fetch(characterQuery, showPageInfo);
+    const result = await this.client.fetcher.fetch(searchQuery, showPageInfo);
     return result as unknown as QueryResults<T, K, R>;
   }
 }

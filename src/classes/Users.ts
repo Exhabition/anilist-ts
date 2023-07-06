@@ -1,6 +1,7 @@
 import { Client } from '..';
 import {
   AniListImage,
+  AniListStats,
   AniListUser,
   AniListUserOptions,
 } from '../types/aniList';
@@ -16,6 +17,7 @@ export class User implements Omit<AniListUser, '_type'> {
   isBlocked!: boolean;
   bans!: JSON;
   options!: AniListUserOptions;
+  statistics!: AniListStats;
   private _client: Client;
 
   constructor(client: Client, aniListResponse: AniListUser) {
@@ -29,6 +31,7 @@ export class User implements Omit<AniListUser, '_type'> {
     if (aniListResponse.isBlocked) this.isBlocked = aniListResponse.isBlocked;
     if (aniListResponse.bans) this.bans = aniListResponse.bans;
     if (aniListResponse.options) this.options = aniListResponse.options;
+    if (aniListResponse.statistics) this.statistics = aniListResponse.statistics;
 
     this._client = client;
   }
