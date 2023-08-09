@@ -21,8 +21,8 @@ export class Fetcher {
     }
   }
 
-  async fetch<T extends boolean>(
-    query: Query,
+  async fetch<R, T extends boolean>(
+    query: Query<R>,
     showPageInfo: T,
   ): Promise<
     T extends true

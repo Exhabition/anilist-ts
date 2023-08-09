@@ -1,18 +1,18 @@
 import { Variables } from 'graphql-request';
 import { createHash } from 'crypto';
 
-import { AllowedQuery, QUERIES } from '../constants/queries';
+import { AllowedQuery, QUERIES, QueryInclusion } from '../constants/queries';
 import { Character } from '../classes/Characters';
 import { Media } from '../classes/Media';
 import { AniListRequestable, AniListReturnableTypes } from '../types/aniList';
 import { Client } from '..';
 import { User } from '../classes/Users';
 
-export class Query {
+export class Query<R> {
   type: AllowedQuery;
   document: string;
   variables?: Variables;
-  include: string[];
+  include: string;
   NormalizeClass?: AniListReturnableTypes;
 
   constructor(typeOfQuery: AllowedQuery) {
@@ -21,24 +21,14 @@ export class Query {
     this.NormalizeClass = queryInfo.normalize;
 
     this.type = typeOfQuery;
-    this.include = [];
+    this.include = "";
   }
 
-  setInclude(include: string[]) {
-    this.include = include;
+  setInclude(include: QueryInclusion<R>) {
+    const cleanInclusion = this.convertInclusion(include);
+    this.include = cleanInclusion;
 
-    const cleanKeys = [];
-    for (const key of include) {
-      // TODO
-      if (key.includes('.')) {
-        const [objKey, value] = key.split('.');
-        cleanKeys.push(`${objKey} { ${value} }`);
-      } else {
-        cleanKeys.push(key);
-      }
-    }
-
-    this.document = this.document.replace(/INCLUDE/, cleanKeys.join(', '));
+    this.document = this.document.replace(/INCLUDE/, cleanInclusion);
   }
 
   setVariables(variables: Variables) {
@@ -57,9 +47,48 @@ export class Query {
     }
   }
 
-  get uuid() {
-    const sortedQuery = this.include.slice().sort().join('');
+  getKeysFromObject(key: string, value: QueryInclusion<R>): string {
+    console.log(key, value)
+    if (typeof value === 'boolean') {
+      if (value) {
+        return key + " ";
+      }
+    } else if (Array.isArray(value)) {
+      return key + ` { ${value.join(" ") } }`;
+    } else if (typeof value === "object") {
+      let nestedResult = "";
+  
+      for (const nestedKey in value) {
+        if (Object.prototype.hasOwnProperty.call(value, nestedKey)) {
+          const nestedValue = value[nestedKey as keyof typeof value];
+          if (!nestedValue) continue;
 
-    return `${this.type}:${createHash('sha256').update(sortedQuery).digest('hex')}`;
+          nestedResult += this.getKeysFromObject(nestedKey, nestedValue);
+        }
+      }
+  
+      return key + ` { ${nestedResult} } `;
+    }
+
+    return "";
+  }
+
+  convertInclusion(include: QueryInclusion<R>): string {
+    let result = "";
+
+    for (const key in include) {
+      if (Object.prototype.hasOwnProperty.call(include, key)) {
+        const value = include[key as keyof typeof include];
+        if (!value) continue;
+
+        result += this.getKeysFromObject(key, value);
+      }
+    }
+
+    return result.slice(0, -1);
+  }
+
+  get uuid() {
+    return `${this.type}:${createHash('sha256').update(this.include).digest('hex')}`;
   }
 }
