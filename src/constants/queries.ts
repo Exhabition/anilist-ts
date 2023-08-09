@@ -5,6 +5,22 @@ import { AniListReturnableTypes, PageInfo, allowedQueries } from '../types/aniLi
 
 export type AllowedQuery = (typeof allowedQueries)[number];
 
+type ExcludeFunctions<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => any ? never : K;
+}[keyof T];
+
+type ArrayKeys<T> = T extends any[] ? keyof T[number] : never;
+type ObjectKeys<T> = T extends any[] ? ArrayKeys<T> : T extends object ? ExcludeFunctions<T> : never;
+
+type QueryInclusionValue<R> = {
+  [key in ObjectKeys<R>]?: R[key] extends object ? QueryInclusionValue<R[key]> : boolean;
+} | ArrayKeys<R>[]
+
+export type QueryInclusion<R> = {
+  [key in ObjectKeys<R>]?: (R[key]extends (...args: any[]) => any ? never : (keyof R[key])[])
+  | (R[key] extends object ? QueryInclusionValue<R[key]> : boolean);
+};
+
 interface QueryInfo {
   document: string;
   normalize: AniListReturnableTypes;
