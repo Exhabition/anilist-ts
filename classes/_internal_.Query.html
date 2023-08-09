@@ -15,13 +15,18 @@
 <li><a href="../modules.html">AniList-TS</a></li>
 <li><a href="../modules/_internal_.html">&lt;internal&gt;</a></li>
 <li><a href="_internal_.Query.html">Query</a></li></ul>
-<h1>Class Query</h1></div>
+<h1>Class Query&lt;R&gt;</h1></div> 
+<section class="tsd-panel tsd-type-parameters">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameters">
+<li>
+<h4><span class="tsd-kind-type-parameter">R</span></h4></li></ul></section> 
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
 <li><span class="target">Query</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L11">src/util/Query.ts:11</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L11">src/util/Query.ts:11</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -45,7 +50,9 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
-<div class="tsd-index-list"><a href="_internal_.Query.html#normalize" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-2048-path"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)" id="icon-2048-text"></path></svg><span>normalize</span></a>
+<div class="tsd-index-list"><a href="_internal_.Query.html#convertInclusion" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-2048-path"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)" id="icon-2048-text"></path></svg><span>convert<wbr/>Inclusion</span></a>
+<a href="_internal_.Query.html#getKeysFromObject" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Keys<wbr/>From<wbr/>Object</span></a>
+<a href="_internal_.Query.html#normalize" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>normalize</span></a>
 <a href="_internal_.Query.html#setInclude" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Include</span></a>
 <a href="_internal_.Query.html#setVariables" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Variables</span></a>
 </div></section></div></details></section></section>
@@ -54,43 +61,48 @@
 <section class="tsd-panel tsd-member"><a id="constructor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>
 <ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="constructor.new_Query"><span class="tsd-kind-constructor-signature">new <wbr/>Query</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">typeOfQuery</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_internal_.Query.html" class="tsd-signature-type tsd-kind-class">Query</a><a href="#constructor.new_Query" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="constructor.new_Query"><span class="tsd-kind-constructor-signature">new <wbr/>Query</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">typeOfQuery</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_internal_.Query.html" class="tsd-signature-type tsd-kind-class">Query</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#constructor.new_Query" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<section class="tsd-panel tsd-type-parameters">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameters">
+<li>
+<h4><span class="tsd-kind-type-parameter">R</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">typeOfQuery</span>: <span class="tsd-signature-type">&quot;characters&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;media&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;users&quot;</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="_internal_.Query.html" class="tsd-signature-type tsd-kind-class">Query</a></h4><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <a href="_internal_.Query.html" class="tsd-signature-type tsd-kind-class">Query</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L18">src/util/Query.ts:18</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L18">src/util/Query.ts:18</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member"><a id="NormalizeClass" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>Normalize<wbr/>Class</span><a href="#NormalizeClass" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">Normalize<wbr/>Class</span><span class="tsd-signature-symbol">?:</span> <a href="../types/_internal_.AniListReturnableTypes.html" class="tsd-signature-type tsd-kind-type-alias">AniListReturnableTypes</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L16">src/util/Query.ts:16</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L16">src/util/Query.ts:16</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="document" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>document</span><a href="#document" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">document</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L13">src/util/Query.ts:13</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L13">src/util/Query.ts:13</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="include" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>include</span><a href="#include" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">include</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div><aside class="tsd-sources">
+<div class="tsd-signature"><span class="tsd-kind-property">include</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L15">src/util/Query.ts:15</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L15">src/util/Query.ts:15</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="type" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>type</span><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;characters&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;media&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;users&quot;</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L12">src/util/Query.ts:12</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L12">src/util/Query.ts:12</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="variables" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>variables</span><a href="#variables" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">variables</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">Variables</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L14">src/util/Query.ts:14</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L14">src/util/Query.ts:14</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member"><a id="uuid" class="tsd-anchor"></a>
@@ -100,9 +112,37 @@
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L60">src/util/Query.ts:60</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L91">src/util/Query.ts:91</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
+<section class="tsd-panel tsd-member"><a id="convertInclusion" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>convert<wbr/>Inclusion</span><a href="#convertInclusion" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="convertInclusion.convertInclusion-1"><span class="tsd-kind-call-signature">convert<wbr/>Inclusion</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">include</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#convertInclusion.convertInclusion-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">include</span>: <a href="../types/_internal_.QueryInclusion.html" class="tsd-signature-type tsd-kind-type-alias">QueryInclusion</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L76">src/util/Query.ts:76</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member"><a id="getKeysFromObject" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>get<wbr/>Keys<wbr/>From<wbr/>Object</span><a href="#getKeysFromObject" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="getKeysFromObject.getKeysFromObject-1"><span class="tsd-kind-call-signature">get<wbr/>Keys<wbr/>From<wbr/>Object</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span>, <span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#getKeysFromObject.getKeysFromObject-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">key</span>: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">value</span>: <a href="../types/_internal_.QueryInclusion.html" class="tsd-signature-type tsd-kind-type-alias">QueryInclusion</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L50">src/util/Query.ts:50</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="normalize" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>normalize</span><a href="#normalize" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -117,7 +157,7 @@
 <h5><span class="tsd-kind-parameter">aniListResponse</span>: <a href="../types/_internal_.AniListRequestable.html" class="tsd-signature-type tsd-kind-type-alias">AniListRequestable</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_internal_.Media.html" class="tsd-signature-type tsd-kind-class">Media</a><span class="tsd-signature-symbol"> | </span><a href="_internal_.User.html" class="tsd-signature-type tsd-kind-class">User</a><span class="tsd-signature-symbol"> | </span><a href="_internal_.Character.html" class="tsd-signature-type tsd-kind-class">Character</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L48">src/util/Query.ts:48</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L38">src/util/Query.ts:38</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="setInclude" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Include</span><a href="#setInclude" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -127,10 +167,10 @@
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">include</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">include</span>: <a href="../types/_internal_.QueryInclusion.html" class="tsd-signature-type tsd-kind-type-alias">QueryInclusion</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L27">src/util/Query.ts:27</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L27">src/util/Query.ts:27</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="setVariables" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Variables</span><a href="#setVariables" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -143,7 +183,7 @@
 <h5><span class="tsd-kind-parameter">variables</span>: <span class="tsd-signature-type ">Variables</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/f146b82/src/util/Query.ts#L44">src/util/Query.ts:44</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/Exhabition/anilist-ts/blob/bc47185/src/util/Query.ts#L34">src/util/Query.ts:34</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -169,6 +209,8 @@
 <li><a href="#type" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>type</span></a></li>
 <li><a href="#variables" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>variables</span></a></li>
 <li><a href="#uuid" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>uuid</span></a></li>
+<li><a href="#convertInclusion" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>convert<wbr/>Inclusion</span></a></li>
+<li><a href="#getKeysFromObject" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Keys<wbr/>From<wbr/>Object</span></a></li>
 <li><a href="#normalize" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>normalize</span></a></li>
 <li><a href="#setInclude" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Include</span></a></li>
 <li><a href="#setVariables" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Variables</span></a></li></ul></div></details></div>
@@ -241,6 +283,11 @@
 <li><a href="../types/_internal_.AniListTitleLanguage.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Ani<wbr/>List<wbr/>Title<wbr/>Language</span></a></li>
 <li><a href="../types/_internal_.AniListUserOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Ani<wbr/>List<wbr/>User<wbr/>Options</span></a></li>
 <li><a href="../types/_internal_.AniListVoiceActorStats.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Ani<wbr/>List<wbr/>Voice<wbr/>Actor<wbr/>Stats</span></a></li>
+<li><a href="../types/_internal_.ArrayKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Array<wbr/>Keys</span></a></li>
+<li><a href="../types/_internal_.ExcludeFunctions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Exclude<wbr/>Functions</span></a></li>
+<li><a href="../types/_internal_.ObjectKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Object<wbr/>Keys</span></a></li>
+<li><a href="../types/_internal_.QueryInclusion.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Query<wbr/>Inclusion</span></a></li>
+<li><a href="../types/_internal_.QueryInclusionValue.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Query<wbr/>Inclusion<wbr/>Value</span></a></li>
 <li><a href="../types/_internal_.QueryResult.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Query<wbr/>Result</span></a></li>
 <li><a href="../types/_internal_.QueryResults.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Query<wbr/>Results</span></a></li></ul></div></details></li>
 <li><a href="../enums/LoggingLevel.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-8-path"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)" id="icon-8-text"></path></svg><span>Logging<wbr/>Level</span></a></li>
