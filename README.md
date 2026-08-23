@@ -234,7 +234,7 @@ Browsers use the same ESM export. The bundle contains no Node built-ins and reli
 
 Generated types and runtime field maps come from the committed reference tables in the official [`AniList/docs`](https://github.com/AniList/docs) repository, pinned at commit `03281c0a4bbf0c7f2097e0c935cddaed1096aa65` and generated on 2026-08-23. This snapshot is explicitly docs-derived and may lag the live service.
 
-Normal installs, builds, and tests never contact AniList or GitHub. `schema:sync` parses the vendored tables, `schema:generate` emits committed artifacts, and `schema:check` detects drift. A scheduled/manual workflow compares the snapshot with live introspection when AniList exposes it successfully.
+Normal installs, builds, and tests never contact AniList or GitHub. `schema:sync` parses the vendored tables, `schema:generate` emits committed artifacts, and `schema:check` detects drift. A scheduled/manual workflow compares the snapshot with live introspection—including types, fields, arguments, enums, inputs, and unions—when AniList exposes it successfully.
 
 ## Development and release
 
@@ -256,10 +256,4 @@ npm run schema:generate
 npm run schema:check
 ```
 
-Release Please owns version changes, changelog generation, tags, GitHub releases, and npm publication. The initial release commit should be conventional and explicit:
-
-```text
-feat(api): publish the generated SDK
-
-Release-As: 1.0.0
-```
+Release Please manages version changes, changelog generation, tags, GitHub releases, and npm publication. The package is currently at v1.0.0. Changes merged to `main` should use Conventional Commits so Release Please can prepare the next release automatically. Use the `Release-As: <version>` footer only when deliberately forcing a specific release version.
