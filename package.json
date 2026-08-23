@@ -1,6 +1,6 @@
 {
   "name": "anilist-ts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A fully typed, projection-based AniList GraphQL SDK for Node.js and browsers",
   "type": "module",
   "main": "./dist/index.cjs",
