@@ -4,7 +4,12 @@ import type { EntityContext } from './context.js';
 import { AniListConfigurationError } from './errors.js';
 import type { MutationResult, MutationSelection, QueryResult, QuerySelection } from './generated/schema.js';
 import { CharacterService } from './services/characters.js';
+import { ActivityService } from './services/activities.js';
 import { MediaService } from './services/media.js';
+import { MediaListService } from './services/media-lists.js';
+import { RecommendationService } from './services/recommendations.js';
+import { ReviewService } from './services/reviews.js';
+import { ThreadService } from './services/threads.js';
 import { UserService } from './services/users.js';
 import {
   AniListTransport,
@@ -34,6 +39,11 @@ export class AniListClient implements EntityContext {
   readonly media: MediaService;
   readonly characters: CharacterService;
   readonly users: UserService;
+  readonly mediaLists: MediaListService;
+  readonly activities: ActivityService;
+  readonly reviews: ReviewService;
+  readonly recommendations: RecommendationService;
+  readonly threads: ThreadService;
   private readonly transport: AniListTransport;
 
   constructor(options: AniListClientOptions = {}) {
@@ -53,6 +63,11 @@ export class AniListClient implements EntityContext {
     this.media = new MediaService(this);
     this.characters = new CharacterService(this);
     this.users = new UserService(this);
+    this.mediaLists = new MediaListService(this);
+    this.activities = new ActivityService(this);
+    this.reviews = new ReviewService(this);
+    this.recommendations = new RecommendationService(this);
+    this.threads = new ThreadService(this);
   }
 
   get authenticated(): boolean {

@@ -1,6 +1,6 @@
 import type { EntityContext } from '../context.js';
 import { User } from '../entities/user.js';
-import type { QuerySelection, UserSelection } from '../generated/schema.js';
+import type { MutationUpdateUserArgs, QuerySelection, UserSelection } from '../generated/schema.js';
 import { mergeSelections } from '../selection.js';
 import type { RequestOptions } from '../transport.js';
 import { pageResponse, pagination } from './helpers.js';
@@ -11,6 +11,7 @@ import {
   type UserEntity,
   type UserSearchOptions,
 } from './types.js';
+import { updateUser } from './user-settings.js';
 
 const INTERNAL_SELECTION = { id: true } as const;
 
@@ -31,6 +32,14 @@ export class UserService {
     options?: RequestOptions,
   ): Promise<UserEntity<TSelection> | null> {
     return this.get({ name }, selection, options);
+  }
+
+  updateSettings<const TSelection extends UserSelection>(
+    args: MutationUpdateUserArgs,
+    selection: TSelection,
+    options?: RequestOptions,
+  ): ReturnType<typeof updateUser<TSelection>> {
+    return updateUser(this.context, args, selection, options);
   }
 
   private async get<const TSelection extends UserSelection>(
