@@ -48,7 +48,6 @@ export class Query<R> {
   }
 
   getKeysFromObject(key: string, value: QueryInclusion<R>): string {
-    console.log(key, value)
     if (typeof value === 'boolean') {
       if (value) {
         return key + " ";
