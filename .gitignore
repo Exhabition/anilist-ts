@@ -49,6 +49,8 @@ typings/
 
 # Optional npm cache directory
 .npm
+.npm-cache/
+.readme-examples/
 
 # Optional eslint cache
 .eslintcache
@@ -88,5 +90,6 @@ typings/
 .dynamodb/
 
 /lib
+/dist
 /docs
 .vscode

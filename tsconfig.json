@@ -1,27 +1,25 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "lib": ["es2019", "dom"],
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "outDir": "lib",
-      "sourceMap": true,
-      "resolveJsonModule": true,
-      "declaration": true,
-      "typeRoots": ["types", "node_modules/@types"]
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "**/__tests__/*"],
-    "typedocOptions": {
-      "name": "AniList-TS",
-      "out": "./docs",
-      "entryPoints": [
-        "./src",
-      ],
-      "excludeExternals": true
-    }
-  }
-  
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useUnknownInCatchVariables": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.test.ts", "vitest.config.ts", "tsup.config.ts"],
+  "exclude": ["dist", "docs", "coverage", "node_modules"]
+}

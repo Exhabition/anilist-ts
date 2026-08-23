@@ -1,0 +1,12 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts", "src/redis.ts"],
+  "out": "docs",
+  "name": "AniList-TS 1.0",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "validation": {
+    "notExported": false
+  },
+  "readme": "README.md"
+}

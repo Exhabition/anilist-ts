@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "anilist-ts": ["./src/index.ts"],
+      "anilist-ts/redis": ["./src/redis.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", ".readme-examples/**/*.ts"]
+}

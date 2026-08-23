@@ -1,0 +1,9 @@
+dist
+docs
+coverage
+node_modules
+.readme-examples
+schema/manifest.json
+schema/vendor
+src/generated
+package-lock.json
