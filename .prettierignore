@@ -7,3 +7,4 @@ schema/manifest.json
 schema/vendor
 src/generated
 package-lock.json
+CHANGELOG.md
