@@ -106,6 +106,38 @@ const followed = await client.mutate({
 console.log(data.Activity, followed.ToggleFollow);
 ```
 
+## Convenience mutation services
+
+Common write workflows have typed helpers while retaining the same projection-based return types:
+
+```ts compile
+import { AniListClient } from 'anilist-ts';
+
+const client = new AniListClient({ token: 'token' });
+const entry = await client.mediaLists.saveEntry(
+  { mediaId: 1, status: 'CURRENT' },
+  { id: true, status: true, progress: true },
+);
+const activity = await client.activities.createText(
+  { text: 'Watching something new' },
+  { id: true, text: { $args: {}, $select: true } },
+);
+const review = await client.reviews.save({ mediaId: 1, summary: 'A great show' }, { id: true, summary: true });
+const recommendation = await client.recommendations.save(
+  { mediaId: 1, mediaRecommendationId: 2 },
+  { id: true, rating: true },
+);
+const thread = await client.threads.save({ title: 'Discussion', body: 'Hello!' }, { id: true, title: true });
+const user = await client.users.updateSettings(
+  { about: 'Hello AniList' },
+  { id: true, about: { $args: {}, $select: true } },
+);
+
+console.log(entry, activity, review, recommendation, thread, user);
+```
+
+Available helpers include media-list save/update/delete, activity create/reply/delete/like/subscription operations, review save/delete/rate, recommendation save, thread save/comment/delete/subscription operations, and user settings updates.
+
 For handwritten documents, use the raw escape hatch:
 
 ```ts compile
@@ -235,6 +267,20 @@ Browsers use the same ESM export. The bundle contains no Node built-ins and reli
 Generated types and runtime field maps come from the committed reference tables in the official [`AniList/docs`](https://github.com/AniList/docs) repository, pinned at commit `03281c0a4bbf0c7f2097e0c935cddaed1096aa65` and generated on 2026-08-23. This snapshot is explicitly docs-derived and may lag the live service.
 
 Normal installs, builds, and tests never contact AniList or GitHub. `schema:sync` parses the vendored tables, `schema:generate` emits committed artifacts, and `schema:check` detects drift. A scheduled/manual workflow compares the snapshot with live introspection—including types, fields, arguments, enums, inputs, and unions—when AniList exposes it successfully.
+
+### API coverage
+
+The v1.0.0 generic API covers the complete pinned docs snapshot. Convenience methods focus on the workflows most applications use; every other documented operation remains available through `query` and `mutate`.
+
+| AniList section      | Snapshot | Generic API | Convenience API                                                           |
+| -------------------- | -------: | ----------: | ------------------------------------------------------------------------- |
+| Query root fields    |       27 |        100% | Media, Character, User discovery                                          |
+| Mutation root fields |       29 |        100% | Media lists, Activities, Reviews, Recommendations, Threads, User settings |
+| Object types         |      127 |        100% | Entity classes for Media, Character, User                                 |
+| Input types          |       10 |        100% | Typed mutation arguments                                                  |
+| Enum types           |       40 |        100% | Typed filters and mutation arguments                                      |
+| Union types          |        3 |        100% | Typed inline fragments                                                    |
+| Scalar types         |        8 |        100% | Native TypeScript mappings                                                |
 
 ## Development and release
 
