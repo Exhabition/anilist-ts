@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.0.0...anilist-ts-v1.1.0) (2026-08-23)
+
+
+### Features
+
+* **api:** add typed convenience mutation services ([0758b49](https://github.com/Exhabition/anilist-ts/commit/0758b4912e744e7339908265c78646a192e7a881))
+
+
+### Bug Fixes
+
+* **schema:** compare complete live schema drift ([698328d](https://github.com/Exhabition/anilist-ts/commit/698328d4be5b004a49e5c0bf226d6f77865ce14f))
+
 ## [1.0.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v0.0.1...anilist-ts-v1.0.0) (2026-08-23)
 
 
