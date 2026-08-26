@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.0...anilist-ts-v1.1.1) (2026-08-26)
+
+
+### Bug Fixes
+
+* **schema:** handle wrapped live types ([a460cd1](https://github.com/Exhabition/anilist-ts/commit/a460cd13f811d692ea83aaaacb2bee0d9bb6a90c))
+
 ## [1.1.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.0.0...anilist-ts-v1.1.0) (2026-08-23)
 
 
