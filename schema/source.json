@@ -1,8 +1,7 @@
 {
-  "sourceUrl": "https://github.com/AniList/docs/tree/03281c0a4bbf0c7f2097e0c935cddaed1096aa65/docs/reference",
-  "commit": "03281c0a4bbf0c7f2097e0c935cddaed1096aa65",
-  "generatedAt": "2026-08-23",
-  "docsDerived": true,
+  "endpoint": "https://graphql.anilist.co",
+  "fetchedAt": "2026-08-26T09:36:31.659Z",
+  "liveDerived": true,
   "scalarMappings": {
     "Boolean": "boolean",
     "CountryCode": "string",

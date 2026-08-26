@@ -11,7 +11,6 @@ export default tseslint.config(
       'lib/**',
       'node_modules/**',
       'schema/manifest.json',
-      'schema/vendor/**',
       'src/generated/**',
       '.readme-examples/**',
     ],
