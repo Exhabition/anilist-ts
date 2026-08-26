@@ -302,4 +302,4 @@ npm run schema:generate
 npm run schema:check
 ```
 
-Release Please manages version changes, changelog generation, tags, GitHub releases, and npm publication. The package is currently at v1.0.0. Changes merged to `main` should use Conventional Commits so Release Please can prepare the next release automatically. Use the `Release-As: <version>` footer only when deliberately forcing a specific release version.
+Release Please manages version changes, changelog generation, tags, GitHub releases, and npm publication. Changes merged to `main` should use Conventional Commits so Release Please can prepare the next release automatically.
