@@ -1,6 +1,6 @@
 # AniList-TS
 
-[![CI](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml) ![API coverage](.github/badges/api-coverage.svg) ![Test coverage](.github/badges/test-coverage.svg)
+[![CI](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml) ![API coverage](https://github.com/Exhabition/anilist-ts/raw/refs/heads/main/.github/badges/api-coverage.svg) ![Test coverage](https://github.com/Exhabition/anilist-ts/raw/refs/heads/main/.github/badges/test-coverage.svg)
 
 AniList-TS is a projection-based TypeScript SDK for the AniList GraphQL API. It provides complete generated schema types, inferred response shapes, native-fetch transport, high-level Media/Character/User services, entity network methods, scoped caching, and a raw GraphQL escape hatch.
 
