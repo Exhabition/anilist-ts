@@ -2,7 +2,7 @@ name: Compare live AniList schema
 
 on:
   schedule:
-    - cron: '23 5 * * 1'
+    - cron: '0 9 * * 1'
   workflow_dispatch:
 
 permissions:
