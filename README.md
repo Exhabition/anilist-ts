@@ -1,5 +1,7 @@
 # AniList-TS
 
+[![CI](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/Exhabition/anilist-ts/actions/workflows/ci.yml) ![API coverage](.github/badges/api-coverage.svg) ![Test coverage](.github/badges/test-coverage.svg)
+
 AniList-TS is a projection-based TypeScript SDK for the AniList GraphQL API. It provides complete generated schema types, inferred response shapes, native-fetch transport, high-level Media/Character/User services, entity network methods, scoped caching, and a raw GraphQL escape hatch.
 
 It supports Node.js 22 and 24, modern browsers with `fetch` and Web Crypto, ESM, and CommonJS. The package has no required runtime dependencies.
@@ -76,7 +78,7 @@ The corresponding methods are:
 
 ## Full-schema operations
 
-`query` and `mutate` accept projections for the complete docs-derived schema and return plain typed data. Unions use `$on` inline fragments.
+`query` and `mutate` accept projections for the complete live-snapshot schema and return plain typed data. Unions use `$on` inline fragments.
 
 ```ts compile
 import { AniListClient } from 'anilist-ts';
@@ -264,13 +266,15 @@ Browsers use the same ESM export. The bundle contains no Node built-ins and reli
 
 ## Schema provenance
 
-Generated types and runtime field maps come from the committed reference tables in the official [`AniList/docs`](https://github.com/AniList/docs) repository, pinned at commit `03281c0a4bbf0c7f2097e0c935cddaed1096aa65` and generated on 2026-08-23. This snapshot is explicitly docs-derived and may lag the live service.
+Generated types and runtime field maps come from a committed introspection snapshot fetched directly from the live [`graphql.anilist.co`](https://graphql.anilist.co) endpoint. `schema/source.json` records the endpoint and exact fetch time, while `schema/introspection.json` preserves the response used for generation.
 
-Normal installs, builds, and tests never contact AniList or GitHub. `schema:sync` parses the vendored tables, `schema:generate` emits committed artifacts, and `schema:check` detects drift. A scheduled/manual workflow compares the snapshot with live introspection—including types, fields, arguments, enums, inputs, and unions—when AniList exposes it successfully.
+Normal installs, builds, tests, and `schema:check` remain deterministic and offline. `schema:sync` is the explicit network operation that refreshes the committed snapshot and manifest; `schema:generate` emits the generated API, runtime metadata, README coverage, and API badge. The scheduled/manual `schema:live-check` compares fresh AniList introspection with the committed snapshot and reports drift.
+
+<!-- schema-coverage:start -->
 
 ### API coverage
 
-The v1.0.0 generic API covers the complete pinned docs snapshot. Convenience methods focus on the workflows most applications use; every other documented operation remains available through `query` and `mutate`.
+The generic projection API represents 244 of 244 elements in the committed live schema snapshot (100%). Convenience methods focus on the workflows most applications use; every other operation remains available through `query` and `mutate`.
 
 | AniList section      | Snapshot | Generic API | Convenience API                                                           |
 | -------------------- | -------: | ----------: | ------------------------------------------------------------------------- |
@@ -282,6 +286,8 @@ The v1.0.0 generic API covers the complete pinned docs snapshot. Convenience met
 | Union types          |        3 |        100% | Typed inline fragments                                                    |
 | Scalar types         |        8 |        100% | Native TypeScript mappings                                                |
 
+<!-- schema-coverage:end -->
+
 ## Development and release
 
 Use npm and Node 22 or 24:
@@ -292,14 +298,16 @@ npm run verify
 npm run docs
 ```
 
-`verify` checks generated-code drift, formatting, ESLint, runtime and type-level compilation (including these README examples), coverage, import cycles/unresolved imports, dual builds, ESM/CommonJS/browser smoke imports, and packed contents. Tests use fixtures and mocked fetch; the AniList endpoint is not a CI dependency.
+`verify` checks generated-code drift, formatting, ESLint, runtime and type-level compilation (including these README examples), coverage and its committed badge, import cycles/unresolved imports, dual builds, ESM/CommonJS/browser smoke imports, and packed contents. Tests use fixtures and mocked fetch; the AniList endpoint is not a CI dependency.
 
-Generated files are `schema/manifest.json`, `src/generated/schema.ts`, and `src/generated/runtime.ts`. Update them with:
+Schema-generated files include `schema/introspection.json`, `schema/manifest.json`, the generated TypeScript/runtime files, the README API coverage block, and the API badge. Refresh them with:
 
 ```sh
 npm run schema:sync
 npm run schema:generate
 npm run schema:check
 ```
+
+After changing tested runtime code, refresh the repository-owned test coverage badge with `npm run coverage:badge`. Normal `npm run coverage` checks that its value is current.
 
 Release Please manages version changes, changelog generation, tags, GitHub releases, and npm publication. Changes merged to `main` should use Conventional Commits so Release Please can prepare the next release automatically.

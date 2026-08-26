@@ -4,7 +4,7 @@ coverage
 node_modules
 .readme-examples
 schema/manifest.json
-schema/vendor
+schema/introspection.json
 src/generated
 package-lock.json
 CHANGELOG.md

@@ -1,145 +1,173 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import {
+  buildClientSchema,
+  getIntrospectionQuery,
+  isEnumType,
+  isInputObjectType,
+  isObjectType,
+  isScalarType,
+  isUnionType,
+} from 'graphql';
+import { coverageColor, renderBadge } from './badge-lib.mjs';
 
 const ROOT_DIRECTORY = path.resolve(import.meta.dirname, '..');
-const SOURCE_DIRECTORY = path.join(ROOT_DIRECTORY, 'schema', 'vendor', 'reference');
 const SOURCE_METADATA = path.join(ROOT_DIRECTORY, 'schema', 'source.json');
+const INTROSPECTION_SNAPSHOT = path.join(ROOT_DIRECTORY, 'schema', 'introspection.json');
 
-function decodeHtml(value) {
-  return value
-    .replaceAll('&quot;', '"')
-    .replaceAll('&#39;', "'")
-    .replaceAll('&amp;', '&')
-    .replaceAll('&lt;', '<')
-    .replaceAll('&gt;', '>');
+function byName(left, right) {
+  return left.name.localeCompare(right.name);
 }
 
-function textContent(value) {
-  return decodeHtml(
-    value
-      .replace(/<br\s*\/?\s*>/gi, '\n')
-      .replace(/<[^>]+>/g, '')
-      .replace(/\s+/g, ' ')
-      .trim(),
-  );
+function description(value) {
+  return value ?? '';
 }
 
-function rows(markdown) {
-  return [...markdown.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map((row) =>
-    [...row[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((cell) => cell[1]),
-  );
+function deprecated(value) {
+  return value.deprecationReason != null;
 }
 
-function title(markdown) {
-  const match = markdown.match(/^title:\s*(.+?)\s+Reference\s*$/m);
-  if (!match) throw new Error('Reference page is missing its title');
-  return match[1].trim();
+function argumentManifest(argument) {
+  return {
+    name: argument.name,
+    type: String(argument.type),
+    description: description(argument.description),
+    deprecated: deprecated(argument),
+  };
 }
 
-function description(markdown, typeName) {
-  const escaped = typeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const match = markdown.match(new RegExp(`(?:### ${escaped}|# Root ${escaped})\\s*\\n([\\s\\S]*?)<table>`));
-  return match ? textContent(match[1]) : '';
+function fieldManifest(field, input = false) {
+  const result = {
+    name: field.name,
+    type: String(field.type),
+    description: description(field.description),
+    deprecated: deprecated(field),
+  };
+  if (!input) result.args = field.args.map(argumentManifest).sort(byName);
+  return result;
 }
 
-function parseFields(markdown) {
-  const fields = [];
-  let current;
-
-  for (const cells of rows(markdown)) {
-    if (cells.length < 2) continue;
-    const strong = cells[0].match(/<strong>(?:<a[^>]*>)?([^<]+)(?:<\/a>)?<\/strong>/);
-    if (strong) {
-      current = {
-        name: textContent(strong[1]),
-        type: textContent(cells[1]),
-        description: textContent(cells[2] ?? ''),
-        deprecated: /deprecated/i.test(cells[2] ?? ''),
-        args: [],
-      };
-      fields.push(current);
-    } else if (current && cells.length >= 3) {
-      current.args.push({
-        name: textContent(cells[0]),
-        type: textContent(cells[1]),
-        description: textContent(cells[2]),
-        deprecated: /deprecated/i.test(cells[2]),
-      });
-    }
+function typeManifest(type, kind) {
+  if (kind === 'SCALAR') return { name: type.name };
+  if (kind === 'ENUM') {
+    return {
+      name: type.name,
+      description: description(type.description),
+      values: type
+        .getValues()
+        .map((value) => ({
+          name: value.name,
+          description: description(value.description),
+          deprecated: deprecated(value),
+        }))
+        .sort(byName),
+    };
   }
-
-  return fields;
-}
-
-function parseEnum(markdown) {
-  return rows(markdown)
-    .map((cells) => {
-      const value = cells[0]?.match(/<strong>([^<]+)<\/strong>/)?.[1];
-      if (!value) return undefined;
-      return {
-        name: textContent(value),
-        description: textContent(cells[1] ?? ''),
-        deprecated: /deprecated/i.test(cells[1] ?? ''),
-      };
-    })
-    .filter(Boolean);
-}
-
-function parseUnion(markdown) {
-  return rows(markdown)
-    .map((cells) => cells[0]?.match(/<a href="\/reference\/object\/[^"]+">([^<]+)<\/a>/)?.[1])
-    .filter(Boolean);
-}
-
-async function referenceFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries.sort((left, right) => left.name.localeCompare(right.name))) {
-    const location = path.join(directory, entry.name);
-    if (entry.isDirectory()) files.push(...(await referenceFiles(location)));
-    else if (entry.name.endsWith('.md')) files.push(location);
+  if (kind === 'INPUT_OBJECT') {
+    return {
+      name: type.name,
+      description: description(type.description),
+      fields: Object.values(type.getFields())
+        .map((field) => fieldManifest(field, true))
+        .sort(byName),
+    };
   }
-  return files;
+  if (kind === 'OBJECT') {
+    return {
+      name: type.name,
+      description: description(type.description),
+      fields: Object.values(type.getFields())
+        .map((field) => fieldManifest(field))
+        .sort(byName),
+    };
+  }
+  return {
+    name: type.name,
+    description: description(type.description),
+    members: type
+      .getTypes()
+      .map((member) => member.name)
+      .sort(),
+  };
 }
 
-export async function parseSchema() {
-  const metadata = JSON.parse(await readFile(SOURCE_METADATA, 'utf8'));
+function sortedCopy(values) {
+  return values ? [...values].sort(byName) : values;
+}
+
+export function normalizeIntrospection(introspection) {
+  const snapshot = structuredClone(introspection);
+  snapshot.__schema.types = sortedCopy(snapshot.__schema.types);
+  snapshot.__schema.directives = sortedCopy(snapshot.__schema.directives);
+  for (const type of snapshot.__schema.types) {
+    type.fields = sortedCopy(type.fields);
+    type.inputFields = sortedCopy(type.inputFields);
+    type.enumValues = sortedCopy(type.enumValues);
+    type.possibleTypes = sortedCopy(type.possibleTypes);
+    for (const field of type.fields ?? []) field.args = sortedCopy(field.args);
+  }
+  for (const directive of snapshot.__schema.directives ?? []) directive.args = sortedCopy(directive.args);
+  return snapshot;
+}
+
+export async function fetchLiveIntrospection(endpoint) {
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: getIntrospectionQuery() }),
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!response.ok) throw new Error(`Live introspection returned HTTP ${response.status}.`);
+  const payload = await response.json();
+  if (payload.errors?.length) {
+    throw new Error(`Live introspection failed: ${payload.errors.map((error) => error.message).join('; ')}`);
+  }
+  if (!payload.data?.__schema) throw new Error('Live introspection response did not include schema data.');
+  return normalizeIntrospection(payload.data);
+}
+
+export function manifestFromIntrospection(introspection, metadata) {
+  const schema = buildClientSchema(introspection);
   const manifest = {
     metadata,
-    roots: { query: 'Query', mutation: 'Mutation' },
-    scalars: Object.entries(metadata.scalarMappings).map(([name, typescript]) => ({ name, typescript })),
+    roots: {
+      query: schema.getQueryType()?.name,
+      mutation: schema.getMutationType()?.name,
+    },
+    scalars: [],
     enums: [],
     inputs: [],
     objects: [],
     unions: [],
   };
 
-  for (const file of await referenceFiles(SOURCE_DIRECTORY)) {
-    const relative = path.relative(SOURCE_DIRECTORY, file);
-    const markdown = await readFile(file, 'utf8');
-    if (relative === 'index.md' || relative === 'sidebar.json') continue;
-    if (relative === 'query.md' || relative === 'mutation.md') {
-      const name = relative === 'query.md' ? 'Query' : 'Mutation';
-      manifest.objects.push({ name, description: description(markdown, name), fields: parseFields(markdown) });
-    } else if (relative.startsWith(`object${path.sep}`)) {
-      const name = title(markdown);
-      manifest.objects.push({ name, description: description(markdown, name), fields: parseFields(markdown) });
-    } else if (relative.startsWith(`input${path.sep}`)) {
-      const name = title(markdown);
-      manifest.inputs.push({ name, description: description(markdown, name), fields: parseFields(markdown) });
-    } else if (relative.startsWith(`enum${path.sep}`)) {
-      const name = title(markdown);
-      manifest.enums.push({ name, description: description(markdown, name), values: parseEnum(markdown) });
-    } else if (relative.startsWith(`union${path.sep}`)) {
-      const name = title(markdown);
-      manifest.unions.push({ name, description: description(markdown, name), members: parseUnion(markdown) });
-    }
+  for (const type of Object.values(schema.getTypeMap()).filter((item) => !item.name.startsWith('__'))) {
+    if (isScalarType(type)) {
+      const typescript = metadata.scalarMappings[type.name];
+      if (!typescript) throw new Error(`Missing TypeScript mapping for live scalar: ${type.name}`);
+      manifest.scalars.push({ ...typeManifest(type, 'SCALAR'), typescript });
+    } else if (isEnumType(type)) manifest.enums.push(typeManifest(type, 'ENUM'));
+    else if (isInputObjectType(type)) manifest.inputs.push(typeManifest(type, 'INPUT_OBJECT'));
+    else if (isObjectType(type)) manifest.objects.push(typeManifest(type, 'OBJECT'));
+    else if (isUnionType(type)) manifest.unions.push(typeManifest(type, 'UNION'));
   }
 
   for (const group of ['scalars', 'enums', 'inputs', 'objects', 'unions']) {
-    manifest[group].sort((left, right) => left.name.localeCompare(right.name));
+    manifest[group].sort(byName);
   }
   return manifest;
+}
+
+export async function readSourceMetadata() {
+  return JSON.parse(await readFile(SOURCE_METADATA, 'utf8'));
+}
+
+export async function parseSchema() {
+  const [metadata, introspection] = await Promise.all([
+    readSourceMetadata(),
+    readFile(INTROSPECTION_SNAPSHOT, 'utf8').then(JSON.parse),
+  ]);
+  return manifestFromIntrospection(introspection, metadata);
 }
 
 function parseType(source) {
@@ -209,7 +237,7 @@ function generateTypes(manifest) {
   const lines = [
     '/* eslint-disable */',
     '/**',
-    ' * Generated from the pinned AniList documentation snapshot.',
+    ' * Generated from the pinned live AniList introspection snapshot.',
     ' * Do not edit this file directly; run `npm run schema:generate`.',
     ' */',
     '',
@@ -372,10 +400,61 @@ function generateRuntime(manifest) {
 }
 
 export function generateArtifacts(manifest) {
+  const coverage = schemaCoverage(manifest);
   return {
     'src/generated/schema.ts': generateTypes(manifest),
     'src/generated/runtime.ts': generateRuntime(manifest),
+    '.github/badges/api-coverage.svg': renderBadge(
+      'API coverage',
+      `${coverage.percentage}%`,
+      coverageColor(coverage.percentage),
+    ),
   };
+}
+
+export function schemaCoverage(manifest) {
+  const object = (name) => manifest.objects.find((item) => item.name === name);
+  const queryFields = object(manifest.roots.query)?.fields.length ?? 0;
+  const mutationFields = object(manifest.roots.mutation)?.fields.length ?? 0;
+  const counts = {
+    queryFields,
+    mutationFields,
+    objects: manifest.objects.length,
+    inputs: manifest.inputs.length,
+    enums: manifest.enums.length,
+    unions: manifest.unions.length,
+    scalars: manifest.scalars.length,
+  };
+  const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
+  const covered = total;
+  return { ...counts, covered, total, percentage: total === 0 ? 0 : Math.round((covered / total) * 100) };
+}
+
+export function generateSchemaCoverageSection(manifest) {
+  const coverage = schemaCoverage(manifest);
+  return `<!-- schema-coverage:start -->
+
+### API coverage
+
+The generic projection API represents ${coverage.covered} of ${coverage.total} elements in the committed live schema snapshot (${coverage.percentage}%). Convenience methods focus on the workflows most applications use; every other operation remains available through \`query\` and \`mutate\`.
+
+| AniList section      | Snapshot | Generic API | Convenience API                                                           |
+| -------------------- | -------: | ----------: | ------------------------------------------------------------------------- |
+| Query root fields    | ${String(coverage.queryFields).padStart(8)} |        ${coverage.percentage}% | Media, Character, User discovery                                          |
+| Mutation root fields | ${String(coverage.mutationFields).padStart(8)} |        ${coverage.percentage}% | Media lists, Activities, Reviews, Recommendations, Threads, User settings |
+| Object types         | ${String(coverage.objects).padStart(8)} |        ${coverage.percentage}% | Entity classes for Media, Character, User                                 |
+| Input types          | ${String(coverage.inputs).padStart(8)} |        ${coverage.percentage}% | Typed mutation arguments                                                  |
+| Enum types           | ${String(coverage.enums).padStart(8)} |        ${coverage.percentage}% | Typed filters and mutation arguments                                      |
+| Union types          | ${String(coverage.unions).padStart(8)} |        ${coverage.percentage}% | Typed inline fragments                                                    |
+| Scalar types         | ${String(coverage.scalars).padStart(8)} |        ${coverage.percentage}% | Native TypeScript mappings                                                |
+
+<!-- schema-coverage:end -->`;
+}
+
+export function updateReadmeSchemaCoverage(readme, manifest) {
+  const pattern = /<!-- schema-coverage:start -->[\s\S]*?<!-- schema-coverage:end -->/;
+  if (!pattern.test(readme)) throw new Error('README is missing the generated schema coverage markers.');
+  return readme.replace(pattern, generateSchemaCoverageSection(manifest));
 }
 
 export function stableJson(value) {

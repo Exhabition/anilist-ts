@@ -9,16 +9,8 @@ export const schemaRuntime = {
     "ActivityLikeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "activity": {
+          "type": "ActivityUnion",
           "args": {}
         },
         "activityId": {
@@ -33,12 +25,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "activity": {
-          "type": "ActivityUnion",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -46,16 +46,8 @@ export const schemaRuntime = {
     "ActivityMentionNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "activity": {
+          "type": "ActivityUnion",
           "args": {}
         },
         "activityId": {
@@ -70,12 +62,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "activity": {
-          "type": "ActivityUnion",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -83,18 +83,6 @@ export const schemaRuntime = {
     "ActivityMessageNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
         "activityId": {
           "type": "Int!",
           "args": {}
@@ -107,12 +95,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "message": {
           "type": "MessageActivity",
           "args": {}
         },
+        "type": {
+          "type": "NotificationType",
+          "args": {}
+        },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -120,16 +120,28 @@ export const schemaRuntime = {
     "ActivityReply": {
       "kind": "OBJECT",
       "fields": {
+        "activityId": {
+          "type": "Int",
+          "args": {}
+        },
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "userId": {
-          "type": "Int",
+        "isLiked": {
+          "type": "Boolean",
           "args": {}
         },
-        "activityId": {
-          "type": "Int",
+        "likeCount": {
+          "type": "Int!",
+          "args": {}
+        },
+        "likes": {
+          "type": "[User]",
           "args": {}
         },
         "text": {
@@ -138,24 +150,12 @@ export const schemaRuntime = {
             "asHtml": "Boolean"
           }
         },
-        "likeCount": {
-          "type": "Int!",
-          "args": {}
-        },
-        "isLiked": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "createdAt": {
-          "type": "Int!",
-          "args": {}
-        },
         "user": {
           "type": "User",
           "args": {}
         },
-        "likes": {
-          "type": "[User]",
+        "userId": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -163,16 +163,8 @@ export const schemaRuntime = {
     "ActivityReplyLikeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "activity": {
+          "type": "ActivityUnion",
           "args": {}
         },
         "activityId": {
@@ -187,12 +179,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "activity": {
-          "type": "ActivityUnion",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -200,16 +200,8 @@ export const schemaRuntime = {
     "ActivityReplyNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "activity": {
+          "type": "ActivityUnion",
           "args": {}
         },
         "activityId": {
@@ -224,12 +216,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "activity": {
-          "type": "ActivityUnion",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -237,16 +237,8 @@ export const schemaRuntime = {
     "ActivityReplySubscribedNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "activity": {
+          "type": "ActivityUnion",
           "args": {}
         },
         "activityId": {
@@ -261,19 +253,6 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "activity": {
-          "type": "ActivityUnion",
-          "args": {}
-        },
-        "user": {
-          "type": "User",
-          "args": {}
-        }
-      }
-    },
-    "AiringNotification": {
-      "kind": "OBJECT",
-      "fields": {
         "id": {
           "type": "Int!",
           "args": {}
@@ -282,11 +261,20 @@ export const schemaRuntime = {
           "type": "NotificationType",
           "args": {}
         },
-        "animeId": {
-          "type": "Int!",
+        "user": {
+          "type": "User",
           "args": {}
         },
-        "episode": {
+        "userId": {
+          "type": "Int!",
+          "args": {}
+        }
+      }
+    },
+    "AiringNotification": {
+      "kind": "OBJECT",
+      "fields": {
+        "animeId": {
           "type": "Int!",
           "args": {}
         },
@@ -298,8 +286,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "episode": {
+          "type": "Int!",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "media": {
           "type": "Media",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -324,15 +324,7 @@ export const schemaRuntime = {
     "AiringSchedule": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
         "airingAt": {
-          "type": "Int!",
-          "args": {}
-        },
-        "timeUntilAiring": {
           "type": "Int!",
           "args": {}
         },
@@ -340,12 +332,20 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "mediaId": {
+        "id": {
           "type": "Int!",
           "args": {}
         },
         "media": {
           "type": "Media",
+          "args": {}
+        },
+        "mediaId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "timeUntilAiring": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -370,12 +370,12 @@ export const schemaRuntime = {
     "AiringScheduleEdge": {
       "kind": "OBJECT",
       "fields": {
-        "node": {
-          "type": "AiringSchedule",
-          "args": {}
-        },
         "id": {
           "type": "Int",
+          "args": {}
+        },
+        "node": {
+          "type": "AiringSchedule",
           "args": {}
         }
       }
@@ -383,16 +383,16 @@ export const schemaRuntime = {
     "AniChartUser": {
       "kind": "OBJECT",
       "fields": {
-        "user": {
-          "type": "User",
+        "highlights": {
+          "type": "Json",
           "args": {}
         },
         "settings": {
           "type": "Json",
           "args": {}
         },
-        "highlights": {
-          "type": "Json",
+        "user": {
+          "type": "User",
           "args": {}
         }
       }
@@ -400,16 +400,16 @@ export const schemaRuntime = {
     "Character": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
+        "age": {
+          "type": "String",
           "args": {}
         },
-        "name": {
-          "type": "CharacterName",
+        "bloodType": {
+          "type": "String",
           "args": {}
         },
-        "image": {
-          "type": "CharacterImage",
+        "dateOfBirth": {
+          "type": "FuzzyDate",
           "args": {}
         },
         "description": {
@@ -418,20 +418,20 @@ export const schemaRuntime = {
             "asHtml": "Boolean"
           }
         },
+        "favourites": {
+          "type": "Int",
+          "args": {}
+        },
         "gender": {
           "type": "String",
           "args": {}
         },
-        "dateOfBirth": {
-          "type": "FuzzyDate",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
-        "age": {
-          "type": "String",
-          "args": {}
-        },
-        "bloodType": {
-          "type": "String",
+        "image": {
+          "type": "CharacterImage",
           "args": {}
         },
         "isFavourite": {
@@ -442,30 +442,30 @@ export const schemaRuntime = {
           "type": "Boolean!",
           "args": {}
         },
+        "media": {
+          "type": "MediaConnection",
+          "args": {
+            "onList": "Boolean",
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[MediaSort]",
+            "type": "MediaType"
+          }
+        },
+        "modNotes": {
+          "type": "String",
+          "args": {}
+        },
+        "name": {
+          "type": "CharacterName",
+          "args": {}
+        },
         "siteUrl": {
           "type": "String",
           "args": {}
         },
-        "media": {
-          "type": "MediaConnection",
-          "args": {
-            "sort": "[MediaSort]",
-            "type": "MediaType",
-            "onList": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
         "updatedAt": {
           "type": "Int",
-          "args": {}
-        },
-        "favourites": {
-          "type": "Int",
-          "args": {}
-        },
-        "modNotes": {
-          "type": "String",
           "args": {}
         }
       }
@@ -490,28 +490,29 @@ export const schemaRuntime = {
     "CharacterEdge": {
       "kind": "OBJECT",
       "fields": {
-        "node": {
-          "type": "Character",
+        "favouriteOrder": {
+          "type": "Int",
           "args": {}
         },
         "id": {
           "type": "Int",
           "args": {}
         },
-        "role": {
-          "type": "CharacterRole",
+        "media": {
+          "type": "[Media]",
           "args": {}
         },
         "name": {
           "type": "String",
           "args": {}
         },
-        "voiceActors": {
-          "type": "[Staff]",
-          "args": {
-            "language": "StaffLanguage",
-            "sort": "[StaffSort]"
-          }
+        "node": {
+          "type": "Character",
+          "args": {}
+        },
+        "role": {
+          "type": "CharacterRole",
+          "args": {}
         },
         "voiceActorRoles": {
           "type": "[StaffRoleType]",
@@ -520,13 +521,12 @@ export const schemaRuntime = {
             "sort": "[StaffSort]"
           }
         },
-        "media": {
-          "type": "[Media]",
-          "args": {}
-        },
-        "favouriteOrder": {
-          "type": "Int",
-          "args": {}
+        "voiceActors": {
+          "type": "[Staff]",
+          "args": {
+            "language": "StaffLanguage",
+            "sort": "[StaffSort]"
+          }
         }
       }
     },
@@ -546,15 +546,15 @@ export const schemaRuntime = {
     "CharacterName": {
       "kind": "OBJECT",
       "fields": {
+        "alternative": {
+          "type": "[String]",
+          "args": {}
+        },
+        "alternativeSpoiler": {
+          "type": "[String]",
+          "args": {}
+        },
         "first": {
-          "type": "String",
-          "args": {}
-        },
-        "middle": {
-          "type": "String",
-          "args": {}
-        },
-        "last": {
           "type": "String",
           "args": {}
         },
@@ -562,16 +562,16 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "native": {
+        "last": {
           "type": "String",
           "args": {}
         },
-        "alternative": {
-          "type": "[String]",
+        "middle": {
+          "type": "String",
           "args": {}
         },
-        "alternativeSpoiler": {
-          "type": "[String]",
+        "native": {
+          "type": "String",
           "args": {}
         },
         "userPreferred": {
@@ -583,28 +583,24 @@ export const schemaRuntime = {
     "CharacterSubmission": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
+        "assignee": {
+          "type": "User",
           "args": {}
         },
         "character": {
           "type": "Character",
           "args": {}
         },
-        "submission": {
-          "type": "Character",
+        "createdAt": {
+          "type": "Int",
           "args": {}
         },
-        "submitter": {
-          "type": "User",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
-        "assignee": {
-          "type": "User",
-          "args": {}
-        },
-        "status": {
-          "type": "SubmissionStatus",
+        "locked": {
+          "type": "Boolean",
           "args": {}
         },
         "notes": {
@@ -615,12 +611,16 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "locked": {
-          "type": "Boolean",
+        "status": {
+          "type": "SubmissionStatus",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "submission": {
+          "type": "Character",
+          "args": {}
+        },
+        "submitter": {
+          "type": "User",
           "args": {}
         }
       }
@@ -653,12 +653,12 @@ export const schemaRuntime = {
           "type": "CharacterRole",
           "args": {}
         },
-        "voiceActors": {
-          "type": "[Staff]",
-          "args": {}
-        },
         "submittedVoiceActors": {
           "type": "[StaffSubmission]",
+          "args": {}
+        },
+        "voiceActors": {
+          "type": "[Staff]",
           "args": {}
         }
       }
@@ -666,32 +666,32 @@ export const schemaRuntime = {
     "CharacterSubmissionUpdateNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "character": {
+          "type": "Character",
           "args": {}
         },
         "contexts": {
           "type": "[String]",
           "args": {}
         },
-        "status": {
-          "type": "String",
+        "createdAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
           "args": {}
         },
         "notes": {
           "type": "String",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "status": {
+          "type": "String",
           "args": {}
         },
-        "character": {
-          "type": "Character",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -715,15 +715,15 @@ export const schemaRuntime = {
             "perPage": "Int"
           }
         },
-        "manga": {
-          "type": "MediaConnection",
+        "characters": {
+          "type": "CharacterConnection",
           "args": {
             "page": "Int",
             "perPage": "Int"
           }
         },
-        "characters": {
-          "type": "CharacterConnection",
+        "manga": {
+          "type": "MediaConnection",
           "args": {
             "page": "Int",
             "perPage": "Int"
@@ -748,18 +748,6 @@ export const schemaRuntime = {
     "FollowingNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
         "context": {
           "type": "String",
           "args": {}
@@ -768,8 +756,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
+          "args": {}
+        },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -777,12 +777,12 @@ export const schemaRuntime = {
     "FormatStats": {
       "kind": "OBJECT",
       "fields": {
-        "format": {
-          "type": "MediaFormat",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
+          "args": {}
+        },
+        "format": {
+          "type": "MediaFormat",
           "args": {}
         }
       }
@@ -790,7 +790,7 @@ export const schemaRuntime = {
     "FuzzyDate": {
       "kind": "OBJECT",
       "fields": {
-        "year": {
+        "day": {
           "type": "Int",
           "args": {}
         },
@@ -798,7 +798,7 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "day": {
+        "year": {
           "type": "Int",
           "args": {}
         }
@@ -807,12 +807,12 @@ export const schemaRuntime = {
     "GenreStats": {
       "kind": "OBJECT",
       "fields": {
-        "genre": {
-          "type": "String",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
+          "args": {}
+        },
+        "genre": {
+          "type": "String",
           "args": {}
         },
         "meanScore": {
@@ -828,386 +828,103 @@ export const schemaRuntime = {
     "InternalPage": {
       "kind": "OBJECT",
       "fields": {
-        "mediaSubmissions": {
-          "type": "[MediaSubmission]",
+        "activities": {
+          "type": "[ActivityUnion]",
           "args": {
-            "mediaId": "Int",
-            "submissionId": "Int",
-            "userId": "Int",
-            "assigneeId": "Int",
-            "status": "SubmissionStatus",
-            "type": "MediaType",
-            "sort": "[SubmissionSort]"
-          }
-        },
-        "characterSubmissions": {
-          "type": "[CharacterSubmission]",
-          "args": {
-            "characterId": "Int",
-            "userId": "Int",
-            "assigneeId": "Int",
-            "status": "SubmissionStatus",
-            "sort": "[SubmissionSort]"
-          }
-        },
-        "staffSubmissions": {
-          "type": "[StaffSubmission]",
-          "args": {
-            "staffId": "Int",
-            "userId": "Int",
-            "assigneeId": "Int",
-            "status": "SubmissionStatus",
-            "sort": "[SubmissionSort]"
-          }
-        },
-        "revisionHistory": {
-          "type": "[RevisionHistory]",
-          "args": {
-            "userId": "Int",
-            "mediaId": "Int",
-            "characterId": "Int",
-            "staffId": "Int",
-            "studioId": "Int"
-          }
-        },
-        "reports": {
-          "type": "[Report]",
-          "args": {
-            "reporterId": "Int",
-            "reportedId": "Int"
-          }
-        },
-        "modActions": {
-          "type": "[ModAction]",
-          "args": {
-            "userId": "Int",
-            "modId": "Int",
-            "modId_not": "Int",
-            "modId_in": "[Int]",
-            "modId_not_in": "[Int]"
-          }
-        },
-        "userBlockSearch": {
-          "type": "[User]",
-          "args": {
-            "search": "String"
-          }
-        },
-        "pageInfo": {
-          "type": "PageInfo",
-          "args": {}
-        },
-        "users": {
-          "type": "[User]",
-          "args": {
+            "createdAt": "Int",
+            "createdAt_greater": "Int",
+            "createdAt_lesser": "Int",
+            "hasReplies": "Boolean",
+            "hasRepliesOrTypeText": "Boolean",
             "id": "Int",
-            "name": "String",
-            "isModerator": "Boolean",
-            "search": "String",
-            "sort": "[UserSort]"
-          }
-        },
-        "media": {
-          "type": "[Media]",
-          "args": {
-            "id": "Int",
-            "idMal": "Int",
-            "startDate": "FuzzyDateInt",
-            "endDate": "FuzzyDateInt",
-            "season": "MediaSeason",
-            "seasonYear": "Int",
-            "type": "MediaType",
-            "format": "MediaFormat",
-            "status": "MediaStatus",
-            "episodes": "Int",
-            "duration": "Int",
-            "chapters": "Int",
-            "volumes": "Int",
-            "isAdult": "Boolean",
-            "genre": "String",
-            "tag": "String",
-            "minimumTagRank": "Int",
-            "tagCategory": "String",
-            "onList": "Boolean",
-            "licensedBy": "String",
-            "licensedById": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "source": "MediaSource",
-            "countryOfOrigin": "CountryCode",
-            "isLicensed": "Boolean",
-            "search": "String",
-            "id_not": "Int",
             "id_in": "[Int]",
+            "id_not": "Int",
             "id_not_in": "[Int]",
-            "idMal_not": "Int",
-            "idMal_in": "[Int]",
-            "idMal_not_in": "[Int]",
-            "startDate_greater": "FuzzyDateInt",
-            "startDate_lesser": "FuzzyDateInt",
-            "startDate_like": "String",
-            "endDate_greater": "FuzzyDateInt",
-            "endDate_lesser": "FuzzyDateInt",
-            "endDate_like": "String",
-            "format_in": "[MediaFormat]",
-            "format_not": "MediaFormat",
-            "format_not_in": "[MediaFormat]",
-            "status_in": "[MediaStatus]",
-            "status_not": "MediaStatus",
-            "status_not_in": "[MediaStatus]",
-            "episodes_greater": "Int",
-            "episodes_lesser": "Int",
-            "duration_greater": "Int",
-            "duration_lesser": "Int",
-            "chapters_greater": "Int",
-            "chapters_lesser": "Int",
-            "volumes_greater": "Int",
-            "volumes_lesser": "Int",
-            "genre_in": "[String]",
-            "genre_not_in": "[String]",
-            "tag_in": "[String]",
-            "tag_not_in": "[String]",
-            "tagCategory_in": "[String]",
-            "tagCategory_not_in": "[String]",
-            "licensedBy_in": "[String]",
-            "licensedById_in": "[Int]",
-            "averageScore_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "popularity_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "source_in": "[MediaSource]",
-            "countryOfOrigin_in": "[CountryCode]",
-            "countryOfOrigin_not_in": "[CountryCode]",
-            "sort": "[MediaSort]"
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "messengerId": "Int",
+            "messengerId_in": "[Int]",
+            "messengerId_not": "Int",
+            "messengerId_not_in": "[Int]",
+            "sort": "[ActivitySort]",
+            "type": "ActivityType",
+            "type_in": "[ActivityType]",
+            "type_not": "ActivityType",
+            "type_not_in": "[ActivityType]",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userId_not": "Int",
+            "userId_not_in": "[Int]"
+          }
+        },
+        "activityReplies": {
+          "type": "[ActivityReply]",
+          "args": {
+            "activityId": "Int",
+            "id": "Int"
+          }
+        },
+        "airingSchedules": {
+          "type": "[AiringSchedule]",
+          "args": {
+            "airingAt": "Int",
+            "airingAt_greater": "Int",
+            "airingAt_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_in": "[Int]",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "episode_not_in": "[Int]",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "notYetAired": "Boolean",
+            "sort": "[AiringSort]"
           }
         },
         "characters": {
           "type": "[Character]",
           "args": {
             "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
             "isBirthday": "Boolean",
             "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
             "sort": "[CharacterSort]"
           }
         },
-        "staff": {
-          "type": "[Staff]",
+        "characterSubmissions": {
+          "type": "[CharacterSubmission]",
           "args": {
-            "id": "Int",
-            "isBirthday": "Boolean",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StaffSort]"
-          }
-        },
-        "studios": {
-          "type": "[Studio]",
-          "args": {
-            "id": "Int",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StudioSort]"
-          }
-        },
-        "mediaList": {
-          "type": "[MediaList]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "userName": "String",
-            "type": "MediaType",
-            "status": "MediaListStatus",
-            "mediaId": "Int",
-            "isFollowing": "Boolean",
-            "notes": "String",
-            "startedAt": "FuzzyDateInt",
-            "completedAt": "FuzzyDateInt",
-            "compareWithAuthList": "Boolean",
-            "userId_in": "[Int]",
-            "status_in": "[MediaListStatus]",
-            "status_not_in": "[MediaListStatus]",
-            "status_not": "MediaListStatus",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "notes_like": "String",
-            "startedAt_greater": "FuzzyDateInt",
-            "startedAt_lesser": "FuzzyDateInt",
-            "startedAt_like": "String",
-            "completedAt_greater": "FuzzyDateInt",
-            "completedAt_lesser": "FuzzyDateInt",
-            "completedAt_like": "String",
-            "sort": "[MediaListSort]"
-          }
-        },
-        "airingSchedules": {
-          "type": "[AiringSchedule]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "episode": "Int",
-            "airingAt": "Int",
-            "notYetAired": "Boolean",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "episode_not": "Int",
-            "episode_in": "[Int]",
-            "episode_not_in": "[Int]",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "airingAt_greater": "Int",
-            "airingAt_lesser": "Int",
-            "sort": "[AiringSort]"
-          }
-        },
-        "mediaTrends": {
-          "type": "[MediaTrend]",
-          "args": {
-            "mediaId": "Int",
-            "date": "Int",
-            "trending": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "episode": "Int",
-            "releasing": "Boolean",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "date_greater": "Int",
-            "date_lesser": "Int",
-            "trending_greater": "Int",
-            "trending_lesser": "Int",
-            "trending_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "averageScore_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "popularity_not": "Int",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "episode_not": "Int",
-            "sort": "[MediaTrendSort]"
-          }
-        },
-        "notifications": {
-          "type": "[NotificationUnion]",
-          "args": {
-            "type": "NotificationType",
-            "resetNotificationCount": "Boolean",
-            "type_in": "[NotificationType]"
+            "assigneeId": "Int",
+            "characterId": "Int",
+            "sort": "[SubmissionSort]",
+            "status": "SubmissionStatus",
+            "userId": "Int"
           }
         },
         "followers": {
           "type": "[User]",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "following": {
           "type": "[User]",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
-          }
-        },
-        "activities": {
-          "type": "[ActivityUnion]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "messengerId": "Int",
-            "mediaId": "Int",
-            "type": "ActivityType",
-            "isFollowing": "Boolean",
-            "hasReplies": "Boolean",
-            "hasRepliesOrTypeText": "Boolean",
-            "createdAt": "Int",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "userId_not": "Int",
-            "userId_in": "[Int]",
-            "userId_not_in": "[Int]",
-            "messengerId_not": "Int",
-            "messengerId_in": "[Int]",
-            "messengerId_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "type_not": "ActivityType",
-            "type_in": "[ActivityType]",
-            "type_not_in": "[ActivityType]",
-            "createdAt_greater": "Int",
-            "createdAt_lesser": "Int",
-            "sort": "[ActivitySort]"
-          }
-        },
-        "activityReplies": {
-          "type": "[ActivityReply]",
-          "args": {
-            "id": "Int",
-            "activityId": "Int"
-          }
-        },
-        "threads": {
-          "type": "[Thread]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "replyUserId": "Int",
-            "subscribed": "Boolean",
-            "categoryId": "Int",
-            "mediaCategoryId": "Int",
-            "search": "String",
-            "id_in": "[Int]",
-            "sort": "[ThreadSort]"
-          }
-        },
-        "threadComments": {
-          "type": "[ThreadComment]",
-          "args": {
-            "id": "Int",
-            "threadId": "Int",
-            "userId": "Int",
-            "sort": "[ThreadCommentSort]"
-          }
-        },
-        "reviews": {
-          "type": "[Review]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "userId": "Int",
-            "mediaType": "MediaType",
-            "sort": "[ReviewSort]"
-          }
-        },
-        "recommendations": {
-          "type": "[Recommendation]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "mediaRecommendationId": "Int",
-            "userId": "Int",
-            "rating": "Int",
-            "onList": "Boolean",
-            "rating_greater": "Int",
-            "rating_lesser": "Int",
-            "sort": "[RecommendationSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "likes": {
@@ -1216,37 +933,312 @@ export const schemaRuntime = {
             "likeableId": "Int",
             "type": "LikeableType"
           }
+        },
+        "media": {
+          "type": "[Media]",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "chapters": "Int",
+            "chapters_greater": "Int",
+            "chapters_lesser": "Int",
+            "countryOfOrigin": "CountryCode",
+            "countryOfOrigin_in": "[CountryCode]",
+            "countryOfOrigin_not_in": "[CountryCode]",
+            "duration": "Int",
+            "duration_greater": "Int",
+            "duration_lesser": "Int",
+            "endDate": "FuzzyDateInt",
+            "endDate_greater": "FuzzyDateInt",
+            "endDate_lesser": "FuzzyDateInt",
+            "endDate_like": "String",
+            "episodes": "Int",
+            "episodes_greater": "Int",
+            "episodes_lesser": "Int",
+            "format": "MediaFormat",
+            "format_in": "[MediaFormat]",
+            "format_not": "MediaFormat",
+            "format_not_in": "[MediaFormat]",
+            "genre": "String",
+            "genre_in": "[String]",
+            "genre_not_in": "[String]",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "idMal": "Int",
+            "idMal_in": "[Int]",
+            "idMal_not": "Int",
+            "idMal_not_in": "[Int]",
+            "isAdult": "Boolean",
+            "isLicensed": "Boolean",
+            "licensedBy": "String",
+            "licensedBy_in": "[String]",
+            "licensedById": "Int",
+            "licensedById_in": "[Int]",
+            "minimumTagRank": "Int",
+            "onList": "Boolean",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "search": "String",
+            "season": "MediaSeason",
+            "seasonYear": "Int",
+            "sort": "[MediaSort]",
+            "source": "MediaSource",
+            "source_in": "[MediaSource]",
+            "startDate": "FuzzyDateInt",
+            "startDate_greater": "FuzzyDateInt",
+            "startDate_lesser": "FuzzyDateInt",
+            "startDate_like": "String",
+            "status": "MediaStatus",
+            "status_in": "[MediaStatus]",
+            "status_not": "MediaStatus",
+            "status_not_in": "[MediaStatus]",
+            "tag": "String",
+            "tag_in": "[String]",
+            "tag_not_in": "[String]",
+            "tagCategory": "String",
+            "tagCategory_in": "[String]",
+            "tagCategory_not_in": "[String]",
+            "type": "MediaType",
+            "volumes": "Int",
+            "volumes_greater": "Int",
+            "volumes_lesser": "Int"
+          }
+        },
+        "mediaList": {
+          "type": "[MediaList]",
+          "args": {
+            "compareWithAuthList": "Boolean",
+            "completedAt": "FuzzyDateInt",
+            "completedAt_greater": "FuzzyDateInt",
+            "completedAt_lesser": "FuzzyDateInt",
+            "completedAt_like": "String",
+            "id": "Int",
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not_in": "[Int]",
+            "notes": "String",
+            "notes_like": "String",
+            "sort": "[MediaListSort]",
+            "startedAt": "FuzzyDateInt",
+            "startedAt_greater": "FuzzyDateInt",
+            "startedAt_lesser": "FuzzyDateInt",
+            "startedAt_like": "String",
+            "status": "MediaListStatus",
+            "status_in": "[MediaListStatus]",
+            "status_not": "MediaListStatus",
+            "status_not_in": "[MediaListStatus]",
+            "type": "MediaType",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userName": "String"
+          }
+        },
+        "mediaSubmissions": {
+          "type": "[MediaSubmission]",
+          "args": {
+            "assigneeId": "Int",
+            "mediaId": "Int",
+            "sort": "[SubmissionSort]",
+            "status": "SubmissionStatus",
+            "submissionId": "Int",
+            "type": "MediaType",
+            "userId": "Int"
+          }
+        },
+        "mediaTrends": {
+          "type": "[MediaTrend]",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "date": "Int",
+            "date_greater": "Int",
+            "date_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "releasing": "Boolean",
+            "sort": "[MediaTrendSort]",
+            "trending": "Int",
+            "trending_greater": "Int",
+            "trending_lesser": "Int",
+            "trending_not": "Int"
+          }
+        },
+        "modActions": {
+          "type": "[ModAction]",
+          "args": {
+            "modId": "Int",
+            "modId_in": "[Int]",
+            "modId_not": "Int",
+            "modId_not_in": "[Int]",
+            "userId": "Int"
+          }
+        },
+        "notifications": {
+          "type": "[NotificationUnion]",
+          "args": {
+            "resetNotificationCount": "Boolean",
+            "type": "NotificationType",
+            "type_in": "[NotificationType]"
+          }
+        },
+        "pageInfo": {
+          "type": "PageInfo",
+          "args": {}
+        },
+        "recommendations": {
+          "type": "[Recommendation]",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaRecommendationId": "Int",
+            "onList": "Boolean",
+            "rating": "Int",
+            "rating_greater": "Int",
+            "rating_lesser": "Int",
+            "sort": "[RecommendationSort]",
+            "userId": "Int"
+          }
+        },
+        "reports": {
+          "type": "[Report]",
+          "args": {
+            "reportedId": "Int",
+            "reporterId": "Int"
+          }
+        },
+        "reviews": {
+          "type": "[Review]",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaType": "MediaType",
+            "sort": "[ReviewSort]",
+            "userId": "Int"
+          }
+        },
+        "revisionHistory": {
+          "type": "[RevisionHistory]",
+          "args": {
+            "characterId": "Int",
+            "mediaId": "Int",
+            "staffId": "Int",
+            "studioId": "Int",
+            "userId": "Int"
+          }
+        },
+        "staff": {
+          "type": "[Staff]",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isBirthday": "Boolean",
+            "search": "String",
+            "sort": "[StaffSort]"
+          }
+        },
+        "staffSubmissions": {
+          "type": "[StaffSubmission]",
+          "args": {
+            "assigneeId": "Int",
+            "sort": "[SubmissionSort]",
+            "staffId": "Int",
+            "status": "SubmissionStatus",
+            "userId": "Int"
+          }
+        },
+        "studios": {
+          "type": "[Studio]",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "search": "String",
+            "sort": "[StudioSort]"
+          }
+        },
+        "threadComments": {
+          "type": "[ThreadComment]",
+          "args": {
+            "id": "Int",
+            "sort": "[ThreadCommentSort]",
+            "threadId": "Int",
+            "userId": "Int"
+          }
+        },
+        "threads": {
+          "type": "[Thread]",
+          "args": {
+            "categoryId": "Int",
+            "id": "Int",
+            "id_in": "[Int]",
+            "mediaCategoryId": "Int",
+            "replyUserId": "Int",
+            "search": "String",
+            "sort": "[ThreadSort]",
+            "subscribed": "Boolean",
+            "userId": "Int"
+          }
+        },
+        "userBlockSearch": {
+          "type": "[User]",
+          "args": {
+            "search": "String"
+          }
+        },
+        "users": {
+          "type": "[User]",
+          "args": {
+            "id": "Int",
+            "isModerator": "Boolean",
+            "name": "String",
+            "search": "String",
+            "sort": "[UserSort]"
+          }
         }
       }
     },
     "ListActivity": {
       "kind": "OBJECT",
       "fields": {
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "userId": {
-          "type": "Int",
-          "args": {}
-        },
-        "type": {
-          "type": "ActivityType",
-          "args": {}
-        },
-        "replyCount": {
-          "type": "Int!",
-          "args": {}
-        },
-        "status": {
-          "type": "String",
-          "args": {}
-        },
-        "progress": {
-          "type": "String",
+        "isLiked": {
+          "type": "Boolean",
           "args": {}
         },
         "isLocked": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "isPinned": {
           "type": "Boolean",
           "args": {}
         },
@@ -1258,36 +1250,44 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "isLiked": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "isPinned": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "siteUrl": {
-          "type": "String",
-          "args": {}
-        },
-        "createdAt": {
-          "type": "Int!",
-          "args": {}
-        },
-        "user": {
-          "type": "User",
+        "likes": {
+          "type": "[User]",
           "args": {}
         },
         "media": {
           "type": "Media",
           "args": {}
         },
+        "progress": {
+          "type": "String",
+          "args": {}
+        },
         "replies": {
           "type": "[ActivityReply]",
           "args": {}
         },
-        "likes": {
-          "type": "[User]",
+        "replyCount": {
+          "type": "Int!",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "status": {
+          "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "ActivityType",
+          "args": {}
+        },
+        "user": {
+          "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -1321,6 +1321,85 @@ export const schemaRuntime = {
     "Media": {
       "kind": "OBJECT",
       "fields": {
+        "airingSchedule": {
+          "type": "AiringScheduleConnection",
+          "args": {
+            "notYetAired": "Boolean",
+            "page": "Int",
+            "perPage": "Int"
+          }
+        },
+        "autoCreateForumThread": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "averageScore": {
+          "type": "Int",
+          "args": {}
+        },
+        "bannerImage": {
+          "type": "String",
+          "args": {}
+        },
+        "chapters": {
+          "type": "Int",
+          "args": {}
+        },
+        "characters": {
+          "type": "CharacterConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "role": "CharacterRole",
+            "sort": "[CharacterSort]"
+          }
+        },
+        "countryOfOrigin": {
+          "type": "CountryCode",
+          "args": {}
+        },
+        "coverImage": {
+          "type": "MediaCoverImage",
+          "args": {}
+        },
+        "description": {
+          "type": "String",
+          "args": {
+            "asHtml": "Boolean"
+          }
+        },
+        "duration": {
+          "type": "Int",
+          "args": {}
+        },
+        "endDate": {
+          "type": "FuzzyDate",
+          "args": {}
+        },
+        "episodes": {
+          "type": "Int",
+          "args": {}
+        },
+        "externalLinks": {
+          "type": "[MediaExternalLink]",
+          "args": {}
+        },
+        "favourites": {
+          "type": "Int",
+          "args": {}
+        },
+        "format": {
+          "type": "MediaFormat",
+          "args": {}
+        },
+        "genres": {
+          "type": "[String]",
+          "args": {}
+        },
+        "hashtag": {
+          "type": "String",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
@@ -1329,163 +1408,9 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "title": {
-          "type": "MediaTitle",
-          "args": {}
-        },
-        "type": {
-          "type": "MediaType",
-          "args": {}
-        },
-        "format": {
-          "type": "MediaFormat",
-          "args": {}
-        },
-        "status": {
-          "type": "MediaStatus",
-          "args": {
-            "version": "Int"
-          }
-        },
-        "description": {
-          "type": "String",
-          "args": {
-            "asHtml": "Boolean"
-          }
-        },
-        "startDate": {
-          "type": "FuzzyDate",
-          "args": {}
-        },
-        "endDate": {
-          "type": "FuzzyDate",
-          "args": {}
-        },
-        "season": {
-          "type": "MediaSeason",
-          "args": {}
-        },
-        "seasonYear": {
-          "type": "Int",
-          "args": {}
-        },
-        "seasonInt": {
-          "type": "Int",
-          "args": {}
-        },
-        "episodes": {
-          "type": "Int",
-          "args": {}
-        },
-        "duration": {
-          "type": "Int",
-          "args": {}
-        },
-        "chapters": {
-          "type": "Int",
-          "args": {}
-        },
-        "volumes": {
-          "type": "Int",
-          "args": {}
-        },
-        "countryOfOrigin": {
-          "type": "CountryCode",
-          "args": {}
-        },
-        "isLicensed": {
+        "isAdult": {
           "type": "Boolean",
           "args": {}
-        },
-        "source": {
-          "type": "MediaSource",
-          "args": {
-            "version": "Int"
-          }
-        },
-        "hashtag": {
-          "type": "String",
-          "args": {}
-        },
-        "trailer": {
-          "type": "MediaTrailer",
-          "args": {}
-        },
-        "updatedAt": {
-          "type": "Int",
-          "args": {}
-        },
-        "coverImage": {
-          "type": "MediaCoverImage",
-          "args": {}
-        },
-        "bannerImage": {
-          "type": "String",
-          "args": {}
-        },
-        "genres": {
-          "type": "[String]",
-          "args": {}
-        },
-        "synonyms": {
-          "type": "[String]",
-          "args": {}
-        },
-        "averageScore": {
-          "type": "Int",
-          "args": {}
-        },
-        "meanScore": {
-          "type": "Int",
-          "args": {}
-        },
-        "popularity": {
-          "type": "Int",
-          "args": {}
-        },
-        "isLocked": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "trending": {
-          "type": "Int",
-          "args": {}
-        },
-        "favourites": {
-          "type": "Int",
-          "args": {}
-        },
-        "tags": {
-          "type": "[MediaTag]",
-          "args": {}
-        },
-        "relations": {
-          "type": "MediaConnection",
-          "args": {}
-        },
-        "characters": {
-          "type": "CharacterConnection",
-          "args": {
-            "sort": "[CharacterSort]",
-            "role": "CharacterRole",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "staff": {
-          "type": "StaffConnection",
-          "args": {
-            "sort": "[StaffSort]",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "studios": {
-          "type": "StudioConnection",
-          "args": {
-            "sort": "[StudioSort]",
-            "isMain": "Boolean"
-          }
         },
         "isFavourite": {
           "type": "Boolean!",
@@ -1495,73 +1420,11 @@ export const schemaRuntime = {
           "type": "Boolean!",
           "args": {}
         },
-        "isAdult": {
+        "isLicensed": {
           "type": "Boolean",
           "args": {}
         },
-        "nextAiringEpisode": {
-          "type": "AiringSchedule",
-          "args": {}
-        },
-        "airingSchedule": {
-          "type": "AiringScheduleConnection",
-          "args": {
-            "notYetAired": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "trends": {
-          "type": "MediaTrendConnection",
-          "args": {
-            "sort": "[MediaTrendSort]",
-            "releasing": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "externalLinks": {
-          "type": "[MediaExternalLink]",
-          "args": {}
-        },
-        "streamingEpisodes": {
-          "type": "[MediaStreamingEpisode]",
-          "args": {}
-        },
-        "rankings": {
-          "type": "[MediaRank]",
-          "args": {}
-        },
-        "mediaListEntry": {
-          "type": "MediaList",
-          "args": {}
-        },
-        "reviews": {
-          "type": "ReviewConnection",
-          "args": {
-            "limit": "Int",
-            "sort": "[ReviewSort]",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "recommendations": {
-          "type": "RecommendationConnection",
-          "args": {
-            "sort": "[RecommendationSort]",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "stats": {
-          "type": "MediaStats",
-          "args": {}
-        },
-        "siteUrl": {
-          "type": "String",
-          "args": {}
-        },
-        "autoCreateForumThread": {
+        "isLocked": {
           "type": "Boolean",
           "args": {}
         },
@@ -1573,8 +1436,145 @@ export const schemaRuntime = {
           "type": "Boolean",
           "args": {}
         },
+        "meanScore": {
+          "type": "Int",
+          "args": {}
+        },
+        "mediaListEntry": {
+          "type": "MediaList",
+          "args": {}
+        },
         "modNotes": {
           "type": "String",
+          "args": {}
+        },
+        "nextAiringEpisode": {
+          "type": "AiringSchedule",
+          "args": {}
+        },
+        "popularity": {
+          "type": "Int",
+          "args": {}
+        },
+        "rankings": {
+          "type": "[MediaRank]",
+          "args": {}
+        },
+        "recommendations": {
+          "type": "RecommendationConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[RecommendationSort]"
+          }
+        },
+        "relations": {
+          "type": "MediaConnection",
+          "args": {}
+        },
+        "reviews": {
+          "type": "ReviewConnection",
+          "args": {
+            "limit": "Int",
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[ReviewSort]"
+          }
+        },
+        "season": {
+          "type": "MediaSeason",
+          "args": {}
+        },
+        "seasonInt": {
+          "type": "Int",
+          "args": {}
+        },
+        "seasonYear": {
+          "type": "Int",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "source": {
+          "type": "MediaSource",
+          "args": {
+            "version": "Int"
+          }
+        },
+        "staff": {
+          "type": "StaffConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[StaffSort]"
+          }
+        },
+        "startDate": {
+          "type": "FuzzyDate",
+          "args": {}
+        },
+        "stats": {
+          "type": "MediaStats",
+          "args": {}
+        },
+        "status": {
+          "type": "MediaStatus",
+          "args": {
+            "version": "Int"
+          }
+        },
+        "streamingEpisodes": {
+          "type": "[MediaStreamingEpisode]",
+          "args": {}
+        },
+        "studios": {
+          "type": "StudioConnection",
+          "args": {
+            "isMain": "Boolean",
+            "sort": "[StudioSort]"
+          }
+        },
+        "synonyms": {
+          "type": "[String]",
+          "args": {}
+        },
+        "tags": {
+          "type": "[MediaTag]",
+          "args": {}
+        },
+        "title": {
+          "type": "MediaTitle",
+          "args": {}
+        },
+        "trailer": {
+          "type": "MediaTrailer",
+          "args": {}
+        },
+        "trending": {
+          "type": "Int",
+          "args": {}
+        },
+        "trends": {
+          "type": "MediaTrendConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "releasing": "Boolean",
+            "sort": "[MediaTrendSort]"
+          }
+        },
+        "type": {
+          "type": "MediaType",
+          "args": {}
+        },
+        "updatedAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "volumes": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -1582,6 +1582,18 @@ export const schemaRuntime = {
     "MediaCharacter": {
       "kind": "OBJECT",
       "fields": {
+        "character": {
+          "type": "Character",
+          "args": {}
+        },
+        "characterName": {
+          "type": "String",
+          "args": {}
+        },
+        "dubGroup": {
+          "type": "String",
+          "args": {}
+        },
         "id": {
           "type": "Int",
           "args": {}
@@ -1592,18 +1604,6 @@ export const schemaRuntime = {
         },
         "roleNotes": {
           "type": "String",
-          "args": {}
-        },
-        "dubGroup": {
-          "type": "String",
-          "args": {}
-        },
-        "characterName": {
-          "type": "String",
-          "args": {}
-        },
-        "character": {
-          "type": "Character",
           "args": {}
         },
         "voiceActor": {
@@ -1632,6 +1632,10 @@ export const schemaRuntime = {
     "MediaCoverImage": {
       "kind": "OBJECT",
       "fields": {
+        "color": {
+          "type": "String",
+          "args": {}
+        },
         "extraLarge": {
           "type": "String",
           "args": {}
@@ -1643,33 +1647,13 @@ export const schemaRuntime = {
         "medium": {
           "type": "String",
           "args": {}
-        },
-        "color": {
-          "type": "String",
-          "args": {}
         }
       }
     },
     "MediaDataChangeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
-        "mediaId": {
-          "type": "Int!",
-          "args": {}
-        },
         "context": {
-          "type": "String",
-          "args": {}
-        },
-        "reason": {
           "type": "String",
           "args": {}
         },
@@ -1677,8 +1661,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "media": {
           "type": "Media",
+          "args": {}
+        },
+        "mediaId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "reason": {
+          "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -1686,28 +1686,28 @@ export const schemaRuntime = {
     "MediaDeletionNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
+        "context": {
+          "type": "String",
           "args": {}
         },
-        "type": {
-          "type": "NotificationType",
+        "createdAt": {
+          "type": "Int",
           "args": {}
         },
         "deletedMediaTitle": {
           "type": "String",
           "args": {}
         },
-        "context": {
-          "type": "String",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
         "reason": {
           "type": "String",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -1715,12 +1715,36 @@ export const schemaRuntime = {
     "MediaEdge": {
       "kind": "OBJECT",
       "fields": {
-        "node": {
-          "type": "Media",
+        "characterName": {
+          "type": "String",
+          "args": {}
+        },
+        "characterRole": {
+          "type": "CharacterRole",
+          "args": {}
+        },
+        "characters": {
+          "type": "[Character]",
+          "args": {}
+        },
+        "dubGroup": {
+          "type": "String",
+          "args": {}
+        },
+        "favouriteOrder": {
+          "type": "Int",
           "args": {}
         },
         "id": {
           "type": "Int",
+          "args": {}
+        },
+        "isMainStudio": {
+          "type": "Boolean!",
+          "args": {}
+        },
+        "node": {
+          "type": "Media",
           "args": {}
         },
         "relationType": {
@@ -1729,40 +1753,13 @@ export const schemaRuntime = {
             "version": "Int"
           }
         },
-        "isMainStudio": {
-          "type": "Boolean!",
-          "args": {}
-        },
-        "characters": {
-          "type": "[Character]",
-          "args": {}
-        },
-        "characterRole": {
-          "type": "CharacterRole",
-          "args": {}
-        },
-        "characterName": {
-          "type": "String",
-          "args": {}
-        },
         "roleNotes": {
-          "type": "String",
-          "args": {}
-        },
-        "dubGroup": {
           "type": "String",
           "args": {}
         },
         "staffRole": {
           "type": "String",
           "args": {}
-        },
-        "voiceActors": {
-          "type": "[Staff]",
-          "args": {
-            "language": "StaffLanguage",
-            "sort": "[StaffSort]"
-          }
         },
         "voiceActorRoles": {
           "type": "[StaffRoleType]",
@@ -1771,20 +1768,39 @@ export const schemaRuntime = {
             "sort": "[StaffSort]"
           }
         },
-        "favouriteOrder": {
-          "type": "Int",
-          "args": {}
+        "voiceActors": {
+          "type": "[Staff]",
+          "args": {
+            "language": "StaffLanguage",
+            "sort": "[StaffSort]"
+          }
         }
       }
     },
     "MediaExternalLink": {
       "kind": "OBJECT",
       "fields": {
+        "color": {
+          "type": "String",
+          "args": {}
+        },
+        "icon": {
+          "type": "String",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "url": {
+        "isDisabled": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "language": {
+          "type": "String",
+          "args": {}
+        },
+        "notes": {
           "type": "String",
           "args": {}
         },
@@ -1800,24 +1816,8 @@ export const schemaRuntime = {
           "type": "ExternalLinkType",
           "args": {}
         },
-        "language": {
+        "url": {
           "type": "String",
-          "args": {}
-        },
-        "color": {
-          "type": "String",
-          "args": {}
-        },
-        "icon": {
-          "type": "String",
-          "args": {}
-        },
-        "notes": {
-          "type": "String",
-          "args": {}
-        },
-        "isDisabled": {
-          "type": "Boolean",
           "args": {}
         }
       }
@@ -1825,27 +1825,51 @@ export const schemaRuntime = {
     "MediaList": {
       "kind": "OBJECT",
       "fields": {
+        "advancedScores": {
+          "type": "Json",
+          "args": {}
+        },
+        "completedAt": {
+          "type": "FuzzyDate",
+          "args": {}
+        },
+        "createdAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "customLists": {
+          "type": "Json",
+          "args": {
+            "asArray": "Boolean"
+          }
+        },
+        "hiddenFromStatusLists": {
+          "type": "Boolean",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "userId": {
-          "type": "Int!",
+        "media": {
+          "type": "Media",
           "args": {}
         },
         "mediaId": {
           "type": "Int!",
           "args": {}
         },
-        "status": {
-          "type": "MediaListStatus",
+        "notes": {
+          "type": "String",
           "args": {}
         },
-        "score": {
-          "type": "Float",
-          "args": {
-            "format": "ScoreFormat"
-          }
+        "priority": {
+          "type": "Int",
+          "args": {}
+        },
+        "private": {
+          "type": "Boolean",
+          "args": {}
         },
         "progress": {
           "type": "Int",
@@ -1859,54 +1883,30 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "priority": {
-          "type": "Int",
-          "args": {}
-        },
-        "private": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "notes": {
-          "type": "String",
-          "args": {}
-        },
-        "hiddenFromStatusLists": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "customLists": {
-          "type": "Json",
+        "score": {
+          "type": "Float",
           "args": {
-            "asArray": "Boolean"
+            "format": "ScoreFormat"
           }
-        },
-        "advancedScores": {
-          "type": "Json",
-          "args": {}
         },
         "startedAt": {
           "type": "FuzzyDate",
           "args": {}
         },
-        "completedAt": {
-          "type": "FuzzyDate",
+        "status": {
+          "type": "MediaListStatus",
           "args": {}
         },
         "updatedAt": {
           "type": "Int",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
-          "args": {}
-        },
-        "media": {
-          "type": "Media",
-          "args": {}
-        },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -1914,16 +1914,18 @@ export const schemaRuntime = {
     "MediaListCollection": {
       "kind": "OBJECT",
       "fields": {
-        "lists": {
-          "type": "[MediaListGroup]",
-          "args": {}
-        },
-        "user": {
-          "type": "User",
-          "args": {}
+        "customLists": {
+          "type": "[[MediaList]]",
+          "args": {
+            "asArray": "Boolean"
+          }
         },
         "hasNextChunk": {
           "type": "Boolean",
+          "args": {}
+        },
+        "lists": {
+          "type": "[MediaListGroup]",
           "args": {}
         },
         "statusLists": {
@@ -1932,11 +1934,9 @@ export const schemaRuntime = {
             "asArray": "Boolean"
           }
         },
-        "customLists": {
-          "type": "[[MediaList]]",
-          "args": {
-            "asArray": "Boolean"
-          }
+        "user": {
+          "type": "User",
+          "args": {}
         }
       }
     },
@@ -1947,16 +1947,16 @@ export const schemaRuntime = {
           "type": "[MediaList]",
           "args": {}
         },
-        "name": {
-          "type": "String",
-          "args": {}
-        },
         "isCustomList": {
           "type": "Boolean",
           "args": {}
         },
         "isSplitCompletedList": {
           "type": "Boolean",
+          "args": {}
+        },
+        "name": {
+          "type": "String",
           "args": {}
         },
         "status": {
@@ -1968,24 +1968,20 @@ export const schemaRuntime = {
     "MediaListOptions": {
       "kind": "OBJECT",
       "fields": {
-        "scoreFormat": {
-          "type": "ScoreFormat",
-          "args": {}
-        },
-        "rowOrder": {
-          "type": "String",
-          "args": {}
-        },
-        "useLegacyLists": {
-          "type": "Boolean",
-          "args": {}
-        },
         "animeList": {
           "type": "MediaListTypeOptions",
           "args": {}
         },
         "mangaList": {
           "type": "MediaListTypeOptions",
+          "args": {}
+        },
+        "rowOrder": {
+          "type": "String",
+          "args": {}
+        },
+        "scoreFormat": {
+          "type": "ScoreFormat",
           "args": {}
         },
         "sharedTheme": {
@@ -1995,12 +1991,28 @@ export const schemaRuntime = {
         "sharedThemeEnabled": {
           "type": "Boolean",
           "args": {}
+        },
+        "useLegacyLists": {
+          "type": "Boolean",
+          "args": {}
         }
       }
     },
     "MediaListTypeOptions": {
       "kind": "OBJECT",
       "fields": {
+        "advancedScoring": {
+          "type": "[String]",
+          "args": {}
+        },
+        "advancedScoringEnabled": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "customLists": {
+          "type": "[String]",
+          "args": {}
+        },
         "sectionOrder": {
           "type": "[String]",
           "args": {}
@@ -2012,45 +2024,13 @@ export const schemaRuntime = {
         "theme": {
           "type": "Json",
           "args": {}
-        },
-        "customLists": {
-          "type": "[String]",
-          "args": {}
-        },
-        "advancedScoring": {
-          "type": "[String]",
-          "args": {}
-        },
-        "advancedScoringEnabled": {
-          "type": "Boolean",
-          "args": {}
         }
       }
     },
     "MediaMergeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
-        "mediaId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "deletedMediaTitles": {
-          "type": "[String]",
-          "args": {}
-        },
         "context": {
-          "type": "String",
-          "args": {}
-        },
-        "reason": {
           "type": "String",
           "args": {}
         },
@@ -2058,8 +2038,28 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "deletedMediaTitles": {
+          "type": "[String]",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "media": {
           "type": "Media",
+          "args": {}
+        },
+        "mediaId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "reason": {
+          "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -2067,6 +2067,18 @@ export const schemaRuntime = {
     "MediaRank": {
       "kind": "OBJECT",
       "fields": {
+        "allTime": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "context": {
+          "type": "String!",
+          "args": {}
+        },
+        "format": {
+          "type": "MediaFormat!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
@@ -2075,28 +2087,16 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "type": {
-          "type": "MediaRankType!",
-          "args": {}
-        },
-        "format": {
-          "type": "MediaFormat!",
-          "args": {}
-        },
-        "year": {
-          "type": "Int",
-          "args": {}
-        },
         "season": {
           "type": "MediaSeason",
           "args": {}
         },
-        "allTime": {
-          "type": "Boolean",
+        "type": {
+          "type": "MediaRankType!",
           "args": {}
         },
-        "context": {
-          "type": "String!",
+        "year": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -2104,6 +2104,10 @@ export const schemaRuntime = {
     "MediaStats": {
       "kind": "OBJECT",
       "fields": {
+        "airingProgression": {
+          "type": "[AiringProgression]",
+          "args": {}
+        },
         "scoreDistribution": {
           "type": "[ScoreDistribution]",
           "args": {}
@@ -2111,17 +2115,13 @@ export const schemaRuntime = {
         "statusDistribution": {
           "type": "[StatusDistribution]",
           "args": {}
-        },
-        "airingProgression": {
-          "type": "[AiringProgression]",
-          "args": {}
         }
       }
     },
     "MediaStreamingEpisode": {
       "kind": "OBJECT",
       "fields": {
-        "title": {
+        "site": {
           "type": "String",
           "args": {}
         },
@@ -2129,11 +2129,11 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "url": {
+        "title": {
           "type": "String",
           "args": {}
         },
-        "site": {
+        "url": {
           "type": "String",
           "args": {}
         }
@@ -2142,36 +2142,28 @@ export const schemaRuntime = {
     "MediaSubmission": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "submitter": {
-          "type": "User",
-          "args": {}
-        },
         "assignee": {
           "type": "User",
           "args": {}
         },
-        "status": {
-          "type": "SubmissionStatus",
-          "args": {}
-        },
-        "submitterStats": {
-          "type": "Json",
-          "args": {}
-        },
-        "notes": {
-          "type": "String",
-          "args": {}
-        },
-        "source": {
-          "type": "String",
-          "args": {}
-        },
         "changes": {
           "type": "[String]",
+          "args": {}
+        },
+        "characters": {
+          "type": "[MediaSubmissionComparison]",
+          "args": {}
+        },
+        "createdAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "externalLinks": {
+          "type": "[MediaSubmissionComparison]",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
           "args": {}
         },
         "locked": {
@@ -2182,32 +2174,40 @@ export const schemaRuntime = {
           "type": "Media",
           "args": {}
         },
-        "submission": {
-          "type": "Media",
-          "args": {}
-        },
-        "characters": {
-          "type": "[MediaSubmissionComparison]",
-          "args": {}
-        },
-        "staff": {
-          "type": "[MediaSubmissionComparison]",
-          "args": {}
-        },
-        "studios": {
-          "type": "[MediaSubmissionComparison]",
+        "notes": {
+          "type": "String",
           "args": {}
         },
         "relations": {
           "type": "[MediaEdge]",
           "args": {}
         },
-        "externalLinks": {
+        "source": {
+          "type": "String",
+          "args": {}
+        },
+        "staff": {
           "type": "[MediaSubmissionComparison]",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "status": {
+          "type": "SubmissionStatus",
+          "args": {}
+        },
+        "studios": {
+          "type": "[MediaSubmissionComparison]",
+          "args": {}
+        },
+        "submission": {
+          "type": "Media",
+          "args": {}
+        },
+        "submitter": {
+          "type": "User",
+          "args": {}
+        },
+        "submitterStats": {
+          "type": "Json",
           "args": {}
         }
       }
@@ -2215,12 +2215,12 @@ export const schemaRuntime = {
     "MediaSubmissionComparison": {
       "kind": "OBJECT",
       "fields": {
-        "submission": {
-          "type": "MediaSubmissionEdge",
-          "args": {}
-        },
         "character": {
           "type": "MediaCharacter",
+          "args": {}
+        },
+        "externalLink": {
+          "type": "MediaExternalLink",
           "args": {}
         },
         "staff": {
@@ -2231,8 +2231,8 @@ export const schemaRuntime = {
           "type": "StudioEdge",
           "args": {}
         },
-        "externalLink": {
-          "type": "MediaExternalLink",
+        "submission": {
+          "type": "MediaSubmissionEdge",
           "args": {}
         }
       }
@@ -2240,52 +2240,52 @@ export const schemaRuntime = {
     "MediaSubmissionEdge": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int",
-          "args": {}
-        },
-        "characterRole": {
-          "type": "CharacterRole",
-          "args": {}
-        },
-        "staffRole": {
-          "type": "String",
-          "args": {}
-        },
-        "roleNotes": {
-          "type": "String",
-          "args": {}
-        },
-        "dubGroup": {
-          "type": "String",
+        "character": {
+          "type": "Character",
           "args": {}
         },
         "characterName": {
           "type": "String",
           "args": {}
         },
-        "isMain": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "character": {
-          "type": "Character",
+        "characterRole": {
+          "type": "CharacterRole",
           "args": {}
         },
         "characterSubmission": {
           "type": "Character",
           "args": {}
         },
-        "voiceActor": {
-          "type": "Staff",
+        "dubGroup": {
+          "type": "String",
           "args": {}
         },
-        "voiceActorSubmission": {
-          "type": "Staff",
+        "externalLink": {
+          "type": "MediaExternalLink",
+          "args": {}
+        },
+        "id": {
+          "type": "Int",
+          "args": {}
+        },
+        "isMain": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "media": {
+          "type": "Media",
+          "args": {}
+        },
+        "roleNotes": {
+          "type": "String",
           "args": {}
         },
         "staff": {
           "type": "Staff",
+          "args": {}
+        },
+        "staffRole": {
+          "type": "String",
           "args": {}
         },
         "staffSubmission": {
@@ -2296,12 +2296,12 @@ export const schemaRuntime = {
           "type": "Studio",
           "args": {}
         },
-        "externalLink": {
-          "type": "MediaExternalLink",
+        "voiceActor": {
+          "type": "Staff",
           "args": {}
         },
-        "media": {
-          "type": "Media",
+        "voiceActorSubmission": {
+          "type": "Staff",
           "args": {}
         }
       }
@@ -2309,36 +2309,36 @@ export const schemaRuntime = {
     "MediaSubmissionUpdateNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
         "contexts": {
           "type": "[String]",
-          "args": {}
-        },
-        "status": {
-          "type": "String",
-          "args": {}
-        },
-        "notes": {
-          "type": "String",
           "args": {}
         },
         "createdAt": {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "media": {
           "type": "Media",
           "args": {}
         },
+        "notes": {
+          "type": "String",
+          "args": {}
+        },
+        "status": {
+          "type": "String",
+          "args": {}
+        },
         "submittedTitle": {
           "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -2346,24 +2346,20 @@ export const schemaRuntime = {
     "MediaTag": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "name": {
-          "type": "String!",
+        "category": {
+          "type": "String",
           "args": {}
         },
         "description": {
           "type": "String",
           "args": {}
         },
-        "category": {
-          "type": "String",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
-        "rank": {
-          "type": "Int",
+        "isAdult": {
+          "type": "Boolean",
           "args": {}
         },
         "isGeneralSpoiler": {
@@ -2374,8 +2370,12 @@ export const schemaRuntime = {
           "type": "Boolean",
           "args": {}
         },
-        "isAdult": {
-          "type": "Boolean",
+        "name": {
+          "type": "String!",
+          "args": {}
+        },
+        "rank": {
+          "type": "Int",
           "args": {}
         },
         "userId": {
@@ -2387,12 +2387,6 @@ export const schemaRuntime = {
     "MediaTitle": {
       "kind": "OBJECT",
       "fields": {
-        "romaji": {
-          "type": "String",
-          "args": {
-            "stylised": "Boolean"
-          }
-        },
         "english": {
           "type": "String",
           "args": {
@@ -2400,6 +2394,12 @@ export const schemaRuntime = {
           }
         },
         "native": {
+          "type": "String",
+          "args": {
+            "stylised": "Boolean"
+          }
+        },
+        "romaji": {
           "type": "String",
           "args": {
             "stylised": "Boolean"
@@ -2431,23 +2431,15 @@ export const schemaRuntime = {
     "MediaTrend": {
       "kind": "OBJECT",
       "fields": {
-        "mediaId": {
-          "type": "Int!",
+        "averageScore": {
+          "type": "Int",
           "args": {}
         },
         "date": {
           "type": "Int!",
           "args": {}
         },
-        "trending": {
-          "type": "Int!",
-          "args": {}
-        },
-        "averageScore": {
-          "type": "Int",
-          "args": {}
-        },
-        "popularity": {
+        "episode": {
           "type": "Int",
           "args": {}
         },
@@ -2455,16 +2447,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "media": {
+          "type": "Media",
+          "args": {}
+        },
+        "mediaId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "popularity": {
+          "type": "Int",
+          "args": {}
+        },
         "releasing": {
           "type": "Boolean!",
           "args": {}
         },
-        "episode": {
-          "type": "Int",
-          "args": {}
-        },
-        "media": {
-          "type": "Media",
+        "trending": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -2498,45 +2498,19 @@ export const schemaRuntime = {
     "MessageActivity": {
       "kind": "OBJECT",
       "fields": {
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "recipientId": {
-          "type": "Int",
+        "isLiked": {
+          "type": "Boolean",
           "args": {}
-        },
-        "messengerId": {
-          "type": "Int",
-          "args": {}
-        },
-        "type": {
-          "type": "ActivityType",
-          "args": {}
-        },
-        "replyCount": {
-          "type": "Int!",
-          "args": {}
-        },
-        "message": {
-          "type": "String",
-          "args": {
-            "asHtml": "Boolean"
-          }
         },
         "isLocked": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "isSubscribed": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "likeCount": {
-          "type": "Int!",
-          "args": {}
-        },
-        "isLiked": {
           "type": "Boolean",
           "args": {}
         },
@@ -2548,28 +2522,54 @@ export const schemaRuntime = {
           "type": "Boolean",
           "args": {}
         },
-        "siteUrl": {
-          "type": "String",
+        "isSubscribed": {
+          "type": "Boolean",
           "args": {}
         },
-        "createdAt": {
+        "likeCount": {
           "type": "Int!",
+          "args": {}
+        },
+        "likes": {
+          "type": "[User]",
+          "args": {}
+        },
+        "message": {
+          "type": "String",
+          "args": {
+            "asHtml": "Boolean"
+          }
+        },
+        "messenger": {
+          "type": "User",
+          "args": {}
+        },
+        "messengerId": {
+          "type": "Int",
           "args": {}
         },
         "recipient": {
           "type": "User",
           "args": {}
         },
-        "messenger": {
-          "type": "User",
+        "recipientId": {
+          "type": "Int",
           "args": {}
         },
         "replies": {
           "type": "[ActivityReply]",
           "args": {}
         },
-        "likes": {
-          "type": "[User]",
+        "replyCount": {
+          "type": "Int!",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "ActivityType",
           "args": {}
         }
       }
@@ -2577,20 +2577,20 @@ export const schemaRuntime = {
     "ModAction": {
       "kind": "OBJECT",
       "fields": {
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
+        "data": {
+          "type": "String",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "user": {
-          "type": "User",
-          "args": {}
-        },
         "mod": {
           "type": "User",
-          "args": {}
-        },
-        "type": {
-          "type": "ModActionType",
           "args": {}
         },
         "objectId": {
@@ -2601,12 +2601,12 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "data": {
-          "type": "String",
+        "type": {
+          "type": "ModActionType",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int!",
+        "user": {
+          "type": "User",
           "args": {}
         }
       }
@@ -2614,68 +2614,13 @@ export const schemaRuntime = {
     "Mutation": {
       "kind": "OBJECT",
       "fields": {
-        "UpdateUser": {
-          "type": "User",
+        "DeleteActivity": {
+          "type": "Deleted",
           "args": {
-            "about": "String",
-            "titleLanguage": "UserTitleLanguage",
-            "displayAdultContent": "Boolean",
-            "airingNotifications": "Boolean",
-            "scoreFormat": "ScoreFormat",
-            "rowOrder": "String",
-            "profileColor": "String",
-            "donatorBadge": "String",
-            "notificationOptions": "[NotificationOptionInput]",
-            "timezone": "String",
-            "activityMergeTime": "Int",
-            "animeListOptions": "MediaListOptionsInput",
-            "mangaListOptions": "MediaListOptionsInput",
-            "staffNameLanguage": "UserStaffNameLanguage",
-            "restrictMessagesToFollowing": "Boolean",
-            "disabledListActivity": "[ListActivityOptionInput]"
+            "id": "Int"
           }
         },
-        "SaveMediaListEntry": {
-          "type": "MediaList",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "status": "MediaListStatus",
-            "score": "Float",
-            "scoreRaw": "Int",
-            "progress": "Int",
-            "progressVolumes": "Int",
-            "repeat": "Int",
-            "priority": "Int",
-            "private": "Boolean",
-            "notes": "String",
-            "hiddenFromStatusLists": "Boolean",
-            "customLists": "[String]",
-            "advancedScores": "[Float]",
-            "startedAt": "FuzzyDateInput",
-            "completedAt": "FuzzyDateInput"
-          }
-        },
-        "UpdateMediaListEntries": {
-          "type": "[MediaList]",
-          "args": {
-            "status": "MediaListStatus",
-            "score": "Float",
-            "scoreRaw": "Int",
-            "progress": "Int",
-            "progressVolumes": "Int",
-            "repeat": "Int",
-            "priority": "Int",
-            "private": "Boolean",
-            "notes": "String",
-            "hiddenFromStatusLists": "Boolean",
-            "advancedScores": "[Float]",
-            "startedAt": "FuzzyDateInput",
-            "completedAt": "FuzzyDateInput",
-            "ids": "[Int]"
-          }
-        },
-        "DeleteMediaListEntry": {
+        "DeleteActivityReply": {
           "type": "Deleted",
           "args": {
             "id": "Int"
@@ -2688,23 +2633,44 @@ export const schemaRuntime = {
             "type": "MediaType"
           }
         },
-        "SaveTextActivity": {
-          "type": "TextActivity",
+        "DeleteMediaListEntry": {
+          "type": "Deleted",
           "args": {
-            "id": "Int",
-            "text": "String",
-            "locked": "Boolean"
+            "id": "Int"
           }
         },
-        "SaveMessageActivity": {
-          "type": "MessageActivity",
+        "DeleteReview": {
+          "type": "Deleted",
           "args": {
+            "id": "Int"
+          }
+        },
+        "DeleteThread": {
+          "type": "Deleted",
+          "args": {
+            "id": "Int"
+          }
+        },
+        "DeleteThreadComment": {
+          "type": "Deleted",
+          "args": {
+            "id": "Int"
+          }
+        },
+        "RateReview": {
+          "type": "Review",
+          "args": {
+            "rating": "ReviewRating",
+            "reviewId": "Int"
+          }
+        },
+        "SaveActivityReply": {
+          "type": "ActivityReply",
+          "args": {
+            "activityId": "Int",
+            "asMod": "Boolean",
             "id": "Int",
-            "message": "String",
-            "recipientId": "Int",
-            "private": "Boolean",
-            "locked": "Boolean",
-            "asMod": "Boolean"
+            "text": "String"
           }
         },
         "SaveListActivity": {
@@ -2714,10 +2680,85 @@ export const schemaRuntime = {
             "locked": "Boolean"
           }
         },
-        "DeleteActivity": {
-          "type": "Deleted",
+        "SaveMediaListEntry": {
+          "type": "MediaList",
           "args": {
-            "id": "Int"
+            "advancedScores": "[Float]",
+            "completedAt": "FuzzyDateInput",
+            "customLists": "[String]",
+            "hiddenFromStatusLists": "Boolean",
+            "id": "Int",
+            "mediaId": "Int",
+            "notes": "String",
+            "priority": "Int",
+            "private": "Boolean",
+            "progress": "Int",
+            "progressVolumes": "Int",
+            "repeat": "Int",
+            "score": "Float",
+            "scoreRaw": "Int",
+            "startedAt": "FuzzyDateInput",
+            "status": "MediaListStatus"
+          }
+        },
+        "SaveMessageActivity": {
+          "type": "MessageActivity",
+          "args": {
+            "asMod": "Boolean",
+            "id": "Int",
+            "locked": "Boolean",
+            "message": "String",
+            "private": "Boolean",
+            "recipientId": "Int"
+          }
+        },
+        "SaveRecommendation": {
+          "type": "Recommendation",
+          "args": {
+            "mediaId": "Int",
+            "mediaRecommendationId": "Int",
+            "rating": "RecommendationRating"
+          }
+        },
+        "SaveReview": {
+          "type": "Review",
+          "args": {
+            "body": "String",
+            "id": "Int",
+            "mediaId": "Int",
+            "private": "Boolean",
+            "score": "Int",
+            "summary": "String"
+          }
+        },
+        "SaveTextActivity": {
+          "type": "TextActivity",
+          "args": {
+            "id": "Int",
+            "locked": "Boolean",
+            "text": "String"
+          }
+        },
+        "SaveThread": {
+          "type": "Thread",
+          "args": {
+            "body": "String",
+            "categories": "[Int]",
+            "id": "Int",
+            "locked": "Boolean",
+            "mediaCategories": "[Int]",
+            "sticky": "Boolean",
+            "title": "String"
+          }
+        },
+        "SaveThreadComment": {
+          "type": "ThreadComment",
+          "args": {
+            "comment": "String",
+            "id": "Int",
+            "locked": "Boolean",
+            "parentCommentId": "Int",
+            "threadId": "Int"
           }
         },
         "ToggleActivityPin": {
@@ -2734,19 +2775,20 @@ export const schemaRuntime = {
             "subscribe": "Boolean"
           }
         },
-        "SaveActivityReply": {
-          "type": "ActivityReply",
+        "ToggleFavourite": {
+          "type": "Favourites",
           "args": {
-            "id": "Int",
-            "activityId": "Int",
-            "text": "String",
-            "asMod": "Boolean"
+            "animeId": "Int",
+            "characterId": "Int",
+            "mangaId": "Int",
+            "staffId": "Int",
+            "studioId": "Int"
           }
         },
-        "DeleteActivityReply": {
-          "type": "Deleted",
+        "ToggleFollow": {
+          "type": "User",
           "args": {
-            "id": "Int"
+            "userId": "Int"
           }
         },
         "ToggleLike": {
@@ -2763,117 +2805,11 @@ export const schemaRuntime = {
             "type": "LikeableType"
           }
         },
-        "ToggleFollow": {
-          "type": "User",
-          "args": {
-            "userId": "Int"
-          }
-        },
-        "ToggleFavourite": {
-          "type": "Favourites",
-          "args": {
-            "animeId": "Int",
-            "mangaId": "Int",
-            "characterId": "Int",
-            "staffId": "Int",
-            "studioId": "Int"
-          }
-        },
-        "UpdateFavouriteOrder": {
-          "type": "Favourites",
-          "args": {
-            "animeIds": "[Int]",
-            "mangaIds": "[Int]",
-            "characterIds": "[Int]",
-            "staffIds": "[Int]",
-            "studioIds": "[Int]",
-            "animeOrder": "[Int]",
-            "mangaOrder": "[Int]",
-            "characterOrder": "[Int]",
-            "staffOrder": "[Int]",
-            "studioOrder": "[Int]"
-          }
-        },
-        "SaveReview": {
-          "type": "Review",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "body": "String",
-            "summary": "String",
-            "score": "Int",
-            "private": "Boolean"
-          }
-        },
-        "DeleteReview": {
-          "type": "Deleted",
-          "args": {
-            "id": "Int"
-          }
-        },
-        "RateReview": {
-          "type": "Review",
-          "args": {
-            "reviewId": "Int",
-            "rating": "ReviewRating"
-          }
-        },
-        "SaveRecommendation": {
-          "type": "Recommendation",
-          "args": {
-            "mediaId": "Int",
-            "mediaRecommendationId": "Int",
-            "rating": "RecommendationRating"
-          }
-        },
-        "SaveThread": {
-          "type": "Thread",
-          "args": {
-            "id": "Int",
-            "title": "String",
-            "body": "String",
-            "categories": "[Int]",
-            "mediaCategories": "[Int]",
-            "sticky": "Boolean",
-            "locked": "Boolean"
-          }
-        },
-        "DeleteThread": {
-          "type": "Deleted",
-          "args": {
-            "id": "Int"
-          }
-        },
         "ToggleThreadSubscription": {
           "type": "Thread",
           "args": {
-            "threadId": "Int",
-            "subscribe": "Boolean"
-          }
-        },
-        "SaveThreadComment": {
-          "type": "ThreadComment",
-          "args": {
-            "id": "Int",
-            "threadId": "Int",
-            "parentCommentId": "Int",
-            "comment": "String",
-            "locked": "Boolean"
-          }
-        },
-        "DeleteThreadComment": {
-          "type": "Deleted",
-          "args": {
-            "id": "Int"
-          }
-        },
-        "UpdateAniChartSettings": {
-          "type": "Json",
-          "args": {
-            "titleLanguage": "String",
-            "outgoingLinkProvider": "String",
-            "theme": "String",
-            "sort": "String"
+            "subscribe": "Boolean",
+            "threadId": "Int"
           }
         },
         "UpdateAniChartHighlights": {
@@ -2881,18 +2817,82 @@ export const schemaRuntime = {
           "args": {
             "highlights": "[AniChartHighlightInput]"
           }
+        },
+        "UpdateAniChartSettings": {
+          "type": "Json",
+          "args": {
+            "outgoingLinkProvider": "String",
+            "sort": "String",
+            "theme": "String",
+            "titleLanguage": "String"
+          }
+        },
+        "UpdateFavouriteOrder": {
+          "type": "Favourites",
+          "args": {
+            "animeIds": "[Int]",
+            "animeOrder": "[Int]",
+            "characterIds": "[Int]",
+            "characterOrder": "[Int]",
+            "mangaIds": "[Int]",
+            "mangaOrder": "[Int]",
+            "staffIds": "[Int]",
+            "staffOrder": "[Int]",
+            "studioIds": "[Int]",
+            "studioOrder": "[Int]"
+          }
+        },
+        "UpdateMediaListEntries": {
+          "type": "[MediaList]",
+          "args": {
+            "advancedScores": "[Float]",
+            "completedAt": "FuzzyDateInput",
+            "hiddenFromStatusLists": "Boolean",
+            "ids": "[Int]",
+            "notes": "String",
+            "priority": "Int",
+            "private": "Boolean",
+            "progress": "Int",
+            "progressVolumes": "Int",
+            "repeat": "Int",
+            "score": "Float",
+            "scoreRaw": "Int",
+            "startedAt": "FuzzyDateInput",
+            "status": "MediaListStatus"
+          }
+        },
+        "UpdateUser": {
+          "type": "User",
+          "args": {
+            "about": "String",
+            "activityMergeTime": "Int",
+            "airingNotifications": "Boolean",
+            "animeListOptions": "MediaListOptionsInput",
+            "disabledListActivity": "[ListActivityOptionInput]",
+            "displayAdultContent": "Boolean",
+            "donatorBadge": "String",
+            "mangaListOptions": "MediaListOptionsInput",
+            "notificationOptions": "[NotificationOptionInput]",
+            "profileColor": "String",
+            "restrictMessagesToFollowing": "Boolean",
+            "rowOrder": "String",
+            "scoreFormat": "ScoreFormat",
+            "staffNameLanguage": "UserStaffNameLanguage",
+            "timezone": "String",
+            "titleLanguage": "UserTitleLanguage"
+          }
         }
       }
     },
     "NotificationOption": {
       "kind": "OBJECT",
       "fields": {
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
         "enabled": {
           "type": "Boolean",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -2900,321 +2900,93 @@ export const schemaRuntime = {
     "Page": {
       "kind": "OBJECT",
       "fields": {
-        "pageInfo": {
-          "type": "PageInfo",
-          "args": {}
-        },
-        "users": {
-          "type": "[User]",
+        "activities": {
+          "type": "[ActivityUnion]",
           "args": {
+            "createdAt": "Int",
+            "createdAt_greater": "Int",
+            "createdAt_lesser": "Int",
+            "hasReplies": "Boolean",
+            "hasRepliesOrTypeText": "Boolean",
             "id": "Int",
-            "name": "String",
-            "isModerator": "Boolean",
-            "search": "String",
-            "sort": "[UserSort]"
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "messengerId": "Int",
+            "messengerId_in": "[Int]",
+            "messengerId_not": "Int",
+            "messengerId_not_in": "[Int]",
+            "sort": "[ActivitySort]",
+            "type": "ActivityType",
+            "type_in": "[ActivityType]",
+            "type_not": "ActivityType",
+            "type_not_in": "[ActivityType]",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userId_not": "Int",
+            "userId_not_in": "[Int]"
           }
         },
-        "media": {
-          "type": "[Media]",
+        "activityReplies": {
+          "type": "[ActivityReply]",
           "args": {
+            "activityId": "Int",
+            "id": "Int"
+          }
+        },
+        "airingSchedules": {
+          "type": "[AiringSchedule]",
+          "args": {
+            "airingAt": "Int",
+            "airingAt_greater": "Int",
+            "airingAt_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_in": "[Int]",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "episode_not_in": "[Int]",
             "id": "Int",
-            "idMal": "Int",
-            "startDate": "FuzzyDateInt",
-            "endDate": "FuzzyDateInt",
-            "season": "MediaSeason",
-            "seasonYear": "Int",
-            "type": "MediaType",
-            "format": "MediaFormat",
-            "status": "MediaStatus",
-            "episodes": "Int",
-            "duration": "Int",
-            "chapters": "Int",
-            "volumes": "Int",
-            "isAdult": "Boolean",
-            "genre": "String",
-            "tag": "String",
-            "minimumTagRank": "Int",
-            "tagCategory": "String",
-            "onList": "Boolean",
-            "licensedBy": "String",
-            "licensedById": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "source": "MediaSource",
-            "countryOfOrigin": "CountryCode",
-            "isLicensed": "Boolean",
-            "search": "String",
-            "id_not": "Int",
             "id_in": "[Int]",
+            "id_not": "Int",
             "id_not_in": "[Int]",
-            "idMal_not": "Int",
-            "idMal_in": "[Int]",
-            "idMal_not_in": "[Int]",
-            "startDate_greater": "FuzzyDateInt",
-            "startDate_lesser": "FuzzyDateInt",
-            "startDate_like": "String",
-            "endDate_greater": "FuzzyDateInt",
-            "endDate_lesser": "FuzzyDateInt",
-            "endDate_like": "String",
-            "format_in": "[MediaFormat]",
-            "format_not": "MediaFormat",
-            "format_not_in": "[MediaFormat]",
-            "status_in": "[MediaStatus]",
-            "status_not": "MediaStatus",
-            "status_not_in": "[MediaStatus]",
-            "episodes_greater": "Int",
-            "episodes_lesser": "Int",
-            "duration_greater": "Int",
-            "duration_lesser": "Int",
-            "chapters_greater": "Int",
-            "chapters_lesser": "Int",
-            "volumes_greater": "Int",
-            "volumes_lesser": "Int",
-            "genre_in": "[String]",
-            "genre_not_in": "[String]",
-            "tag_in": "[String]",
-            "tag_not_in": "[String]",
-            "tagCategory_in": "[String]",
-            "tagCategory_not_in": "[String]",
-            "licensedBy_in": "[String]",
-            "licensedById_in": "[Int]",
-            "averageScore_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "popularity_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "source_in": "[MediaSource]",
-            "countryOfOrigin_in": "[CountryCode]",
-            "countryOfOrigin_not_in": "[CountryCode]",
-            "sort": "[MediaSort]"
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "notYetAired": "Boolean",
+            "sort": "[AiringSort]"
           }
         },
         "characters": {
           "type": "[Character]",
           "args": {
             "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
             "isBirthday": "Boolean",
             "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
             "sort": "[CharacterSort]"
-          }
-        },
-        "staff": {
-          "type": "[Staff]",
-          "args": {
-            "id": "Int",
-            "isBirthday": "Boolean",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StaffSort]"
-          }
-        },
-        "studios": {
-          "type": "[Studio]",
-          "args": {
-            "id": "Int",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StudioSort]"
-          }
-        },
-        "mediaList": {
-          "type": "[MediaList]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "userName": "String",
-            "type": "MediaType",
-            "status": "MediaListStatus",
-            "mediaId": "Int",
-            "isFollowing": "Boolean",
-            "notes": "String",
-            "startedAt": "FuzzyDateInt",
-            "completedAt": "FuzzyDateInt",
-            "compareWithAuthList": "Boolean",
-            "userId_in": "[Int]",
-            "status_in": "[MediaListStatus]",
-            "status_not_in": "[MediaListStatus]",
-            "status_not": "MediaListStatus",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "notes_like": "String",
-            "startedAt_greater": "FuzzyDateInt",
-            "startedAt_lesser": "FuzzyDateInt",
-            "startedAt_like": "String",
-            "completedAt_greater": "FuzzyDateInt",
-            "completedAt_lesser": "FuzzyDateInt",
-            "completedAt_like": "String",
-            "sort": "[MediaListSort]"
-          }
-        },
-        "airingSchedules": {
-          "type": "[AiringSchedule]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "episode": "Int",
-            "airingAt": "Int",
-            "notYetAired": "Boolean",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "episode_not": "Int",
-            "episode_in": "[Int]",
-            "episode_not_in": "[Int]",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "airingAt_greater": "Int",
-            "airingAt_lesser": "Int",
-            "sort": "[AiringSort]"
-          }
-        },
-        "mediaTrends": {
-          "type": "[MediaTrend]",
-          "args": {
-            "mediaId": "Int",
-            "date": "Int",
-            "trending": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "episode": "Int",
-            "releasing": "Boolean",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "date_greater": "Int",
-            "date_lesser": "Int",
-            "trending_greater": "Int",
-            "trending_lesser": "Int",
-            "trending_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "averageScore_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "popularity_not": "Int",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "episode_not": "Int",
-            "sort": "[MediaTrendSort]"
-          }
-        },
-        "notifications": {
-          "type": "[NotificationUnion]",
-          "args": {
-            "type": "NotificationType",
-            "resetNotificationCount": "Boolean",
-            "type_in": "[NotificationType]"
           }
         },
         "followers": {
           "type": "[User]",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "following": {
           "type": "[User]",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
-          }
-        },
-        "activities": {
-          "type": "[ActivityUnion]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "messengerId": "Int",
-            "mediaId": "Int",
-            "type": "ActivityType",
-            "isFollowing": "Boolean",
-            "hasReplies": "Boolean",
-            "hasRepliesOrTypeText": "Boolean",
-            "createdAt": "Int",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "userId_not": "Int",
-            "userId_in": "[Int]",
-            "userId_not_in": "[Int]",
-            "messengerId_not": "Int",
-            "messengerId_in": "[Int]",
-            "messengerId_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "type_not": "ActivityType",
-            "type_in": "[ActivityType]",
-            "type_not_in": "[ActivityType]",
-            "createdAt_greater": "Int",
-            "createdAt_lesser": "Int",
-            "sort": "[ActivitySort]"
-          }
-        },
-        "activityReplies": {
-          "type": "[ActivityReply]",
-          "args": {
-            "id": "Int",
-            "activityId": "Int"
-          }
-        },
-        "threads": {
-          "type": "[Thread]",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "replyUserId": "Int",
-            "subscribed": "Boolean",
-            "categoryId": "Int",
-            "mediaCategoryId": "Int",
-            "search": "String",
-            "id_in": "[Int]",
-            "sort": "[ThreadSort]"
-          }
-        },
-        "threadComments": {
-          "type": "[ThreadComment]",
-          "args": {
-            "id": "Int",
-            "threadId": "Int",
-            "userId": "Int",
-            "sort": "[ThreadCommentSort]"
-          }
-        },
-        "reviews": {
-          "type": "[Review]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "userId": "Int",
-            "mediaType": "MediaType",
-            "sort": "[ReviewSort]"
-          }
-        },
-        "recommendations": {
-          "type": "[Recommendation]",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "mediaRecommendationId": "Int",
-            "userId": "Int",
-            "rating": "Int",
-            "onList": "Boolean",
-            "rating_greater": "Int",
-            "rating_lesser": "Int",
-            "sort": "[RecommendationSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "likes": {
@@ -3223,13 +2995,249 @@ export const schemaRuntime = {
             "likeableId": "Int",
             "type": "LikeableType"
           }
+        },
+        "media": {
+          "type": "[Media]",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "chapters": "Int",
+            "chapters_greater": "Int",
+            "chapters_lesser": "Int",
+            "countryOfOrigin": "CountryCode",
+            "countryOfOrigin_in": "[CountryCode]",
+            "countryOfOrigin_not_in": "[CountryCode]",
+            "duration": "Int",
+            "duration_greater": "Int",
+            "duration_lesser": "Int",
+            "endDate": "FuzzyDateInt",
+            "endDate_greater": "FuzzyDateInt",
+            "endDate_lesser": "FuzzyDateInt",
+            "endDate_like": "String",
+            "episodes": "Int",
+            "episodes_greater": "Int",
+            "episodes_lesser": "Int",
+            "format": "MediaFormat",
+            "format_in": "[MediaFormat]",
+            "format_not": "MediaFormat",
+            "format_not_in": "[MediaFormat]",
+            "genre": "String",
+            "genre_in": "[String]",
+            "genre_not_in": "[String]",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "idMal": "Int",
+            "idMal_in": "[Int]",
+            "idMal_not": "Int",
+            "idMal_not_in": "[Int]",
+            "isAdult": "Boolean",
+            "isLicensed": "Boolean",
+            "licensedBy": "String",
+            "licensedBy_in": "[String]",
+            "licensedById": "Int",
+            "licensedById_in": "[Int]",
+            "minimumTagRank": "Int",
+            "onList": "Boolean",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "search": "String",
+            "season": "MediaSeason",
+            "seasonYear": "Int",
+            "sort": "[MediaSort]",
+            "source": "MediaSource",
+            "source_in": "[MediaSource]",
+            "startDate": "FuzzyDateInt",
+            "startDate_greater": "FuzzyDateInt",
+            "startDate_lesser": "FuzzyDateInt",
+            "startDate_like": "String",
+            "status": "MediaStatus",
+            "status_in": "[MediaStatus]",
+            "status_not": "MediaStatus",
+            "status_not_in": "[MediaStatus]",
+            "tag": "String",
+            "tag_in": "[String]",
+            "tag_not_in": "[String]",
+            "tagCategory": "String",
+            "tagCategory_in": "[String]",
+            "tagCategory_not_in": "[String]",
+            "type": "MediaType",
+            "volumes": "Int",
+            "volumes_greater": "Int",
+            "volumes_lesser": "Int"
+          }
+        },
+        "mediaList": {
+          "type": "[MediaList]",
+          "args": {
+            "compareWithAuthList": "Boolean",
+            "completedAt": "FuzzyDateInt",
+            "completedAt_greater": "FuzzyDateInt",
+            "completedAt_lesser": "FuzzyDateInt",
+            "completedAt_like": "String",
+            "id": "Int",
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not_in": "[Int]",
+            "notes": "String",
+            "notes_like": "String",
+            "sort": "[MediaListSort]",
+            "startedAt": "FuzzyDateInt",
+            "startedAt_greater": "FuzzyDateInt",
+            "startedAt_lesser": "FuzzyDateInt",
+            "startedAt_like": "String",
+            "status": "MediaListStatus",
+            "status_in": "[MediaListStatus]",
+            "status_not": "MediaListStatus",
+            "status_not_in": "[MediaListStatus]",
+            "type": "MediaType",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userName": "String"
+          }
+        },
+        "mediaTrends": {
+          "type": "[MediaTrend]",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "date": "Int",
+            "date_greater": "Int",
+            "date_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "releasing": "Boolean",
+            "sort": "[MediaTrendSort]",
+            "trending": "Int",
+            "trending_greater": "Int",
+            "trending_lesser": "Int",
+            "trending_not": "Int"
+          }
+        },
+        "notifications": {
+          "type": "[NotificationUnion]",
+          "args": {
+            "resetNotificationCount": "Boolean",
+            "type": "NotificationType",
+            "type_in": "[NotificationType]"
+          }
+        },
+        "pageInfo": {
+          "type": "PageInfo",
+          "args": {}
+        },
+        "recommendations": {
+          "type": "[Recommendation]",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaRecommendationId": "Int",
+            "onList": "Boolean",
+            "rating": "Int",
+            "rating_greater": "Int",
+            "rating_lesser": "Int",
+            "sort": "[RecommendationSort]",
+            "userId": "Int"
+          }
+        },
+        "reviews": {
+          "type": "[Review]",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaType": "MediaType",
+            "sort": "[ReviewSort]",
+            "userId": "Int"
+          }
+        },
+        "staff": {
+          "type": "[Staff]",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isBirthday": "Boolean",
+            "search": "String",
+            "sort": "[StaffSort]"
+          }
+        },
+        "studios": {
+          "type": "[Studio]",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "search": "String",
+            "sort": "[StudioSort]"
+          }
+        },
+        "threadComments": {
+          "type": "[ThreadComment]",
+          "args": {
+            "id": "Int",
+            "sort": "[ThreadCommentSort]",
+            "threadId": "Int",
+            "userId": "Int"
+          }
+        },
+        "threads": {
+          "type": "[Thread]",
+          "args": {
+            "categoryId": "Int",
+            "id": "Int",
+            "id_in": "[Int]",
+            "mediaCategoryId": "Int",
+            "replyUserId": "Int",
+            "search": "String",
+            "sort": "[ThreadSort]",
+            "subscribed": "Boolean",
+            "userId": "Int"
+          }
+        },
+        "users": {
+          "type": "[User]",
+          "args": {
+            "id": "Int",
+            "isModerator": "Boolean",
+            "name": "String",
+            "search": "String",
+            "sort": "[UserSort]"
+          }
         }
       }
     },
     "PageInfo": {
       "kind": "OBJECT",
       "fields": {
-        "total": {
+        "currentPage": {
+          "type": "Int",
+          "args": {}
+        },
+        "hasNextPage": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "lastPage": {
           "type": "Int",
           "args": {}
         },
@@ -3237,16 +3245,8 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "currentPage": {
+        "total": {
           "type": "Int",
-          "args": {}
-        },
-        "lastPage": {
-          "type": "Int",
-          "args": {}
-        },
-        "hasNextPage": {
-          "type": "Boolean",
           "args": {}
         }
       }
@@ -3263,365 +3263,110 @@ export const schemaRuntime = {
     "Query": {
       "kind": "OBJECT",
       "fields": {
-        "Page": {
-          "type": "Page",
-          "args": {
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "Media": {
-          "type": "Media",
-          "args": {
-            "id": "Int",
-            "idMal": "Int",
-            "startDate": "FuzzyDateInt",
-            "endDate": "FuzzyDateInt",
-            "season": "MediaSeason",
-            "seasonYear": "Int",
-            "type": "MediaType",
-            "format": "MediaFormat",
-            "status": "MediaStatus",
-            "episodes": "Int",
-            "duration": "Int",
-            "chapters": "Int",
-            "volumes": "Int",
-            "isAdult": "Boolean",
-            "genre": "String",
-            "tag": "String",
-            "minimumTagRank": "Int",
-            "tagCategory": "String",
-            "onList": "Boolean",
-            "licensedBy": "String",
-            "licensedById": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "source": "MediaSource",
-            "countryOfOrigin": "CountryCode",
-            "isLicensed": "Boolean",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "idMal_not": "Int",
-            "idMal_in": "[Int]",
-            "idMal_not_in": "[Int]",
-            "startDate_greater": "FuzzyDateInt",
-            "startDate_lesser": "FuzzyDateInt",
-            "startDate_like": "String",
-            "endDate_greater": "FuzzyDateInt",
-            "endDate_lesser": "FuzzyDateInt",
-            "endDate_like": "String",
-            "format_in": "[MediaFormat]",
-            "format_not": "MediaFormat",
-            "format_not_in": "[MediaFormat]",
-            "status_in": "[MediaStatus]",
-            "status_not": "MediaStatus",
-            "status_not_in": "[MediaStatus]",
-            "episodes_greater": "Int",
-            "episodes_lesser": "Int",
-            "duration_greater": "Int",
-            "duration_lesser": "Int",
-            "chapters_greater": "Int",
-            "chapters_lesser": "Int",
-            "volumes_greater": "Int",
-            "volumes_lesser": "Int",
-            "genre_in": "[String]",
-            "genre_not_in": "[String]",
-            "tag_in": "[String]",
-            "tag_not_in": "[String]",
-            "tagCategory_in": "[String]",
-            "tagCategory_not_in": "[String]",
-            "licensedBy_in": "[String]",
-            "licensedById_in": "[Int]",
-            "averageScore_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "popularity_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "source_in": "[MediaSource]",
-            "countryOfOrigin_in": "[CountryCode]",
-            "countryOfOrigin_not_in": "[CountryCode]",
-            "sort": "[MediaSort]"
-          }
-        },
-        "MediaTrend": {
-          "type": "MediaTrend",
-          "args": {
-            "mediaId": "Int",
-            "date": "Int",
-            "trending": "Int",
-            "averageScore": "Int",
-            "popularity": "Int",
-            "episode": "Int",
-            "releasing": "Boolean",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "date_greater": "Int",
-            "date_lesser": "Int",
-            "trending_greater": "Int",
-            "trending_lesser": "Int",
-            "trending_not": "Int",
-            "averageScore_greater": "Int",
-            "averageScore_lesser": "Int",
-            "averageScore_not": "Int",
-            "popularity_greater": "Int",
-            "popularity_lesser": "Int",
-            "popularity_not": "Int",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "episode_not": "Int",
-            "sort": "[MediaTrendSort]"
-          }
-        },
-        "AiringSchedule": {
-          "type": "AiringSchedule",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "episode": "Int",
-            "airingAt": "Int",
-            "notYetAired": "Boolean",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "episode_not": "Int",
-            "episode_in": "[Int]",
-            "episode_not_in": "[Int]",
-            "episode_greater": "Int",
-            "episode_lesser": "Int",
-            "airingAt_greater": "Int",
-            "airingAt_lesser": "Int",
-            "sort": "[AiringSort]"
-          }
-        },
-        "Character": {
-          "type": "Character",
-          "args": {
-            "id": "Int",
-            "isBirthday": "Boolean",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[CharacterSort]"
-          }
-        },
-        "Staff": {
-          "type": "Staff",
-          "args": {
-            "id": "Int",
-            "isBirthday": "Boolean",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StaffSort]"
-          }
-        },
-        "MediaList": {
-          "type": "MediaList",
-          "args": {
-            "id": "Int",
-            "userId": "Int",
-            "userName": "String",
-            "type": "MediaType",
-            "status": "MediaListStatus",
-            "mediaId": "Int",
-            "isFollowing": "Boolean",
-            "notes": "String",
-            "startedAt": "FuzzyDateInt",
-            "completedAt": "FuzzyDateInt",
-            "compareWithAuthList": "Boolean",
-            "userId_in": "[Int]",
-            "status_in": "[MediaListStatus]",
-            "status_not_in": "[MediaListStatus]",
-            "status_not": "MediaListStatus",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "notes_like": "String",
-            "startedAt_greater": "FuzzyDateInt",
-            "startedAt_lesser": "FuzzyDateInt",
-            "startedAt_like": "String",
-            "completedAt_greater": "FuzzyDateInt",
-            "completedAt_lesser": "FuzzyDateInt",
-            "completedAt_like": "String",
-            "sort": "[MediaListSort]"
-          }
-        },
-        "MediaListCollection": {
-          "type": "MediaListCollection",
-          "args": {
-            "userId": "Int",
-            "userName": "String",
-            "type": "MediaType",
-            "status": "MediaListStatus",
-            "notes": "String",
-            "startedAt": "FuzzyDateInt",
-            "completedAt": "FuzzyDateInt",
-            "forceSingleCompletedList": "Boolean",
-            "chunk": "Int",
-            "perChunk": "Int",
-            "status_in": "[MediaListStatus]",
-            "status_not_in": "[MediaListStatus]",
-            "status_not": "MediaListStatus",
-            "notes_like": "String",
-            "startedAt_greater": "FuzzyDateInt",
-            "startedAt_lesser": "FuzzyDateInt",
-            "startedAt_like": "String",
-            "completedAt_greater": "FuzzyDateInt",
-            "completedAt_lesser": "FuzzyDateInt",
-            "completedAt_like": "String",
-            "sort": "[MediaListSort]"
-          }
-        },
-        "GenreCollection": {
-          "type": "[String]",
-          "args": {}
-        },
-        "MediaTagCollection": {
-          "type": "[MediaTag]",
-          "args": {
-            "status": "Int"
-          }
-        },
-        "User": {
-          "type": "User",
-          "args": {
-            "id": "Int",
-            "name": "String",
-            "isModerator": "Boolean",
-            "search": "String",
-            "sort": "[UserSort]"
-          }
-        },
-        "Viewer": {
-          "type": "User",
-          "args": {}
-        },
-        "Notification": {
-          "type": "NotificationUnion",
-          "args": {
-            "type": "NotificationType",
-            "resetNotificationCount": "Boolean",
-            "type_in": "[NotificationType]"
-          }
-        },
-        "Studio": {
-          "type": "Studio",
-          "args": {
-            "id": "Int",
-            "search": "String",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "sort": "[StudioSort]"
-          }
-        },
-        "Review": {
-          "type": "Review",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "userId": "Int",
-            "mediaType": "MediaType",
-            "sort": "[ReviewSort]"
-          }
-        },
         "Activity": {
           "type": "ActivityUnion",
           "args": {
-            "id": "Int",
-            "userId": "Int",
-            "messengerId": "Int",
-            "mediaId": "Int",
-            "type": "ActivityType",
-            "isFollowing": "Boolean",
-            "hasReplies": "Boolean",
-            "hasRepliesOrTypeText": "Boolean",
             "createdAt": "Int",
-            "id_not": "Int",
-            "id_in": "[Int]",
-            "id_not_in": "[Int]",
-            "userId_not": "Int",
-            "userId_in": "[Int]",
-            "userId_not_in": "[Int]",
-            "messengerId_not": "Int",
-            "messengerId_in": "[Int]",
-            "messengerId_not_in": "[Int]",
-            "mediaId_not": "Int",
-            "mediaId_in": "[Int]",
-            "mediaId_not_in": "[Int]",
-            "type_not": "ActivityType",
-            "type_in": "[ActivityType]",
-            "type_not_in": "[ActivityType]",
             "createdAt_greater": "Int",
             "createdAt_lesser": "Int",
-            "sort": "[ActivitySort]"
+            "hasReplies": "Boolean",
+            "hasRepliesOrTypeText": "Boolean",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "messengerId": "Int",
+            "messengerId_in": "[Int]",
+            "messengerId_not": "Int",
+            "messengerId_not_in": "[Int]",
+            "sort": "[ActivitySort]",
+            "type": "ActivityType",
+            "type_in": "[ActivityType]",
+            "type_not": "ActivityType",
+            "type_not_in": "[ActivityType]",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userId_not": "Int",
+            "userId_not_in": "[Int]"
           }
         },
         "ActivityReply": {
           "type": "ActivityReply",
           "args": {
-            "id": "Int",
-            "activityId": "Int"
+            "activityId": "Int",
+            "id": "Int"
           }
         },
-        "Following": {
-          "type": "User",
+        "AiringSchedule": {
+          "type": "AiringSchedule",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
+            "airingAt": "Int",
+            "airingAt_greater": "Int",
+            "airingAt_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_in": "[Int]",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "episode_not_in": "[Int]",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "notYetAired": "Boolean",
+            "sort": "[AiringSort]"
+          }
+        },
+        "AniChartUser": {
+          "type": "AniChartUser",
+          "args": {}
+        },
+        "Character": {
+          "type": "Character",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isBirthday": "Boolean",
+            "search": "String",
+            "sort": "[CharacterSort]"
+          }
+        },
+        "ExternalLinkSourceCollection": {
+          "type": "[MediaExternalLink]",
+          "args": {
+            "id": "Int",
+            "mediaType": "ExternalLinkMediaType",
+            "type": "ExternalLinkType"
           }
         },
         "Follower": {
           "type": "User",
           "args": {
-            "userId": "Int!",
-            "sort": "[UserSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
-        "Thread": {
-          "type": "Thread",
+        "Following": {
+          "type": "User",
           "args": {
-            "id": "Int",
-            "userId": "Int",
-            "replyUserId": "Int",
-            "subscribed": "Boolean",
-            "categoryId": "Int",
-            "mediaCategoryId": "Int",
-            "search": "String",
-            "id_in": "[Int]",
-            "sort": "[ThreadSort]"
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
-        "ThreadComment": {
-          "type": "[ThreadComment]",
-          "args": {
-            "id": "Int",
-            "threadId": "Int",
-            "userId": "Int",
-            "sort": "[ThreadCommentSort]"
-          }
-        },
-        "Recommendation": {
-          "type": "Recommendation",
-          "args": {
-            "id": "Int",
-            "mediaId": "Int",
-            "mediaRecommendationId": "Int",
-            "userId": "Int",
-            "rating": "Int",
-            "onList": "Boolean",
-            "rating_greater": "Int",
-            "rating_lesser": "Int",
-            "sort": "[RecommendationSort]"
-          }
+        "GenreCollection": {
+          "type": "[String]",
+          "args": {}
         },
         "Like": {
           "type": "User",
@@ -3636,21 +3381,276 @@ export const schemaRuntime = {
             "markdown": "String!"
           }
         },
-        "AniChartUser": {
-          "type": "AniChartUser",
-          "args": {}
+        "Media": {
+          "type": "Media",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "chapters": "Int",
+            "chapters_greater": "Int",
+            "chapters_lesser": "Int",
+            "countryOfOrigin": "CountryCode",
+            "countryOfOrigin_in": "[CountryCode]",
+            "countryOfOrigin_not_in": "[CountryCode]",
+            "duration": "Int",
+            "duration_greater": "Int",
+            "duration_lesser": "Int",
+            "endDate": "FuzzyDateInt",
+            "endDate_greater": "FuzzyDateInt",
+            "endDate_lesser": "FuzzyDateInt",
+            "endDate_like": "String",
+            "episodes": "Int",
+            "episodes_greater": "Int",
+            "episodes_lesser": "Int",
+            "format": "MediaFormat",
+            "format_in": "[MediaFormat]",
+            "format_not": "MediaFormat",
+            "format_not_in": "[MediaFormat]",
+            "genre": "String",
+            "genre_in": "[String]",
+            "genre_not_in": "[String]",
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "idMal": "Int",
+            "idMal_in": "[Int]",
+            "idMal_not": "Int",
+            "idMal_not_in": "[Int]",
+            "isAdult": "Boolean",
+            "isLicensed": "Boolean",
+            "licensedBy": "String",
+            "licensedBy_in": "[String]",
+            "licensedById": "Int",
+            "licensedById_in": "[Int]",
+            "minimumTagRank": "Int",
+            "onList": "Boolean",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "search": "String",
+            "season": "MediaSeason",
+            "seasonYear": "Int",
+            "sort": "[MediaSort]",
+            "source": "MediaSource",
+            "source_in": "[MediaSource]",
+            "startDate": "FuzzyDateInt",
+            "startDate_greater": "FuzzyDateInt",
+            "startDate_lesser": "FuzzyDateInt",
+            "startDate_like": "String",
+            "status": "MediaStatus",
+            "status_in": "[MediaStatus]",
+            "status_not": "MediaStatus",
+            "status_not_in": "[MediaStatus]",
+            "tag": "String",
+            "tag_in": "[String]",
+            "tag_not_in": "[String]",
+            "tagCategory": "String",
+            "tagCategory_in": "[String]",
+            "tagCategory_not_in": "[String]",
+            "type": "MediaType",
+            "volumes": "Int",
+            "volumes_greater": "Int",
+            "volumes_lesser": "Int"
+          }
+        },
+        "MediaList": {
+          "type": "MediaList",
+          "args": {
+            "compareWithAuthList": "Boolean",
+            "completedAt": "FuzzyDateInt",
+            "completedAt_greater": "FuzzyDateInt",
+            "completedAt_lesser": "FuzzyDateInt",
+            "completedAt_like": "String",
+            "id": "Int",
+            "isFollowing": "Boolean",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not_in": "[Int]",
+            "notes": "String",
+            "notes_like": "String",
+            "sort": "[MediaListSort]",
+            "startedAt": "FuzzyDateInt",
+            "startedAt_greater": "FuzzyDateInt",
+            "startedAt_lesser": "FuzzyDateInt",
+            "startedAt_like": "String",
+            "status": "MediaListStatus",
+            "status_in": "[MediaListStatus]",
+            "status_not": "MediaListStatus",
+            "status_not_in": "[MediaListStatus]",
+            "type": "MediaType",
+            "userId": "Int",
+            "userId_in": "[Int]",
+            "userName": "String"
+          }
+        },
+        "MediaListCollection": {
+          "type": "MediaListCollection",
+          "args": {
+            "chunk": "Int",
+            "completedAt": "FuzzyDateInt",
+            "completedAt_greater": "FuzzyDateInt",
+            "completedAt_lesser": "FuzzyDateInt",
+            "completedAt_like": "String",
+            "forceSingleCompletedList": "Boolean",
+            "notes": "String",
+            "notes_like": "String",
+            "perChunk": "Int",
+            "sort": "[MediaListSort]",
+            "startedAt": "FuzzyDateInt",
+            "startedAt_greater": "FuzzyDateInt",
+            "startedAt_lesser": "FuzzyDateInt",
+            "startedAt_like": "String",
+            "status": "MediaListStatus",
+            "status_in": "[MediaListStatus]",
+            "status_not": "MediaListStatus",
+            "status_not_in": "[MediaListStatus]",
+            "type": "MediaType",
+            "userId": "Int",
+            "userName": "String"
+          }
+        },
+        "MediaTagCollection": {
+          "type": "[MediaTag]",
+          "args": {
+            "status": "Int"
+          }
+        },
+        "MediaTrend": {
+          "type": "MediaTrend",
+          "args": {
+            "averageScore": "Int",
+            "averageScore_greater": "Int",
+            "averageScore_lesser": "Int",
+            "averageScore_not": "Int",
+            "date": "Int",
+            "date_greater": "Int",
+            "date_lesser": "Int",
+            "episode": "Int",
+            "episode_greater": "Int",
+            "episode_lesser": "Int",
+            "episode_not": "Int",
+            "mediaId": "Int",
+            "mediaId_in": "[Int]",
+            "mediaId_not": "Int",
+            "mediaId_not_in": "[Int]",
+            "popularity": "Int",
+            "popularity_greater": "Int",
+            "popularity_lesser": "Int",
+            "popularity_not": "Int",
+            "releasing": "Boolean",
+            "sort": "[MediaTrendSort]",
+            "trending": "Int",
+            "trending_greater": "Int",
+            "trending_lesser": "Int",
+            "trending_not": "Int"
+          }
+        },
+        "Notification": {
+          "type": "NotificationUnion",
+          "args": {
+            "resetNotificationCount": "Boolean",
+            "type": "NotificationType",
+            "type_in": "[NotificationType]"
+          }
+        },
+        "Page": {
+          "type": "Page",
+          "args": {
+            "page": "Int",
+            "perPage": "Int"
+          }
+        },
+        "Recommendation": {
+          "type": "Recommendation",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaRecommendationId": "Int",
+            "onList": "Boolean",
+            "rating": "Int",
+            "rating_greater": "Int",
+            "rating_lesser": "Int",
+            "sort": "[RecommendationSort]",
+            "userId": "Int"
+          }
+        },
+        "Review": {
+          "type": "Review",
+          "args": {
+            "id": "Int",
+            "mediaId": "Int",
+            "mediaType": "MediaType",
+            "sort": "[ReviewSort]",
+            "userId": "Int"
+          }
         },
         "SiteStatistics": {
           "type": "SiteStatistics",
           "args": {}
         },
-        "ExternalLinkSourceCollection": {
-          "type": "[MediaExternalLink]",
+        "Staff": {
+          "type": "Staff",
           "args": {
             "id": "Int",
-            "type": "ExternalLinkType",
-            "mediaType": "ExternalLinkMediaType"
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "isBirthday": "Boolean",
+            "search": "String",
+            "sort": "[StaffSort]"
           }
+        },
+        "Studio": {
+          "type": "Studio",
+          "args": {
+            "id": "Int",
+            "id_in": "[Int]",
+            "id_not": "Int",
+            "id_not_in": "[Int]",
+            "search": "String",
+            "sort": "[StudioSort]"
+          }
+        },
+        "Thread": {
+          "type": "Thread",
+          "args": {
+            "categoryId": "Int",
+            "id": "Int",
+            "id_in": "[Int]",
+            "mediaCategoryId": "Int",
+            "replyUserId": "Int",
+            "search": "String",
+            "sort": "[ThreadSort]",
+            "subscribed": "Boolean",
+            "userId": "Int"
+          }
+        },
+        "ThreadComment": {
+          "type": "[ThreadComment]",
+          "args": {
+            "id": "Int",
+            "sort": "[ThreadCommentSort]",
+            "threadId": "Int",
+            "userId": "Int"
+          }
+        },
+        "User": {
+          "type": "User",
+          "args": {
+            "id": "Int",
+            "isModerator": "Boolean",
+            "name": "String",
+            "search": "String",
+            "sort": "[UserSort]"
+          }
+        },
+        "Viewer": {
+          "type": "User",
+          "args": {}
         }
       }
     },
@@ -3661,14 +3661,6 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "rating": {
-          "type": "Int",
-          "args": {}
-        },
-        "userRating": {
-          "type": "RecommendationRating",
-          "args": {}
-        },
         "media": {
           "type": "Media",
           "args": {}
@@ -3677,8 +3669,16 @@ export const schemaRuntime = {
           "type": "Media",
           "args": {}
         },
+        "rating": {
+          "type": "Int",
+          "args": {}
+        },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userRating": {
+          "type": "RecommendationRating",
           "args": {}
         }
       }
@@ -3712,18 +3712,6 @@ export const schemaRuntime = {
     "RelatedMediaAdditionNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
-        "mediaId": {
-          "type": "Int!",
-          "args": {}
-        },
         "context": {
           "type": "String",
           "args": {}
@@ -3732,8 +3720,20 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "media": {
           "type": "Media",
+          "args": {}
+        },
+        "mediaId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -3741,28 +3741,28 @@ export const schemaRuntime = {
     "Report": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "reporter": {
-          "type": "User",
-          "args": {}
-        },
-        "reported": {
-          "type": "User",
-          "args": {}
-        },
-        "reason": {
-          "type": "String",
+        "cleared": {
+          "type": "Boolean",
           "args": {}
         },
         "createdAt": {
           "type": "Int",
           "args": {}
         },
-        "cleared": {
-          "type": "Boolean",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "reason": {
+          "type": "String",
+          "args": {}
+        },
+        "reported": {
+          "type": "User",
+          "args": {}
+        },
+        "reporter": {
+          "type": "User",
           "args": {}
         }
       }
@@ -3770,12 +3770,22 @@ export const schemaRuntime = {
     "Review": {
       "kind": "OBJECT",
       "fields": {
+        "body": {
+          "type": "String",
+          "args": {
+            "asHtml": "Boolean"
+          }
+        },
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "userId": {
-          "type": "Int!",
+        "media": {
+          "type": "Media",
           "args": {}
         },
         "mediaId": {
@@ -3786,15 +3796,9 @@ export const schemaRuntime = {
           "type": "MediaType",
           "args": {}
         },
-        "summary": {
-          "type": "String",
+        "private": {
+          "type": "Boolean",
           "args": {}
-        },
-        "body": {
-          "type": "String",
-          "args": {
-            "asHtml": "Boolean"
-          }
         },
         "rating": {
           "type": "Int",
@@ -3804,24 +3808,16 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
-        "userRating": {
-          "type": "ReviewRating",
-          "args": {}
-        },
         "score": {
           "type": "Int",
-          "args": {}
-        },
-        "private": {
-          "type": "Boolean",
           "args": {}
         },
         "siteUrl": {
           "type": "String",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int!",
+        "summary": {
+          "type": "String",
           "args": {}
         },
         "updatedAt": {
@@ -3832,8 +3828,12 @@ export const schemaRuntime = {
           "type": "User",
           "args": {}
         },
-        "media": {
-          "type": "Media",
+        "userId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "userRating": {
+          "type": "ReviewRating",
           "args": {}
         }
       }
@@ -3867,10 +3867,6 @@ export const schemaRuntime = {
     "RevisionHistory": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
         "action": {
           "type": "RevisionHistoryAction",
           "args": {}
@@ -3879,16 +3875,24 @@ export const schemaRuntime = {
           "type": "Json",
           "args": {}
         },
-        "user": {
-          "type": "User",
+        "character": {
+          "type": "Character",
+          "args": {}
+        },
+        "createdAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "externalLink": {
+          "type": "MediaExternalLink",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
           "args": {}
         },
         "media": {
           "type": "Media",
-          "args": {}
-        },
-        "character": {
-          "type": "Character",
           "args": {}
         },
         "staff": {
@@ -3899,12 +3903,8 @@ export const schemaRuntime = {
           "type": "Studio",
           "args": {}
         },
-        "externalLink": {
-          "type": "MediaExternalLink",
-          "args": {}
-        },
-        "createdAt": {
-          "type": "Int",
+        "user": {
+          "type": "User",
           "args": {}
         }
       }
@@ -3912,11 +3912,11 @@ export const schemaRuntime = {
     "ScoreDistribution": {
       "kind": "OBJECT",
       "fields": {
-        "score": {
+        "amount": {
           "type": "Int",
           "args": {}
         },
-        "amount": {
+        "score": {
           "type": "Int",
           "args": {}
         }
@@ -3925,60 +3925,60 @@ export const schemaRuntime = {
     "SiteStatistics": {
       "kind": "OBJECT",
       "fields": {
-        "users": {
-          "type": "SiteTrendConnection",
-          "args": {
-            "sort": "[SiteTrendSort]",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
         "anime": {
           "type": "SiteTrendConnection",
           "args": {
-            "sort": "[SiteTrendSort]",
             "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "manga": {
-          "type": "SiteTrendConnection",
-          "args": {
-            "sort": "[SiteTrendSort]",
-            "page": "Int",
-            "perPage": "Int"
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
           }
         },
         "characters": {
           "type": "SiteTrendConnection",
           "args": {
-            "sort": "[SiteTrendSort]",
             "page": "Int",
-            "perPage": "Int"
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
           }
         },
-        "staff": {
+        "manga": {
           "type": "SiteTrendConnection",
           "args": {
-            "sort": "[SiteTrendSort]",
             "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "studios": {
-          "type": "SiteTrendConnection",
-          "args": {
-            "sort": "[SiteTrendSort]",
-            "page": "Int",
-            "perPage": "Int"
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
           }
         },
         "reviews": {
           "type": "SiteTrendConnection",
           "args": {
-            "sort": "[SiteTrendSort]",
             "page": "Int",
-            "perPage": "Int"
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
+          }
+        },
+        "staff": {
+          "type": "SiteTrendConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
+          }
+        },
+        "studios": {
+          "type": "SiteTrendConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
+          }
+        },
+        "users": {
+          "type": "SiteTrendConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[SiteTrendSort]"
           }
         }
       }
@@ -3986,7 +3986,7 @@ export const schemaRuntime = {
     "SiteTrend": {
       "kind": "OBJECT",
       "fields": {
-        "date": {
+        "change": {
           "type": "Int!",
           "args": {}
         },
@@ -3994,7 +3994,7 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "change": {
+        "date": {
           "type": "Int!",
           "args": {}
         }
@@ -4029,39 +4029,30 @@ export const schemaRuntime = {
     "Staff": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
+        "age": {
+          "type": "Int",
           "args": {}
         },
-        "name": {
-          "type": "StaffName",
-          "args": {}
-        },
-        "language": {
-          "type": "StaffLanguage",
-          "args": {}
-        },
-        "languageV2": {
+        "bloodType": {
           "type": "String",
           "args": {}
         },
-        "image": {
-          "type": "StaffImage",
-          "args": {}
-        },
-        "description": {
-          "type": "String",
+        "characterMedia": {
+          "type": "MediaConnection",
           "args": {
-            "asHtml": "Boolean"
+            "onList": "Boolean",
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[MediaSort]"
           }
         },
-        "primaryOccupations": {
-          "type": "[String]",
-          "args": {}
-        },
-        "gender": {
-          "type": "String",
-          "args": {}
+        "characters": {
+          "type": "CharacterConnection",
+          "args": {
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[CharacterSort]"
+          }
         },
         "dateOfBirth": {
           "type": "FuzzyDate",
@@ -4071,20 +4062,30 @@ export const schemaRuntime = {
           "type": "FuzzyDate",
           "args": {}
         },
-        "age": {
+        "description": {
+          "type": "String",
+          "args": {
+            "asHtml": "Boolean"
+          }
+        },
+        "favourites": {
           "type": "Int",
           "args": {}
         },
-        "yearsActive": {
-          "type": "[Int]",
+        "gender": {
+          "type": "String",
           "args": {}
         },
         "homeTown": {
           "type": "String",
           "args": {}
         },
-        "bloodType": {
-          "type": "String",
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "image": {
+          "type": "StaffImage",
           "args": {}
         },
         "isFavourite": {
@@ -4095,63 +4096,62 @@ export const schemaRuntime = {
           "type": "Boolean!",
           "args": {}
         },
-        "siteUrl": {
+        "language": {
+          "type": "StaffLanguage",
+          "args": {}
+        },
+        "languageV2": {
           "type": "String",
           "args": {}
         },
-        "staffMedia": {
-          "type": "MediaConnection",
-          "args": {
-            "sort": "[MediaSort]",
-            "type": "MediaType",
-            "onList": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
+        "modNotes": {
+          "type": "String",
+          "args": {}
         },
-        "characters": {
-          "type": "CharacterConnection",
-          "args": {
-            "sort": "[CharacterSort]",
-            "page": "Int",
-            "perPage": "Int"
-          }
+        "name": {
+          "type": "StaffName",
+          "args": {}
         },
-        "characterMedia": {
-          "type": "MediaConnection",
-          "args": {
-            "sort": "[MediaSort]",
-            "onList": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
+        "primaryOccupations": {
+          "type": "[String]",
+          "args": {}
         },
-        "updatedAt": {
-          "type": "Int",
+        "siteUrl": {
+          "type": "String",
           "args": {}
         },
         "staff": {
           "type": "Staff",
           "args": {}
         },
-        "submitter": {
-          "type": "User",
+        "staffMedia": {
+          "type": "MediaConnection",
+          "args": {
+            "onList": "Boolean",
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[MediaSort]",
+            "type": "MediaType"
+          }
+        },
+        "submissionNotes": {
+          "type": "String",
           "args": {}
         },
         "submissionStatus": {
           "type": "Int",
           "args": {}
         },
-        "submissionNotes": {
-          "type": "String",
+        "submitter": {
+          "type": "User",
           "args": {}
         },
-        "favourites": {
+        "updatedAt": {
           "type": "Int",
           "args": {}
         },
-        "modNotes": {
-          "type": "String",
+        "yearsActive": {
+          "type": "[Int]",
           "args": {}
         }
       }
@@ -4176,20 +4176,20 @@ export const schemaRuntime = {
     "StaffEdge": {
       "kind": "OBJECT",
       "fields": {
-        "node": {
-          "type": "Staff",
+        "favouriteOrder": {
+          "type": "Int",
           "args": {}
         },
         "id": {
           "type": "Int",
           "args": {}
         },
-        "role": {
-          "type": "String",
+        "node": {
+          "type": "Staff",
           "args": {}
         },
-        "favouriteOrder": {
-          "type": "Int",
+        "role": {
+          "type": "String",
           "args": {}
         }
       }
@@ -4210,15 +4210,11 @@ export const schemaRuntime = {
     "StaffName": {
       "kind": "OBJECT",
       "fields": {
+        "alternative": {
+          "type": "[String]",
+          "args": {}
+        },
         "first": {
-          "type": "String",
-          "args": {}
-        },
-        "middle": {
-          "type": "String",
-          "args": {}
-        },
-        "last": {
           "type": "String",
           "args": {}
         },
@@ -4226,12 +4222,16 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "native": {
+        "last": {
           "type": "String",
           "args": {}
         },
-        "alternative": {
-          "type": "[String]",
+        "middle": {
+          "type": "String",
+          "args": {}
+        },
+        "native": {
+          "type": "String",
           "args": {}
         },
         "userPreferred": {
@@ -4243,16 +4243,16 @@ export const schemaRuntime = {
     "StaffRoleType": {
       "kind": "OBJECT",
       "fields": {
-        "voiceActor": {
-          "type": "Staff",
+        "dubGroup": {
+          "type": "String",
           "args": {}
         },
         "roleNotes": {
           "type": "String",
           "args": {}
         },
-        "dubGroup": {
-          "type": "String",
+        "voiceActor": {
+          "type": "Staff",
           "args": {}
         }
       }
@@ -4260,16 +4260,16 @@ export const schemaRuntime = {
     "StaffStats": {
       "kind": "OBJECT",
       "fields": {
-        "staff": {
-          "type": "Staff",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
           "args": {}
         },
         "meanScore": {
           "type": "Int",
+          "args": {}
+        },
+        "staff": {
+          "type": "Staff",
           "args": {}
         },
         "timeWatched": {
@@ -4281,28 +4281,20 @@ export const schemaRuntime = {
     "StaffSubmission": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "staff": {
-          "type": "Staff",
-          "args": {}
-        },
-        "submission": {
-          "type": "Staff",
-          "args": {}
-        },
-        "submitter": {
-          "type": "User",
-          "args": {}
-        },
         "assignee": {
           "type": "User",
           "args": {}
         },
-        "status": {
-          "type": "SubmissionStatus",
+        "createdAt": {
+          "type": "Int",
+          "args": {}
+        },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "locked": {
+          "type": "Boolean",
           "args": {}
         },
         "notes": {
@@ -4313,12 +4305,20 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "locked": {
-          "type": "Boolean",
+        "staff": {
+          "type": "Staff",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "status": {
+          "type": "SubmissionStatus",
+          "args": {}
+        },
+        "submission": {
+          "type": "Staff",
+          "args": {}
+        },
+        "submitter": {
+          "type": "User",
           "args": {}
         }
       }
@@ -4326,32 +4326,32 @@ export const schemaRuntime = {
     "StaffSubmissionUpdateNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
         "contexts": {
           "type": "[String]",
-          "args": {}
-        },
-        "status": {
-          "type": "String",
-          "args": {}
-        },
-        "notes": {
-          "type": "String",
           "args": {}
         },
         "createdAt": {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
+        "notes": {
+          "type": "String",
+          "args": {}
+        },
         "staff": {
           "type": "Staff",
+          "args": {}
+        },
+        "status": {
+          "type": "String",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         }
       }
@@ -4359,12 +4359,12 @@ export const schemaRuntime = {
     "StatusDistribution": {
       "kind": "OBJECT",
       "fields": {
-        "status": {
-          "type": "MediaListStatus",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
+          "args": {}
+        },
+        "status": {
+          "type": "MediaListStatus",
           "args": {}
         }
       }
@@ -4372,38 +4372,38 @@ export const schemaRuntime = {
     "Studio": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
+        "favourites": {
+          "type": "Int",
           "args": {}
         },
-        "name": {
-          "type": "String!",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
         "isAnimationStudio": {
           "type": "Boolean!",
           "args": {}
         },
-        "media": {
-          "type": "MediaConnection",
-          "args": {
-            "sort": "[MediaSort]",
-            "isMain": "Boolean",
-            "onList": "Boolean",
-            "page": "Int",
-            "perPage": "Int"
-          }
-        },
-        "siteUrl": {
-          "type": "String",
-          "args": {}
-        },
         "isFavourite": {
           "type": "Boolean!",
           "args": {}
         },
-        "favourites": {
-          "type": "Int",
+        "media": {
+          "type": "MediaConnection",
+          "args": {
+            "isMain": "Boolean",
+            "onList": "Boolean",
+            "page": "Int",
+            "perPage": "Int",
+            "sort": "[MediaSort]"
+          }
+        },
+        "name": {
+          "type": "String!",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
           "args": {}
         }
       }
@@ -4428,8 +4428,8 @@ export const schemaRuntime = {
     "StudioEdge": {
       "kind": "OBJECT",
       "fields": {
-        "node": {
-          "type": "Studio",
+        "favouriteOrder": {
+          "type": "Int",
           "args": {}
         },
         "id": {
@@ -4440,8 +4440,8 @@ export const schemaRuntime = {
           "type": "Boolean!",
           "args": {}
         },
-        "favouriteOrder": {
-          "type": "Int",
+        "node": {
+          "type": "Studio",
           "args": {}
         }
       }
@@ -4449,16 +4449,16 @@ export const schemaRuntime = {
     "StudioStats": {
       "kind": "OBJECT",
       "fields": {
-        "studio": {
-          "type": "Studio",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
           "args": {}
         },
         "meanScore": {
           "type": "Int",
+          "args": {}
+        },
+        "studio": {
+          "type": "Studio",
           "args": {}
         },
         "timeWatched": {
@@ -4470,16 +4470,16 @@ export const schemaRuntime = {
     "TagStats": {
       "kind": "OBJECT",
       "fields": {
-        "tag": {
-          "type": "MediaTag",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
           "args": {}
         },
         "meanScore": {
           "type": "Int",
+          "args": {}
+        },
+        "tag": {
+          "type": "MediaTag",
           "args": {}
         },
         "timeWatched": {
@@ -4491,33 +4491,23 @@ export const schemaRuntime = {
     "TextActivity": {
       "kind": "OBJECT",
       "fields": {
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
         "id": {
           "type": "Int!",
           "args": {}
         },
-        "userId": {
-          "type": "Int",
-          "args": {}
-        },
-        "type": {
-          "type": "ActivityType",
-          "args": {}
-        },
-        "replyCount": {
-          "type": "Int!",
-          "args": {}
-        },
-        "text": {
-          "type": "String",
-          "args": {
-            "asHtml": "Boolean"
-          }
-        },
-        "siteUrl": {
-          "type": "String",
+        "isLiked": {
+          "type": "Boolean",
           "args": {}
         },
         "isLocked": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "isPinned": {
           "type": "Boolean",
           "args": {}
         },
@@ -4529,28 +4519,38 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "isLiked": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "isPinned": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "createdAt": {
-          "type": "Int!",
-          "args": {}
-        },
-        "user": {
-          "type": "User",
+        "likes": {
+          "type": "[User]",
           "args": {}
         },
         "replies": {
           "type": "[ActivityReply]",
           "args": {}
         },
-        "likes": {
-          "type": "[User]",
+        "replyCount": {
+          "type": "Int!",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "text": {
+          "type": "String",
+          "args": {
+            "asHtml": "Boolean"
+          }
+        },
+        "type": {
+          "type": "ActivityType",
+          "args": {}
+        },
+        "user": {
+          "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -4558,38 +4558,26 @@ export const schemaRuntime = {
     "Thread": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "title": {
-          "type": "String",
-          "args": {}
-        },
         "body": {
           "type": "String",
           "args": {
             "asHtml": "Boolean"
           }
         },
-        "userId": {
+        "categories": {
+          "type": "[ThreadCategory]",
+          "args": {}
+        },
+        "createdAt": {
           "type": "Int!",
           "args": {}
         },
-        "replyUserId": {
-          "type": "Int",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
-        "replyCommentId": {
-          "type": "Int",
-          "args": {}
-        },
-        "replyCount": {
-          "type": "Int",
-          "args": {}
-        },
-        "viewCount": {
-          "type": "Int",
+        "isLiked": {
+          "type": "Boolean",
           "args": {}
         },
         "isLocked": {
@@ -4608,16 +4596,40 @@ export const schemaRuntime = {
           "type": "Int!",
           "args": {}
         },
-        "isLiked": {
-          "type": "Boolean",
+        "likes": {
+          "type": "[User]",
+          "args": {}
+        },
+        "mediaCategories": {
+          "type": "[Media]",
           "args": {}
         },
         "repliedAt": {
           "type": "Int",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int!",
+        "replyCommentId": {
+          "type": "Int",
+          "args": {}
+        },
+        "replyCount": {
+          "type": "Int",
+          "args": {}
+        },
+        "replyUser": {
+          "type": "User",
+          "args": {}
+        },
+        "replyUserId": {
+          "type": "Int",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "title": {
+          "type": "String",
           "args": {}
         },
         "updatedAt": {
@@ -4628,24 +4640,12 @@ export const schemaRuntime = {
           "type": "User",
           "args": {}
         },
-        "replyUser": {
-          "type": "User",
+        "userId": {
+          "type": "Int!",
           "args": {}
         },
-        "likes": {
-          "type": "[User]",
-          "args": {}
-        },
-        "siteUrl": {
-          "type": "String",
-          "args": {}
-        },
-        "categories": {
-          "type": "[ThreadCategory]",
-          "args": {}
-        },
-        "mediaCategories": {
-          "type": "[Media]",
+        "viewCount": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -4666,16 +4666,8 @@ export const schemaRuntime = {
     "ThreadComment": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int",
-          "args": {}
-        },
-        "threadId": {
-          "type": "Int",
+        "childComments": {
+          "type": "Json",
           "args": {}
         },
         "comment": {
@@ -4684,7 +4676,11 @@ export const schemaRuntime = {
             "asHtml": "Boolean"
           }
         },
-        "likeCount": {
+        "createdAt": {
+          "type": "Int!",
+          "args": {}
+        },
+        "id": {
           "type": "Int!",
           "args": {}
         },
@@ -4692,36 +4688,40 @@ export const schemaRuntime = {
           "type": "Boolean",
           "args": {}
         },
-        "siteUrl": {
-          "type": "String",
+        "isLocked": {
+          "type": "Boolean",
           "args": {}
         },
-        "createdAt": {
+        "likeCount": {
           "type": "Int!",
-          "args": {}
-        },
-        "updatedAt": {
-          "type": "Int!",
-          "args": {}
-        },
-        "thread": {
-          "type": "Thread",
-          "args": {}
-        },
-        "user": {
-          "type": "User",
           "args": {}
         },
         "likes": {
           "type": "[User]",
           "args": {}
         },
-        "childComments": {
-          "type": "Json",
+        "siteUrl": {
+          "type": "String",
           "args": {}
         },
-        "isLocked": {
-          "type": "Boolean",
+        "thread": {
+          "type": "Thread",
+          "args": {}
+        },
+        "threadId": {
+          "type": "Int",
+          "args": {}
+        },
+        "updatedAt": {
+          "type": "Int!",
+          "args": {}
+        },
+        "user": {
+          "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -4729,16 +4729,8 @@ export const schemaRuntime = {
     "ThreadCommentLikeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "comment": {
+          "type": "ThreadComment",
           "args": {}
         },
         "commentId": {
@@ -4753,16 +4745,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "thread": {
           "type": "Thread",
           "args": {}
         },
-        "comment": {
-          "type": "ThreadComment",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -4770,16 +4770,8 @@ export const schemaRuntime = {
     "ThreadCommentMentionNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "comment": {
+          "type": "ThreadComment",
           "args": {}
         },
         "commentId": {
@@ -4794,16 +4786,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "thread": {
           "type": "Thread",
           "args": {}
         },
-        "comment": {
-          "type": "ThreadComment",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -4811,16 +4811,8 @@ export const schemaRuntime = {
     "ThreadCommentReplyNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "comment": {
+          "type": "ThreadComment",
           "args": {}
         },
         "commentId": {
@@ -4835,16 +4827,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "thread": {
           "type": "Thread",
           "args": {}
         },
-        "comment": {
-          "type": "ThreadComment",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -4852,16 +4852,8 @@ export const schemaRuntime = {
     "ThreadCommentSubscribedNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
+        "comment": {
+          "type": "ThreadComment",
           "args": {}
         },
         "commentId": {
@@ -4876,16 +4868,24 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "thread": {
           "type": "Thread",
           "args": {}
         },
-        "comment": {
-          "type": "ThreadComment",
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -4893,20 +4893,8 @@ export const schemaRuntime = {
     "ThreadLikeNotification": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "userId": {
-          "type": "Int!",
-          "args": {}
-        },
-        "type": {
-          "type": "NotificationType",
-          "args": {}
-        },
-        "threadId": {
-          "type": "Int!",
+        "comment": {
+          "type": "ThreadComment",
           "args": {}
         },
         "context": {
@@ -4917,16 +4905,28 @@ export const schemaRuntime = {
           "type": "Int",
           "args": {}
         },
+        "id": {
+          "type": "Int!",
+          "args": {}
+        },
         "thread": {
           "type": "Thread",
           "args": {}
         },
-        "comment": {
-          "type": "ThreadComment",
+        "threadId": {
+          "type": "Int!",
+          "args": {}
+        },
+        "type": {
+          "type": "NotificationType",
           "args": {}
         },
         "user": {
           "type": "User",
+          "args": {}
+        },
+        "userId": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -4934,14 +4934,6 @@ export const schemaRuntime = {
     "User": {
       "kind": "OBJECT",
       "fields": {
-        "id": {
-          "type": "Int!",
-          "args": {}
-        },
-        "name": {
-          "type": "String!",
-          "args": {}
-        },
         "about": {
           "type": "String",
           "args": {
@@ -4956,28 +4948,20 @@ export const schemaRuntime = {
           "type": "String",
           "args": {}
         },
-        "isFollowing": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "isFollower": {
-          "type": "Boolean",
-          "args": {}
-        },
-        "isBlocked": {
-          "type": "Boolean",
-          "args": {}
-        },
         "bans": {
           "type": "Json",
           "args": {}
         },
-        "options": {
-          "type": "UserOptions",
+        "createdAt": {
+          "type": "Int",
           "args": {}
         },
-        "mediaListOptions": {
-          "type": "MediaListOptions",
+        "donatorBadge": {
+          "type": "String",
+          "args": {}
+        },
+        "donatorTier": {
+          "type": "Int",
           "args": {}
         },
         "favourites": {
@@ -4986,48 +4970,64 @@ export const schemaRuntime = {
             "page": "Int"
           }
         },
-        "statistics": {
-          "type": "UserStatisticTypes",
+        "id": {
+          "type": "Int!",
           "args": {}
         },
-        "unreadNotificationCount": {
-          "type": "Int",
+        "isBlocked": {
+          "type": "Boolean",
           "args": {}
         },
-        "siteUrl": {
-          "type": "String",
+        "isFollower": {
+          "type": "Boolean",
           "args": {}
         },
-        "donatorTier": {
-          "type": "Int",
+        "isFollowing": {
+          "type": "Boolean",
           "args": {}
         },
-        "donatorBadge": {
-          "type": "String",
+        "mediaListOptions": {
+          "type": "MediaListOptions",
           "args": {}
         },
         "moderatorRoles": {
           "type": "[ModRole]",
           "args": {}
         },
-        "createdAt": {
-          "type": "Int",
+        "moderatorStatus": {
+          "type": "String",
           "args": {}
         },
-        "updatedAt": {
-          "type": "Int",
+        "name": {
+          "type": "String!",
+          "args": {}
+        },
+        "options": {
+          "type": "UserOptions",
+          "args": {}
+        },
+        "previousNames": {
+          "type": "[UserPreviousName]",
+          "args": {}
+        },
+        "siteUrl": {
+          "type": "String",
+          "args": {}
+        },
+        "statistics": {
+          "type": "UserStatisticTypes",
           "args": {}
         },
         "stats": {
           "type": "UserStats",
           "args": {}
         },
-        "moderatorStatus": {
-          "type": "String",
+        "unreadNotificationCount": {
+          "type": "Int",
           "args": {}
         },
-        "previousNames": {
-          "type": "[UserPreviousName]",
+        "updatedAt": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -5035,11 +5035,11 @@ export const schemaRuntime = {
     "UserActivityHistory": {
       "kind": "OBJECT",
       "fields": {
-        "date": {
+        "amount": {
           "type": "Int",
           "args": {}
         },
-        "amount": {
+        "date": {
           "type": "Int",
           "args": {}
         },
@@ -5065,28 +5065,28 @@ export const schemaRuntime = {
     "UserCountryStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
+          "args": {}
+        },
+        "country": {
+          "type": "CountryCode",
           "args": {}
         },
         "meanScore": {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
           "args": {}
         },
-        "country": {
-          "type": "CountryCode",
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -5094,28 +5094,28 @@ export const schemaRuntime = {
     "UserFormatStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
+          "args": {}
+        },
+        "format": {
+          "type": "MediaFormat",
           "args": {}
         },
         "meanScore": {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
           "args": {}
         },
-        "format": {
-          "type": "MediaFormat",
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -5123,28 +5123,28 @@ export const schemaRuntime = {
     "UserGenreStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
+          "args": {}
+        },
+        "genre": {
+          "type": "String",
           "args": {}
         },
         "meanScore": {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
           "args": {}
         },
-        "genre": {
-          "type": "String",
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -5152,28 +5152,28 @@ export const schemaRuntime = {
     "UserLengthStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
+          "args": {}
+        },
+        "length": {
+          "type": "String",
           "args": {}
         },
         "meanScore": {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
           "args": {}
         },
-        "length": {
-          "type": "String",
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         }
       }
@@ -5189,20 +5189,20 @@ export const schemaRuntime = {
           "type": "Json",
           "args": {}
         },
-        "ip": {
+        "counts": {
           "type": "Json",
           "args": {}
         },
-        "counts": {
+        "email": {
+          "type": "String",
+          "args": {}
+        },
+        "ip": {
           "type": "Json",
           "args": {}
         },
         "privacy": {
           "type": "Int",
-          "args": {}
-        },
-        "email": {
-          "type": "String",
           "args": {}
         }
       }
@@ -5210,44 +5210,44 @@ export const schemaRuntime = {
     "UserOptions": {
       "kind": "OBJECT",
       "fields": {
-        "titleLanguage": {
-          "type": "UserTitleLanguage",
-          "args": {}
-        },
-        "displayAdultContent": {
-          "type": "Boolean",
+        "activityMergeTime": {
+          "type": "Int",
           "args": {}
         },
         "airingNotifications": {
           "type": "Boolean",
           "args": {}
         },
-        "profileColor": {
-          "type": "String",
+        "disabledListActivity": {
+          "type": "[ListActivityOption]",
+          "args": {}
+        },
+        "displayAdultContent": {
+          "type": "Boolean",
           "args": {}
         },
         "notificationOptions": {
           "type": "[NotificationOption]",
           "args": {}
         },
-        "timezone": {
+        "profileColor": {
           "type": "String",
-          "args": {}
-        },
-        "activityMergeTime": {
-          "type": "Int",
-          "args": {}
-        },
-        "staffNameLanguage": {
-          "type": "UserStaffNameLanguage",
           "args": {}
         },
         "restrictMessagesToFollowing": {
           "type": "Boolean",
           "args": {}
         },
-        "disabledListActivity": {
-          "type": "[ListActivityOption]",
+        "staffNameLanguage": {
+          "type": "UserStaffNameLanguage",
+          "args": {}
+        },
+        "timezone": {
+          "type": "String",
+          "args": {}
+        },
+        "titleLanguage": {
+          "type": "UserTitleLanguage",
           "args": {}
         }
       }
@@ -5255,12 +5255,12 @@ export const schemaRuntime = {
     "UserPreviousName": {
       "kind": "OBJECT",
       "fields": {
-        "name": {
-          "type": "String",
-          "args": {}
-        },
         "createdAt": {
           "type": "Int",
+          "args": {}
+        },
+        "name": {
+          "type": "String",
           "args": {}
         },
         "updatedAt": {
@@ -5272,6 +5272,10 @@ export const schemaRuntime = {
     "UserReleaseYearStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5280,16 +5284,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "releaseYear": {
@@ -5301,6 +5301,10 @@ export const schemaRuntime = {
     "UserScoreStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5309,16 +5313,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "score": {
@@ -5330,6 +5330,10 @@ export const schemaRuntime = {
     "UserStaffStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5338,16 +5342,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "staff": {
@@ -5359,6 +5359,10 @@ export const schemaRuntime = {
     "UserStartYearStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5367,16 +5371,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "startYear": {
@@ -5388,71 +5388,27 @@ export const schemaRuntime = {
     "UserStatistics": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
         },
-        "meanScore": {
-          "type": "Float!",
-          "args": {}
-        },
-        "standardDeviation": {
-          "type": "Float!",
-          "args": {}
-        },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
+        "countries": {
+          "type": "[UserCountryStatistic]",
+          "args": {
+            "limit": "Int",
+            "sort": "[UserStatisticsSort]"
+          }
         },
         "episodesWatched": {
           "type": "Int!",
           "args": {}
         },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
-        "volumesRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "formats": {
           "type": "[UserFormatStatistic]",
-          "args": {
-            "limit": "Int",
-            "sort": "[UserStatisticsSort]"
-          }
-        },
-        "statuses": {
-          "type": "[UserStatusStatistic]",
-          "args": {
-            "limit": "Int",
-            "sort": "[UserStatisticsSort]"
-          }
-        },
-        "scores": {
-          "type": "[UserScoreStatistic]",
-          "args": {
-            "limit": "Int",
-            "sort": "[UserStatisticsSort]"
-          }
-        },
-        "lengths": {
-          "type": "[UserLengthStatistic]",
-          "args": {
-            "limit": "Int",
-            "sort": "[UserStatisticsSort]"
-          }
-        },
-        "releaseYears": {
-          "type": "[UserReleaseYearStatistic]",
-          "args": {
-            "limit": "Int",
-            "sort": "[UserStatisticsSort]"
-          }
-        },
-        "startYears": {
-          "type": "[UserStartYearStatistic]",
           "args": {
             "limit": "Int",
             "sort": "[UserStatisticsSort]"
@@ -5465,22 +5421,30 @@ export const schemaRuntime = {
             "sort": "[UserStatisticsSort]"
           }
         },
-        "tags": {
-          "type": "[UserTagStatistic]",
+        "lengths": {
+          "type": "[UserLengthStatistic]",
           "args": {
             "limit": "Int",
             "sort": "[UserStatisticsSort]"
           }
         },
-        "countries": {
-          "type": "[UserCountryStatistic]",
+        "meanScore": {
+          "type": "Float!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
+          "args": {}
+        },
+        "releaseYears": {
+          "type": "[UserReleaseYearStatistic]",
           "args": {
             "limit": "Int",
             "sort": "[UserStatisticsSort]"
           }
         },
-        "voiceActors": {
-          "type": "[UserVoiceActorStatistic]",
+        "scores": {
+          "type": "[UserScoreStatistic]",
           "args": {
             "limit": "Int",
             "sort": "[UserStatisticsSort]"
@@ -5493,12 +5457,48 @@ export const schemaRuntime = {
             "sort": "[UserStatisticsSort]"
           }
         },
+        "standardDeviation": {
+          "type": "Float!",
+          "args": {}
+        },
+        "startYears": {
+          "type": "[UserStartYearStatistic]",
+          "args": {
+            "limit": "Int",
+            "sort": "[UserStatisticsSort]"
+          }
+        },
+        "statuses": {
+          "type": "[UserStatusStatistic]",
+          "args": {
+            "limit": "Int",
+            "sort": "[UserStatisticsSort]"
+          }
+        },
         "studios": {
           "type": "[UserStudioStatistic]",
           "args": {
             "limit": "Int",
             "sort": "[UserStatisticsSort]"
           }
+        },
+        "tags": {
+          "type": "[UserTagStatistic]",
+          "args": {
+            "limit": "Int",
+            "sort": "[UserStatisticsSort]"
+          }
+        },
+        "voiceActors": {
+          "type": "[UserVoiceActorStatistic]",
+          "args": {
+            "limit": "Int",
+            "sort": "[UserStatisticsSort]"
+          }
+        },
+        "volumesRead": {
+          "type": "Int!",
+          "args": {}
         }
       }
     },
@@ -5518,56 +5518,40 @@ export const schemaRuntime = {
     "UserStats": {
       "kind": "OBJECT",
       "fields": {
-        "watchedTime": {
-          "type": "Int",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int",
-          "args": {}
-        },
         "activityHistory": {
           "type": "[UserActivityHistory]",
-          "args": {}
-        },
-        "animeStatusDistribution": {
-          "type": "[StatusDistribution]",
-          "args": {}
-        },
-        "mangaStatusDistribution": {
-          "type": "[StatusDistribution]",
-          "args": {}
-        },
-        "animeScoreDistribution": {
-          "type": "[ScoreDistribution]",
-          "args": {}
-        },
-        "mangaScoreDistribution": {
-          "type": "[ScoreDistribution]",
           "args": {}
         },
         "animeListScores": {
           "type": "ListScoreStats",
           "args": {}
         },
-        "mangaListScores": {
-          "type": "ListScoreStats",
+        "animeScoreDistribution": {
+          "type": "[ScoreDistribution]",
           "args": {}
         },
-        "favouredGenresOverview": {
-          "type": "[GenreStats]",
+        "animeStatusDistribution": {
+          "type": "[StatusDistribution]",
+          "args": {}
+        },
+        "chaptersRead": {
+          "type": "Int",
+          "args": {}
+        },
+        "favouredActors": {
+          "type": "[StaffStats]",
+          "args": {}
+        },
+        "favouredFormats": {
+          "type": "[FormatStats]",
           "args": {}
         },
         "favouredGenres": {
           "type": "[GenreStats]",
           "args": {}
         },
-        "favouredTags": {
-          "type": "[TagStats]",
-          "args": {}
-        },
-        "favouredActors": {
-          "type": "[StaffStats]",
+        "favouredGenresOverview": {
+          "type": "[GenreStats]",
           "args": {}
         },
         "favouredStaff": {
@@ -5578,12 +5562,28 @@ export const schemaRuntime = {
           "type": "[StudioStats]",
           "args": {}
         },
+        "favouredTags": {
+          "type": "[TagStats]",
+          "args": {}
+        },
         "favouredYears": {
           "type": "[YearStats]",
           "args": {}
         },
-        "favouredFormats": {
-          "type": "[FormatStats]",
+        "mangaListScores": {
+          "type": "ListScoreStats",
+          "args": {}
+        },
+        "mangaScoreDistribution": {
+          "type": "[ScoreDistribution]",
+          "args": {}
+        },
+        "mangaStatusDistribution": {
+          "type": "[StatusDistribution]",
+          "args": {}
+        },
+        "watchedTime": {
+          "type": "Int",
           "args": {}
         }
       }
@@ -5591,6 +5591,10 @@ export const schemaRuntime = {
     "UserStatusStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5599,16 +5603,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "status": {
@@ -5620,6 +5620,10 @@ export const schemaRuntime = {
     "UserStudioStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5628,16 +5632,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "studio": {
@@ -5649,6 +5649,10 @@ export const schemaRuntime = {
     "UserTagStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5657,16 +5661,12 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
+          "args": {}
+        },
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
         "tag": {
@@ -5678,6 +5678,14 @@ export const schemaRuntime = {
     "UserVoiceActorStatistic": {
       "kind": "OBJECT",
       "fields": {
+        "chaptersRead": {
+          "type": "Int!",
+          "args": {}
+        },
+        "characterIds": {
+          "type": "[Int]!",
+          "args": {}
+        },
         "count": {
           "type": "Int!",
           "args": {}
@@ -5686,24 +5694,16 @@ export const schemaRuntime = {
           "type": "Float!",
           "args": {}
         },
-        "minutesWatched": {
-          "type": "Int!",
-          "args": {}
-        },
-        "chaptersRead": {
-          "type": "Int!",
-          "args": {}
-        },
         "mediaIds": {
           "type": "[Int]!",
           "args": {}
         },
-        "voiceActor": {
-          "type": "Staff",
+        "minutesWatched": {
+          "type": "Int!",
           "args": {}
         },
-        "characterIds": {
-          "type": "[Int]!",
+        "voiceActor": {
+          "type": "Staff",
           "args": {}
         }
       }
@@ -5711,15 +5711,15 @@ export const schemaRuntime = {
     "YearStats": {
       "kind": "OBJECT",
       "fields": {
-        "year": {
-          "type": "Int",
-          "args": {}
-        },
         "amount": {
           "type": "Int",
           "args": {}
         },
         "meanScore": {
+          "type": "Int",
+          "args": {}
+        },
+        "year": {
           "type": "Int",
           "args": {}
         }
@@ -5728,18 +5728,18 @@ export const schemaRuntime = {
     "ActivityUnion": {
       "kind": "UNION",
       "members": [
-        "TextActivity",
         "ListActivity",
-        "MessageActivity"
+        "MessageActivity",
+        "TextActivity"
       ]
     },
     "LikeableUnion": {
       "kind": "UNION",
       "members": [
-        "ListActivity",
-        "TextActivity",
-        "MessageActivity",
         "ActivityReply",
+        "ListActivity",
+        "MessageActivity",
+        "TextActivity",
         "Thread",
         "ThreadComment"
       ]
@@ -5747,26 +5747,26 @@ export const schemaRuntime = {
     "NotificationUnion": {
       "kind": "UNION",
       "members": [
-        "AiringNotification",
-        "FollowingNotification",
-        "ActivityMessageNotification",
+        "ActivityLikeNotification",
         "ActivityMentionNotification",
+        "ActivityMessageNotification",
+        "ActivityReplyLikeNotification",
         "ActivityReplyNotification",
         "ActivityReplySubscribedNotification",
-        "ActivityLikeNotification",
-        "ActivityReplyLikeNotification",
+        "AiringNotification",
+        "CharacterSubmissionUpdateNotification",
+        "FollowingNotification",
+        "MediaDataChangeNotification",
+        "MediaDeletionNotification",
+        "MediaMergeNotification",
+        "MediaSubmissionUpdateNotification",
+        "RelatedMediaAdditionNotification",
+        "StaffSubmissionUpdateNotification",
+        "ThreadCommentLikeNotification",
         "ThreadCommentMentionNotification",
         "ThreadCommentReplyNotification",
         "ThreadCommentSubscribedNotification",
-        "ThreadCommentLikeNotification",
-        "ThreadLikeNotification",
-        "RelatedMediaAdditionNotification",
-        "MediaDataChangeNotification",
-        "MediaMergeNotification",
-        "MediaDeletionNotification",
-        "MediaSubmissionUpdateNotification",
-        "StaffSubmissionUpdateNotification",
-        "CharacterSubmissionUpdateNotification"
+        "ThreadLikeNotification"
       ]
     }
   }
