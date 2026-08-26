@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.1...anilist-ts-v1.1.2) (2026-08-26)
+
+
+### Bug Fixes
+
+* **schema:** make migration badges portable ([13ec1ef](https://github.com/Exhabition/anilist-ts/commit/13ec1ef05158c1ea32cdb6135db988d84fd48f4a))
+
 ## [1.1.1](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.0...anilist-ts-v1.1.1) (2026-08-26)
 
 
