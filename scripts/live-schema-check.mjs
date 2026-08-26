@@ -8,7 +8,6 @@ import {
   isObjectType,
   isScalarType,
   isUnionType,
-  printType,
 } from 'graphql';
 
 const root = path.resolve(import.meta.dirname, '..');
@@ -40,8 +39,8 @@ function compareFields(typeName, expectedFields, liveFields, input) {
       drift.push(`Missing live ${input ? 'input field' : 'field'}: ${typeName}.${field.name}`);
       continue;
     }
-    if (printType(actual.type) !== field.type) {
-      drift.push(`Type drift: ${typeName}.${field.name} is ${printType(actual.type)}, expected ${field.type}`);
+    if (String(actual.type) !== field.type) {
+      drift.push(`Type drift: ${typeName}.${field.name} is ${actual.type}, expected ${field.type}`);
     }
     if (!input) {
       const expectedArgs = new Map(field.args.map((argument) => [argument.name, argument]));
@@ -50,9 +49,9 @@ function compareFields(typeName, expectedFields, liveFields, input) {
         const liveArgument = actualArgs.get(argument.name);
         if (!liveArgument) {
           drift.push(`Missing live argument: ${typeName}.${field.name}(${argument.name}:)`);
-        } else if (printType(liveArgument.type) !== argument.type) {
+        } else if (String(liveArgument.type) !== argument.type) {
           drift.push(
-            `Argument type drift: ${typeName}.${field.name}(${argument.name}:) is ${printType(liveArgument.type)}, expected ${argument.type}`,
+            `Argument type drift: ${typeName}.${field.name}(${argument.name}:) is ${liveArgument.type}, expected ${argument.type}`,
           );
         }
       }
