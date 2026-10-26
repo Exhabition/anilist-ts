@@ -79,6 +79,24 @@ describe('compileOperation', () => {
     expect(Object.values(operation.variables)).toEqual([7]);
   });
 
+  it('compiles weighted scores, mutual followers, privacy, and follower removal', () => {
+    const query = compileOperation('query', {
+      Media: { $args: { weightedScore_greater: 70 }, $select: { weightedScore: true } },
+      MutualFollower: { $args: { userId: 7 }, $select: { privacy: true } },
+    });
+    expect(query.document).toContain('weightedScore_greater: $');
+    expect(query.document).toContain('{ weightedScore }');
+    expect(query.document).toContain('MutualFollower(userId: $');
+    expect(query.document).toContain('{ privacy }');
+    expect(Object.values(query.variables)).toEqual([70, 7]);
+
+    const mutation = compileOperation('mutation', {
+      DeleteFollower: { $args: { userId: 7 }, $select: { id: true } },
+    });
+    expect(mutation.document).toContain('DeleteFollower(userId: $');
+    expect(Object.values(mutation.variables)).toEqual([7]);
+  });
+
   it.each([
     [{ Missing: true }, 'Unknown field Query.Missing'],
     [{ Media: { $args: { nope: 1 }, $select: { id: true } } }, 'Unknown argument Query.Media(nope:)'],

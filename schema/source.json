@@ -1,6 +1,6 @@
 {
   "endpoint": "https://graphql.anilist.co",
-  "fetchedAt": "2026-08-26T09:36:31.659Z",
+  "fetchedAt": "2026-10-26T15:50:38.727Z",
   "liveDerived": true,
   "scalarMappings": {
     "Boolean": "boolean",

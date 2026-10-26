@@ -1007,7 +1007,11 @@ export const schemaRuntime = {
             "type": "MediaType",
             "volumes": "Int",
             "volumes_greater": "Int",
-            "volumes_lesser": "Int"
+            "volumes_lesser": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
           }
         },
         "mediaList": {
@@ -1079,7 +1083,11 @@ export const schemaRuntime = {
             "trending": "Int",
             "trending_greater": "Int",
             "trending_lesser": "Int",
-            "trending_not": "Int"
+            "trending_not": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
           }
         },
         "modActions": {
@@ -1090,6 +1098,13 @@ export const schemaRuntime = {
             "modId_not": "Int",
             "modId_not_in": "[Int]",
             "userId": "Int"
+          }
+        },
+        "mutualFollowers": {
+          "type": "[User]",
+          "args": {
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "notifications": {
@@ -1103,6 +1118,12 @@ export const schemaRuntime = {
         "pageInfo": {
           "type": "PageInfo",
           "args": {}
+        },
+        "recentlyRepliedActivities": {
+          "type": "[ActivityUnion]",
+          "args": {
+            "userId": "Int"
+          }
         },
         "recommendations": {
           "type": "[Recommendation]",
@@ -1574,6 +1595,10 @@ export const schemaRuntime = {
           "args": {}
         },
         "volumes": {
+          "type": "Int",
+          "args": {}
+        },
+        "weightedScore": {
           "type": "Int",
           "args": {}
         }
@@ -2466,6 +2491,10 @@ export const schemaRuntime = {
         "trending": {
           "type": "Int!",
           "args": {}
+        },
+        "weightedScore": {
+          "type": "Int",
+          "args": {}
         }
       }
     },
@@ -2631,6 +2660,12 @@ export const schemaRuntime = {
           "args": {
             "customList": "String",
             "type": "MediaType"
+          }
+        },
+        "DeleteFollower": {
+          "type": "User",
+          "args": {
+            "userId": "Int"
           }
         },
         "DeleteMediaListEntry": {
@@ -2869,8 +2904,11 @@ export const schemaRuntime = {
             "airingNotifications": "Boolean",
             "animeListOptions": "MediaListOptionsInput",
             "disabledListActivity": "[ListActivityOptionInput]",
+            "displayAdultActivities": "Boolean",
             "displayAdultContent": "Boolean",
             "donatorBadge": "String",
+            "includeAdultContentInQuickSearch": "Boolean",
+            "includeAdultContentInSearch": "Boolean",
             "mangaListOptions": "MediaListOptionsInput",
             "notificationOptions": "[NotificationOptionInput]",
             "profileColor": "String",
@@ -3069,7 +3107,11 @@ export const schemaRuntime = {
             "type": "MediaType",
             "volumes": "Int",
             "volumes_greater": "Int",
-            "volumes_lesser": "Int"
+            "volumes_lesser": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
           }
         },
         "mediaList": {
@@ -3129,7 +3171,18 @@ export const schemaRuntime = {
             "trending": "Int",
             "trending_greater": "Int",
             "trending_lesser": "Int",
-            "trending_not": "Int"
+            "trending_not": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
+          }
+        },
+        "mutualFollowers": {
+          "type": "[User]",
+          "args": {
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "notifications": {
@@ -3454,7 +3507,11 @@ export const schemaRuntime = {
             "type": "MediaType",
             "volumes": "Int",
             "volumes_greater": "Int",
-            "volumes_lesser": "Int"
+            "volumes_lesser": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
           }
         },
         "MediaList": {
@@ -3546,7 +3603,18 @@ export const schemaRuntime = {
             "trending": "Int",
             "trending_greater": "Int",
             "trending_lesser": "Int",
-            "trending_not": "Int"
+            "trending_not": "Int",
+            "weightedScore": "Int",
+            "weightedScore_greater": "Int",
+            "weightedScore_lesser": "Int",
+            "weightedScore_not": "Int"
+          }
+        },
+        "MutualFollower": {
+          "type": "User",
+          "args": {
+            "sort": "[UserSort]",
+            "userId": "Int!"
           }
         },
         "Notification": {
@@ -3741,6 +3809,10 @@ export const schemaRuntime = {
     "Report": {
       "kind": "OBJECT",
       "fields": {
+        "assignee": {
+          "type": "User",
+          "args": {}
+        },
         "cleared": {
           "type": "Boolean",
           "args": {}
@@ -5010,6 +5082,10 @@ export const schemaRuntime = {
           "type": "[UserPreviousName]",
           "args": {}
         },
+        "privacy": {
+          "type": "UserPrivacy",
+          "args": {}
+        },
         "siteUrl": {
           "type": "String",
           "args": {}
@@ -5181,12 +5257,12 @@ export const schemaRuntime = {
     "UserModData": {
       "kind": "OBJECT",
       "fields": {
-        "alts": {
-          "type": "[User]",
-          "args": {}
-        },
         "bans": {
           "type": "Json",
+          "args": {}
+        },
+        "browserAlts": {
+          "type": "[User]",
           "args": {}
         },
         "counts": {
@@ -5201,8 +5277,8 @@ export const schemaRuntime = {
           "type": "Json",
           "args": {}
         },
-        "privacy": {
-          "type": "Int",
+        "ipAlts": {
+          "type": "[User]",
           "args": {}
         }
       }
@@ -5222,7 +5298,19 @@ export const schemaRuntime = {
           "type": "[ListActivityOption]",
           "args": {}
         },
+        "displayAdultActivities": {
+          "type": "Boolean",
+          "args": {}
+        },
         "displayAdultContent": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "includeAdultContentInQuickSearch": {
+          "type": "Boolean",
+          "args": {}
+        },
+        "includeAdultContentInSearch": {
           "type": "Boolean",
           "args": {}
         },

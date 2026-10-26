@@ -1,7 +1,7 @@
 {
   "metadata": {
     "endpoint": "https://graphql.anilist.co",
-    "fetchedAt": "2026-08-26T09:36:31.659Z",
+    "fetchedAt": "2026-10-26T15:50:38.727Z",
     "liveDerived": true,
     "scalarMappings": {
       "Boolean": "boolean",
@@ -1785,6 +1785,27 @@
       ]
     },
     {
+      "name": "UserPrivacy",
+      "description": "User's account privacy setting",
+      "values": [
+        {
+          "name": "PRIVATE",
+          "description": "Private user",
+          "deprecated": false
+        },
+        {
+          "name": "PUBLIC",
+          "description": "Public user",
+          "deprecated": false
+        },
+        {
+          "name": "SEMI_PUBLIC",
+          "description": "Semi-Public user",
+          "deprecated": false
+        }
+      ]
+    },
+    {
       "name": "UserSort",
       "description": "User sort enums",
       "values": [
@@ -2729,7 +2750,7 @@
         {
           "name": "score",
           "type": "Float",
-          "description": "The average score for the media",
+          "description": "The weighted average score for the media",
           "deprecated": false,
           "args": []
         },
@@ -4545,6 +4566,30 @@
               "type": "Int",
               "description": "Filter by the media's volume count",
               "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
             }
           ]
         },
@@ -4911,6 +4956,30 @@
               "type": "Int",
               "description": "Filter by trending amount",
               "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
             }
           ]
         },
@@ -4953,6 +5022,26 @@
           ]
         },
         {
+          "name": "mutualFollowers",
+          "type": "[User]",
+          "description": "",
+          "deprecated": false,
+          "args": [
+            {
+              "name": "sort",
+              "type": "[UserSort]",
+              "description": "The order the results will be returned in",
+              "deprecated": false
+            },
+            {
+              "name": "userId",
+              "type": "Int!",
+              "description": "User id to fetch mutual followers for",
+              "deprecated": false
+            }
+          ]
+        },
+        {
           "name": "notifications",
           "type": "[NotificationUnion]",
           "description": "",
@@ -4984,6 +5073,20 @@
           "description": "The pagination information",
           "deprecated": false,
           "args": []
+        },
+        {
+          "name": "recentlyRepliedActivities",
+          "type": "[ActivityUnion]",
+          "description": "",
+          "deprecated": false,
+          "args": [
+            {
+              "name": "userId",
+              "type": "Int",
+              "description": "Filter by the owner user id",
+              "deprecated": false
+            }
+          ]
         },
         {
           "name": "recommendations",
@@ -5628,8 +5731,8 @@
         {
           "name": "averageScore",
           "type": "Int",
-          "description": "A weighted average score of all the user's scores of the media",
-          "deprecated": false,
+          "description": "A weighted average score of all the users' scores of the media",
+          "deprecated": true,
           "args": []
         },
         {
@@ -6140,6 +6243,13 @@
           "name": "volumes",
           "type": "Int",
           "description": "The amount of volumes the manga has when complete",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "weightedScore",
+          "type": "Int",
+          "description": "A weighted average score of all the users' scores of the media",
           "deprecated": false,
           "args": []
         }
@@ -7619,7 +7729,7 @@
           "name": "averageScore",
           "type": "Int",
           "description": "A weighted average score of all the user's scores of the media",
-          "deprecated": false,
+          "deprecated": true,
           "args": []
         },
         {
@@ -7675,6 +7785,13 @@
           "name": "trending",
           "type": "Int!",
           "description": "The amount of media activity on the day",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "weightedScore",
+          "type": "Int",
+          "description": "A weighted average score of all the user's scores of the media",
           "deprecated": false,
           "args": []
         }
@@ -7969,6 +8086,20 @@
               "name": "type",
               "type": "MediaType",
               "description": "The media list type of the custom list",
+              "deprecated": false
+            }
+          ]
+        },
+        {
+          "name": "DeleteFollower",
+          "type": "User",
+          "description": "Removes a follower",
+          "deprecated": false,
+          "args": [
+            {
+              "name": "userId",
+              "type": "Int",
+              "description": "The id of the user to remove the follower status of",
               "deprecated": false
             }
           ]
@@ -8354,7 +8485,7 @@
             {
               "name": "body",
               "type": "String",
-              "description": "The main text body of the thread (Max: 30000)",
+              "description": "The main text body of the thread (Min: 10, Max: 30000)",
               "deprecated": false
             },
             {
@@ -8828,6 +8959,12 @@
               "deprecated": false
             },
             {
+              "name": "displayAdultActivities",
+              "type": "Boolean",
+              "description": "If the user should see others' activities for media marked as adult",
+              "deprecated": false
+            },
+            {
               "name": "displayAdultContent",
               "type": "Boolean",
               "description": "If the user should see media marked as adult-only",
@@ -8836,7 +8973,19 @@
             {
               "name": "donatorBadge",
               "type": "String",
-              "description": "Profile highlight color (Max: 24)",
+              "description": "User's donator badge, only displayed for donators (Max: 24)",
+              "deprecated": false
+            },
+            {
+              "name": "includeAdultContentInQuickSearch",
+              "type": "Boolean",
+              "description": "If the user should see media marked as adult-only in quick search results",
+              "deprecated": false
+            },
+            {
+              "name": "includeAdultContentInSearch",
+              "type": "Boolean",
+              "description": "If the user should see media marked as adult-only in search results",
               "deprecated": false
             },
             {
@@ -9774,6 +9923,30 @@
               "type": "Int",
               "description": "Filter by the media's volume count",
               "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
             }
           ]
         },
@@ -10089,6 +10262,50 @@
               "name": "trending_not",
               "type": "Int",
               "description": "Filter by trending amount",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            }
+          ]
+        },
+        {
+          "name": "mutualFollowers",
+          "type": "[User]",
+          "description": "",
+          "deprecated": false,
+          "args": [
+            {
+              "name": "sort",
+              "type": "[UserSort]",
+              "description": "The order the results will be returned in",
+              "deprecated": false
+            },
+            {
+              "name": "userId",
+              "type": "Int!",
+              "description": "User id to fetch mutual followers for",
               "deprecated": false
             }
           ]
@@ -11419,6 +11636,30 @@
               "type": "Int",
               "description": "Filter by the media's volume count",
               "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by the media's average score",
+              "deprecated": false
             }
           ]
         },
@@ -11882,6 +12123,50 @@
               "name": "trending_not",
               "type": "Int",
               "description": "Filter by trending amount",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_greater",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_lesser",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            },
+            {
+              "name": "weightedScore_not",
+              "type": "Int",
+              "description": "Filter by weighted scores",
+              "deprecated": false
+            }
+          ]
+        },
+        {
+          "name": "MutualFollower",
+          "type": "User",
+          "description": "Mutual follower query",
+          "deprecated": false,
+          "args": [
+            {
+              "name": "sort",
+              "type": "[UserSort]",
+              "description": "The order the results will be returned in",
+              "deprecated": false
+            },
+            {
+              "name": "userId",
+              "type": "Int!",
+              "description": "User id to fetch mutual followers for",
               "deprecated": false
             }
           ]
@@ -12414,6 +12699,13 @@
       "name": "Report",
       "description": "",
       "fields": [
+        {
+          "name": "assignee",
+          "type": "User",
+          "description": "",
+          "deprecated": false,
+          "args": []
+        },
         {
           "name": "cleared",
           "type": "Boolean",
@@ -14720,6 +15012,13 @@
           "args": []
         },
         {
+          "name": "privacy",
+          "type": "UserPrivacy",
+          "description": "The user's account privacy setting",
+          "deprecated": false,
+          "args": []
+        },
+        {
           "name": "siteUrl",
           "type": "String",
           "description": "The url for the user page on the AniList website",
@@ -15000,15 +15299,15 @@
       "description": "User data for moderators",
       "fields": [
         {
-          "name": "alts",
-          "type": "[User]",
+          "name": "bans",
+          "type": "Json",
           "description": "",
           "deprecated": false,
           "args": []
         },
         {
-          "name": "bans",
-          "type": "Json",
+          "name": "browserAlts",
+          "type": "[User]",
           "description": "",
           "deprecated": false,
           "args": []
@@ -15035,8 +15334,8 @@
           "args": []
         },
         {
-          "name": "privacy",
-          "type": "Int",
+          "name": "ipAlts",
+          "type": "[User]",
           "description": "",
           "deprecated": false,
           "args": []
@@ -15069,9 +15368,30 @@
           "args": []
         },
         {
+          "name": "displayAdultActivities",
+          "type": "Boolean",
+          "description": "Whether the user wants to see others' activities for adult media. Sub-option of displayAdultContent",
+          "deprecated": false,
+          "args": []
+        },
+        {
           "name": "displayAdultContent",
           "type": "Boolean",
           "description": "Whether the user has enabled viewing of 18+ content",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "includeAdultContentInQuickSearch",
+          "type": "Boolean",
+          "description": "Whether the user wants to see adult media in quick search results by default. Sub-option of displayAdultContent",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "includeAdultContentInSearch",
+          "type": "Boolean",
+          "description": "Whether the user wants to see adult media in search results by default. Sub-option of displayAdultContent",
           "deprecated": false,
           "args": []
         },

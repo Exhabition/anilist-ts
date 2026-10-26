@@ -426,6 +426,12 @@ export type ThreadSort =
   | 'VIEW_COUNT'
   | 'VIEW_COUNT_DESC';
 
+/** User's account privacy setting */
+export type UserPrivacy =
+  'PRIVATE'
+  | 'PUBLIC'
+  | 'SEMI_PUBLIC';
+
 /** User sort enums */
 export type UserSort =
   'CHAPTERS_READ'
@@ -737,7 +743,7 @@ export interface AiringProgressionData {
   readonly __typename: 'AiringProgression';
   /** The episode the stats were recorded at. .5 is the mid point between 2 episodes airing dates. */
   readonly episode: number | null;
-  /** The average score for the media */
+  /** The weighted average score for the media */
   readonly score: number | null;
   /** The amount of users watching the anime */
   readonly watching: number | null;
@@ -1020,9 +1026,11 @@ export interface InternalPageData {
   readonly mediaSubmissions: ReadonlyArray<MediaSubmissionData | null> | null;
   readonly mediaTrends: ReadonlyArray<MediaTrendData | null> | null;
   readonly modActions: ReadonlyArray<ModActionData | null> | null;
+  readonly mutualFollowers: ReadonlyArray<UserData | null> | null;
   readonly notifications: ReadonlyArray<NotificationUnionData | null> | null;
   /** The pagination information */
   readonly pageInfo: PageInfoData | null;
+  readonly recentlyRepliedActivities: ReadonlyArray<ActivityUnionData | null> | null;
   readonly recommendations: ReadonlyArray<RecommendationData | null> | null;
   readonly reports: ReadonlyArray<ReportData | null> | null;
   readonly reviews: ReadonlyArray<ReviewData | null> | null;
@@ -1095,7 +1103,7 @@ export interface MediaData {
   readonly airingSchedule: AiringScheduleConnectionData | null;
   /** If the media should have forum thread automatically created for it on airing episode release */
   readonly autoCreateForumThread: boolean | null;
-  /** A weighted average score of all the user's scores of the media */
+  /** @deprecated A weighted average score of all the users' scores of the media */
   readonly averageScore: number | null;
   /** The banner image of the media */
   readonly bannerImage: string | null;
@@ -1200,6 +1208,8 @@ export interface MediaData {
   readonly updatedAt: number | null;
   /** The amount of volumes the manga has when complete */
   readonly volumes: number | null;
+  /** A weighted average score of all the users' scores of the media */
+  readonly weightedScore: number | null;
 }
 
 /** Internal - Media characters separated */
@@ -1624,7 +1634,7 @@ export interface MediaTrailerData {
 /** Daily media statistics */
 export interface MediaTrendData {
   readonly __typename: 'MediaTrend';
-  /** A weighted average score of all the user's scores of the media */
+  /** @deprecated A weighted average score of all the user's scores of the media */
   readonly averageScore: number | null;
   /** The day the data was recorded (timestamp) */
   readonly date: number;
@@ -1642,6 +1652,8 @@ export interface MediaTrendData {
   readonly releasing: boolean;
   /** The amount of media activity on the day */
   readonly trending: number;
+  /** A weighted average score of all the user's scores of the media */
+  readonly weightedScore: number | null;
 }
 
 export interface MediaTrendConnectionData {
@@ -1720,6 +1732,8 @@ export interface MutationData {
   readonly DeleteActivityReply: DeletedData | null;
   /** Delete a custom list and remove the list entries from it */
   readonly DeleteCustomList: DeletedData | null;
+  /** Removes a follower */
+  readonly DeleteFollower: UserData | null;
   /** Delete a media list entry */
   readonly DeleteMediaListEntry: DeletedData | null;
   /** Delete a review */
@@ -1793,6 +1807,7 @@ export interface PageData {
   readonly media: ReadonlyArray<MediaData | null> | null;
   readonly mediaList: ReadonlyArray<MediaListData | null> | null;
   readonly mediaTrends: ReadonlyArray<MediaTrendData | null> | null;
+  readonly mutualFollowers: ReadonlyArray<UserData | null> | null;
   readonly notifications: ReadonlyArray<NotificationUnionData | null> | null;
   /** The pagination information */
   readonly pageInfo: PageInfoData | null;
@@ -1859,6 +1874,8 @@ export interface QueryData {
   readonly MediaTagCollection: ReadonlyArray<MediaTagData | null> | null;
   /** Media Trend query */
   readonly MediaTrend: MediaTrendData | null;
+  /** Mutual follower query */
+  readonly MutualFollower: UserData | null;
   /** Notification query */
   readonly Notification: NotificationUnionData | null;
   readonly Page: PageData | null;
@@ -1932,6 +1949,7 @@ export interface RelatedMediaAdditionNotificationData {
 
 export interface ReportData {
   readonly __typename: 'Report';
+  readonly assignee: UserData | null;
   readonly cleared: boolean | null;
   /** When the entry data was created */
   readonly createdAt: number | null;
@@ -2575,6 +2593,8 @@ export interface UserData {
   readonly options: UserOptionsData | null;
   /** The user's previously used names. */
   readonly previousNames: ReadonlyArray<UserPreviousNameData | null> | null;
+  /** The user's account privacy setting */
+  readonly privacy: UserPrivacy | null;
   /** The url for the user page on the AniList website */
   readonly siteUrl: string | null;
   /** The users anime & manga list statistics */
@@ -2650,12 +2670,12 @@ export interface UserLengthStatisticData {
 /** User data for moderators */
 export interface UserModDataData {
   readonly __typename: 'UserModData';
-  readonly alts: ReadonlyArray<UserData | null> | null;
   readonly bans: unknown | null;
+  readonly browserAlts: ReadonlyArray<UserData | null> | null;
   readonly counts: unknown | null;
   readonly email: string | null;
   readonly ip: unknown | null;
-  readonly privacy: number | null;
+  readonly ipAlts: ReadonlyArray<UserData | null> | null;
 }
 
 /** A user's general options */
@@ -2667,8 +2687,14 @@ export interface UserOptionsData {
   readonly airingNotifications: boolean | null;
   /** The list activity types the user has disabled from being created from list updates */
   readonly disabledListActivity: ReadonlyArray<ListActivityOptionData | null> | null;
+  /** Whether the user wants to see others' activities for adult media. Sub-option of displayAdultContent */
+  readonly displayAdultActivities: boolean | null;
   /** Whether the user has enabled viewing of 18+ content */
   readonly displayAdultContent: boolean | null;
+  /** Whether the user wants to see adult media in quick search results by default. Sub-option of displayAdultContent */
+  readonly includeAdultContentInQuickSearch: boolean | null;
+  /** Whether the user wants to see adult media in search results by default. Sub-option of displayAdultContent */
+  readonly includeAdultContentInSearch: boolean | null;
   /** Notification options */
   readonly notificationOptions: ReadonlyArray<NotificationOptionData | null> | null;
   /** Profile highlight color (blue, purple, pink, orange, red, green, gray) */
@@ -3207,6 +3233,14 @@ export interface InternalPageMediaArgs {
   readonly volumes_greater?: number | null;
   /** Filter by the media's volume count */
   readonly volumes_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_not?: number | null;
 }
 
 export interface InternalPageMediaListArgs {
@@ -3325,6 +3359,14 @@ export interface InternalPageMediaTrendsArgs {
   readonly trending_lesser?: number | null;
   /** Filter by trending amount */
   readonly trending_not?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_not?: number | null;
 }
 
 export interface InternalPageModActionsArgs {
@@ -3337,6 +3379,13 @@ export interface InternalPageModActionsArgs {
   readonly userId?: number | null;
 }
 
+export interface InternalPageMutualFollowersArgs {
+  /** The order the results will be returned in */
+  readonly sort?: Array<UserSort | null> | null;
+  /** User id to fetch mutual followers for */
+  readonly userId: number;
+}
+
 export interface InternalPageNotificationsArgs {
   /** Reset the unread notification count to 0 on load */
   readonly resetNotificationCount?: boolean | null;
@@ -3344,6 +3393,11 @@ export interface InternalPageNotificationsArgs {
   readonly type?: NotificationType | null;
   /** Filter by the type of notifications (max 10,000 items) */
   readonly type_in?: Array<NotificationType | null> | null;
+}
+
+export interface InternalPageRecentlyRepliedActivitiesArgs {
+  /** Filter by the owner user id */
+  readonly userId?: number | null;
 }
 
 export interface InternalPageRecommendationsArgs {
@@ -3631,6 +3685,11 @@ export interface MutationDeleteCustomListArgs {
   readonly type?: MediaType | null;
 }
 
+export interface MutationDeleteFollowerArgs {
+  /** The id of the user to remove the follower status of */
+  readonly userId?: number | null;
+}
+
 export interface MutationDeleteMediaListEntryArgs {
   /** The id of the media list entry to delete */
   readonly id?: number | null;
@@ -3760,7 +3819,7 @@ export interface MutationSaveTextActivityArgs {
 }
 
 export interface MutationSaveThreadArgs {
-  /** The main text body of the thread (Max: 30000) */
+  /** The main text body of the thread (Min: 10, Max: 30000) */
   readonly body?: string | null;
   /** Forum categories the thread should be within */
   readonly categories?: Array<number | null> | null;
@@ -3917,10 +3976,16 @@ export interface MutationUpdateUserArgs {
   /** The user's anime list options */
   readonly animeListOptions?: MediaListOptionsInput | null;
   readonly disabledListActivity?: Array<ListActivityOptionInput | null> | null;
+  /** If the user should see others' activities for media marked as adult */
+  readonly displayAdultActivities?: boolean | null;
   /** If the user should see media marked as adult-only */
   readonly displayAdultContent?: boolean | null;
-  /** Profile highlight color (Max: 24) */
+  /** User's donator badge, only displayed for donators (Max: 24) */
   readonly donatorBadge?: string | null;
+  /** If the user should see media marked as adult-only in quick search results */
+  readonly includeAdultContentInQuickSearch?: boolean | null;
+  /** If the user should see media marked as adult-only in search results */
+  readonly includeAdultContentInSearch?: boolean | null;
   /** The user's anime list options */
   readonly mangaListOptions?: MediaListOptionsInput | null;
   /** Notification options */
@@ -4227,6 +4292,14 @@ export interface PageMediaArgs {
   readonly volumes_greater?: number | null;
   /** Filter by the media's volume count */
   readonly volumes_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_not?: number | null;
 }
 
 export interface PageMediaListArgs {
@@ -4333,6 +4406,21 @@ export interface PageMediaTrendsArgs {
   readonly trending_lesser?: number | null;
   /** Filter by trending amount */
   readonly trending_not?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_not?: number | null;
+}
+
+export interface PageMutualFollowersArgs {
+  /** The order the results will be returned in */
+  readonly sort?: Array<UserSort | null> | null;
+  /** User id to fetch mutual followers for */
+  readonly userId: number;
 }
 
 export interface PageNotificationsArgs {
@@ -4753,6 +4841,14 @@ export interface QueryMediaArgs {
   readonly volumes_greater?: number | null;
   /** Filter by the media's volume count */
   readonly volumes_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by the media's average score */
+  readonly weightedScore_not?: number | null;
 }
 
 export interface QueryMediaListArgs {
@@ -4909,6 +5005,21 @@ export interface QueryMediaTrendArgs {
   readonly trending_lesser?: number | null;
   /** Filter by trending amount */
   readonly trending_not?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_greater?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_lesser?: number | null;
+  /** Filter by weighted scores */
+  readonly weightedScore_not?: number | null;
+}
+
+export interface QueryMutualFollowerArgs {
+  /** The order the results will be returned in */
+  readonly sort?: Array<UserSort | null> | null;
+  /** User id to fetch mutual followers for */
+  readonly userId: number;
 }
 
 export interface QueryNotificationArgs {
@@ -5517,8 +5628,10 @@ export interface InternalPageSelection {
   readonly mediaSubmissions?: { readonly $args: InternalPageMediaSubmissionsArgs; readonly $select: MediaSubmissionSelection };
   readonly mediaTrends?: { readonly $args: InternalPageMediaTrendsArgs; readonly $select: MediaTrendSelection };
   readonly modActions?: { readonly $args: InternalPageModActionsArgs; readonly $select: ModActionSelection };
+  readonly mutualFollowers?: { readonly $args: InternalPageMutualFollowersArgs; readonly $select: UserSelection };
   readonly notifications?: { readonly $args: InternalPageNotificationsArgs; readonly $select: NotificationUnionSelection };
   readonly pageInfo?: PageInfoSelection;
+  readonly recentlyRepliedActivities?: { readonly $args: InternalPageRecentlyRepliedActivitiesArgs; readonly $select: ActivityUnionSelection };
   readonly recommendations?: { readonly $args: InternalPageRecommendationsArgs; readonly $select: RecommendationSelection };
   readonly reports?: { readonly $args: InternalPageReportsArgs; readonly $select: ReportSelection };
   readonly reviews?: { readonly $args: InternalPageReviewsArgs; readonly $select: ReviewSelection };
@@ -5622,6 +5735,7 @@ export interface MediaSelection {
   readonly type?: true;
   readonly updatedAt?: true;
   readonly volumes?: true;
+  readonly weightedScore?: true;
 }
 
 export interface MediaCharacterSelection {
@@ -5905,6 +6019,7 @@ export interface MediaTrendSelection {
   readonly popularity?: true;
   readonly releasing?: true;
   readonly trending?: true;
+  readonly weightedScore?: true;
 }
 
 export interface MediaTrendConnectionSelection {
@@ -5958,6 +6073,7 @@ export interface MutationSelection {
   readonly DeleteActivity?: { readonly $args: MutationDeleteActivityArgs; readonly $select: DeletedSelection };
   readonly DeleteActivityReply?: { readonly $args: MutationDeleteActivityReplyArgs; readonly $select: DeletedSelection };
   readonly DeleteCustomList?: { readonly $args: MutationDeleteCustomListArgs; readonly $select: DeletedSelection };
+  readonly DeleteFollower?: { readonly $args: MutationDeleteFollowerArgs; readonly $select: UserSelection };
   readonly DeleteMediaListEntry?: { readonly $args: MutationDeleteMediaListEntryArgs; readonly $select: DeletedSelection };
   readonly DeleteReview?: { readonly $args: MutationDeleteReviewArgs; readonly $select: DeletedSelection };
   readonly DeleteThread?: { readonly $args: MutationDeleteThreadArgs; readonly $select: DeletedSelection };
@@ -6004,6 +6120,7 @@ export interface PageSelection {
   readonly media?: { readonly $args: PageMediaArgs; readonly $select: MediaSelection };
   readonly mediaList?: { readonly $args: PageMediaListArgs; readonly $select: MediaListSelection };
   readonly mediaTrends?: { readonly $args: PageMediaTrendsArgs; readonly $select: MediaTrendSelection };
+  readonly mutualFollowers?: { readonly $args: PageMutualFollowersArgs; readonly $select: UserSelection };
   readonly notifications?: { readonly $args: PageNotificationsArgs; readonly $select: NotificationUnionSelection };
   readonly pageInfo?: PageInfoSelection;
   readonly recommendations?: { readonly $args: PageRecommendationsArgs; readonly $select: RecommendationSelection };
@@ -6047,6 +6164,7 @@ export interface QuerySelection {
   readonly MediaListCollection?: { readonly $args: QueryMediaListCollectionArgs; readonly $select: MediaListCollectionSelection };
   readonly MediaTagCollection?: { readonly $args: QueryMediaTagCollectionArgs; readonly $select: MediaTagSelection };
   readonly MediaTrend?: { readonly $args: QueryMediaTrendArgs; readonly $select: MediaTrendSelection };
+  readonly MutualFollower?: { readonly $args: QueryMutualFollowerArgs; readonly $select: UserSelection };
   readonly Notification?: { readonly $args: QueryNotificationArgs; readonly $select: NotificationUnionSelection };
   readonly Page?: { readonly $args: QueryPageArgs; readonly $select: PageSelection };
   readonly Recommendation?: { readonly $args: QueryRecommendationArgs; readonly $select: RecommendationSelection };
@@ -6094,6 +6212,7 @@ export interface RelatedMediaAdditionNotificationSelection {
 
 export interface ReportSelection {
   readonly __typename?: true;
+  readonly assignee?: UserSelection;
   readonly cleared?: true;
   readonly createdAt?: true;
   readonly id?: true;
@@ -6489,6 +6608,7 @@ export interface UserSelection {
   readonly name?: true;
   readonly options?: UserOptionsSelection;
   readonly previousNames?: UserPreviousNameSelection;
+  readonly privacy?: true;
   readonly siteUrl?: true;
   readonly statistics?: UserStatisticTypesSelection;
   readonly stats?: UserStatsSelection;
@@ -6551,12 +6671,12 @@ export interface UserLengthStatisticSelection {
 
 export interface UserModDataSelection {
   readonly __typename?: true;
-  readonly alts?: UserSelection;
   readonly bans?: true;
+  readonly browserAlts?: UserSelection;
   readonly counts?: true;
   readonly email?: true;
   readonly ip?: true;
-  readonly privacy?: true;
+  readonly ipAlts?: UserSelection;
 }
 
 export interface UserOptionsSelection {
@@ -6564,7 +6684,10 @@ export interface UserOptionsSelection {
   readonly activityMergeTime?: true;
   readonly airingNotifications?: true;
   readonly disabledListActivity?: ListActivityOptionSelection;
+  readonly displayAdultActivities?: true;
   readonly displayAdultContent?: true;
+  readonly includeAdultContentInQuickSearch?: true;
+  readonly includeAdultContentInSearch?: true;
   readonly notificationOptions?: NotificationOptionSelection;
   readonly profileColor?: true;
   readonly restrictMessagesToFollowing?: true;

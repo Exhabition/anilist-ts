@@ -52,10 +52,10 @@ describe('live AniList schema snapshot', () => {
   it('captures the complete live type inventory', () => {
     expect(manifest.objects).toHaveLength(127);
     expect(manifest.inputs).toHaveLength(10);
-    expect(manifest.enums).toHaveLength(40);
+    expect(manifest.enums).toHaveLength(41);
     expect(manifest.unions).toHaveLength(3);
     expect(manifest.scalars).toHaveLength(8);
-    expect(object('Query').fields).toHaveLength(27);
-    expect(object('Mutation').fields).toHaveLength(29);
+    expect(object('Query').fields).toHaveLength(28);
+    expect(object('Mutation').fields).toHaveLength(30);
   });
 });

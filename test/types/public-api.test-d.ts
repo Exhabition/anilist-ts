@@ -1,14 +1,15 @@
 import { expectTypeOf } from 'vitest';
-import { AniListClient, type Media, type MediaType } from '../../src/index.js';
+import { AniListClient, type Media, type MediaType, type UserPrivacy } from '../../src/index.js';
 
 declare const client: AniListClient;
 
 const projected = client.query({
   Media: {
-    $args: { id: 1, type: 'ANIME' },
+    $args: { id: 1, type: 'ANIME', weightedScore_greater: 70 },
     $select: {
       title: { romaji: { $args: {}, $select: true } },
       isAdult: true,
+      weightedScore: true,
       characters: {
         $args: { page: 1, perPage: 5 },
         $select: { nodes: { id: true, name: { full: true } } },
@@ -21,6 +22,7 @@ type Projected = Awaited<typeof projected>;
 expectTypeOf<Projected['Media']>().toEqualTypeOf<{
   readonly title: { readonly romaji: string | null } | null;
   readonly isAdult: boolean | null;
+  readonly weightedScore: number | null;
   readonly characters: {
     readonly nodes: ReadonlyArray<{
       readonly id: number;
@@ -28,6 +30,17 @@ expectTypeOf<Projected['Media']>().toEqualTypeOf<{
     } | null> | null;
   } | null;
 } | null>();
+
+const mutualFollower = client.query({
+  MutualFollower: { $args: { userId: 1 }, $select: { privacy: true } },
+});
+expectTypeOf<Awaited<typeof mutualFollower>['MutualFollower']>().toEqualTypeOf<{
+  readonly privacy: UserPrivacy | null;
+} | null>();
+expectTypeOf<UserPrivacy>().toEqualTypeOf<'PRIVATE' | 'PUBLIC' | 'SEMI_PUBLIC'>();
+
+// @ts-expect-error mutual followers require a userId
+client.query({ MutualFollower: { $args: {}, $select: { id: true } } });
 
 const activity = client.query({
   Activity: {
