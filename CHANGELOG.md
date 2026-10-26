@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.2...anilist-ts-v2.0.0) (2026-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **schema:** UserModData.alts and UserModData.privacy are no longer available. Select browserAlts and ipAlts for the new moderation fields, and use User.privacy with the UserPrivacy enum for account privacy. This public schema change requires a major release from 1.1.2 to 2.0.0.
+
+### Features
+
+* **schema:** sync AniList weighted scores, followers, and privacy ([a67e032](https://github.com/Exhabition/anilist-ts/commit/a67e0327d529614ef8d46c956ad3ff859f1b12ac))
+
+
+### Bug Fixes
+
+* **deps:** refresh development lockfile to pass security audit ([ea3210c](https://github.com/Exhabition/anilist-ts/commit/ea3210c070132c8dbe238e9df09041be4971d77b))
+
 ## [1.1.2](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.1...anilist-ts-v1.1.2) (2026-08-26)
 
 
