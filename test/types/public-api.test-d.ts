@@ -73,6 +73,22 @@ if (entity) {
   entity.description;
 }
 
+const character = client.query({
+  Character: {
+    $args: { id: 1 },
+    $select: {
+      height: { min: { metric: true, imperial: true } },
+      description: { $args: { asHtml: true, htmlVersion: 2 }, $select: true },
+    },
+  },
+});
+expectTypeOf<Awaited<typeof character>['Character']>().toEqualTypeOf<{
+  readonly height: {
+    readonly min: { readonly metric: number | null; readonly imperial: string | null } | null;
+  } | null;
+  readonly description: string | null;
+} | null>();
+
 const raw = client.request<{ Viewer: { id: number } }, { includePrivate: boolean }>(
   'query Viewer($includePrivate: Boolean!) { Viewer { id } }',
   { includePrivate: false },

@@ -147,7 +147,8 @@ export const schemaRuntime = {
         "text": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "user": {
@@ -415,7 +416,8 @@ export const schemaRuntime = {
         "description": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "favourites": {
@@ -424,6 +426,10 @@ export const schemaRuntime = {
         },
         "gender": {
           "type": "String",
+          "args": {}
+        },
+        "height": {
+          "type": "Height",
           "args": {}
         },
         "id": {
@@ -585,6 +591,10 @@ export const schemaRuntime = {
       "fields": {
         "assignee": {
           "type": "User",
+          "args": {}
+        },
+        "categories": {
+          "type": "[CharacterStaffSubmissionCategory]",
           "args": {}
         },
         "character": {
@@ -825,6 +835,36 @@ export const schemaRuntime = {
         }
       }
     },
+    "Height": {
+      "kind": "OBJECT",
+      "fields": {
+        "initial": {
+          "type": "HeightValue",
+          "args": {}
+        },
+        "max": {
+          "type": "HeightValue",
+          "args": {}
+        },
+        "min": {
+          "type": "HeightValue",
+          "args": {}
+        }
+      }
+    },
+    "HeightValue": {
+      "kind": "OBJECT",
+      "fields": {
+        "imperial": {
+          "type": "String",
+          "args": {}
+        },
+        "metric": {
+          "type": "Float",
+          "args": {}
+        }
+      }
+    },
     "InternalPage": {
       "kind": "OBJECT",
       "fields": {
@@ -908,6 +948,7 @@ export const schemaRuntime = {
           "args": {
             "assigneeId": "Int",
             "characterId": "Int",
+            "filter": "CharacterStaffSubmissionCategory",
             "sort": "[SubmissionSort]",
             "status": "SubmissionStatus",
             "userId": "Int"
@@ -1048,6 +1089,7 @@ export const schemaRuntime = {
           "type": "[MediaSubmission]",
           "args": {
             "assigneeId": "Int",
+            "filter": "MediaSubmissionCategory",
             "mediaId": "Int",
             "sort": "[SubmissionSort]",
             "status": "SubmissionStatus",
@@ -1182,6 +1224,7 @@ export const schemaRuntime = {
           "type": "[StaffSubmission]",
           "args": {
             "assigneeId": "Int",
+            "filter": "CharacterStaffSubmissionCategory",
             "sort": "[SubmissionSort]",
             "staffId": "Int",
             "status": "SubmissionStatus",
@@ -2171,6 +2214,10 @@ export const schemaRuntime = {
           "type": "User",
           "args": {}
         },
+        "categories": {
+          "type": "[MediaSubmissionCategory]",
+          "args": {}
+        },
         "changes": {
           "type": "[String]",
           "args": {}
@@ -2566,7 +2613,8 @@ export const schemaRuntime = {
         "message": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "messenger": {
@@ -3431,6 +3479,7 @@ export const schemaRuntime = {
         "Markdown": {
           "type": "ParsedMarkdown",
           "args": {
+            "htmlVersion": "Int",
             "markdown": "String!"
           }
         },
@@ -3845,7 +3894,8 @@ export const schemaRuntime = {
         "body": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "createdAt": {
@@ -4137,7 +4187,8 @@ export const schemaRuntime = {
         "description": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "favourites": {
@@ -4146,6 +4197,10 @@ export const schemaRuntime = {
         },
         "gender": {
           "type": "String",
+          "args": {}
+        },
+        "height": {
+          "type": "Height",
           "args": {}
         },
         "homeTown": {
@@ -4315,6 +4370,10 @@ export const schemaRuntime = {
     "StaffRoleType": {
       "kind": "OBJECT",
       "fields": {
+        "characterName": {
+          "type": "String",
+          "args": {}
+        },
         "dubGroup": {
           "type": "String",
           "args": {}
@@ -4355,6 +4414,10 @@ export const schemaRuntime = {
       "fields": {
         "assignee": {
           "type": "User",
+          "args": {}
+        },
+        "categories": {
+          "type": "[CharacterStaffSubmissionCategory]",
           "args": {}
         },
         "createdAt": {
@@ -4610,7 +4673,8 @@ export const schemaRuntime = {
         "text": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "type": {
@@ -4633,7 +4697,8 @@ export const schemaRuntime = {
         "body": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "categories": {
@@ -4745,7 +4810,8 @@ export const schemaRuntime = {
         "comment": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "createdAt": {
@@ -5009,7 +5075,8 @@ export const schemaRuntime = {
         "about": {
           "type": "String",
           "args": {
-            "asHtml": "Boolean"
+            "asHtml": "Boolean",
+            "htmlVersion": "Int"
           }
         },
         "avatar": {

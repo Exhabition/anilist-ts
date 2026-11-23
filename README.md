@@ -228,6 +228,8 @@ Install it separately with `npm install redis`.
 
 Network failures and HTTP 429, 502, 503, and 504 responses are retried twice by default. Backoff honors `Retry-After`. Override retries globally or per request, and pass an `AbortSignal` when cancellation matters.
 
+AniList counts every root field and aliased `Page` query in one request separately toward the rate limit, and applies an additional per-token limit. Combining selections into one request saves round trips, not rate-limit budget.
+
 ```ts compile
 import { AniListClient, AniListGraphQLError, AniListRateLimitError } from 'anilist-ts';
 
@@ -274,15 +276,15 @@ Normal installs, builds, tests, and `schema:check` remain deterministic and offl
 
 ### API coverage
 
-The generic projection API represents 247 of 247 elements in the committed live schema snapshot (100%). Convenience methods focus on the workflows most applications use; every other operation remains available through `query` and `mutate`.
+The generic projection API represents 253 of 253 elements in the committed live schema snapshot (100%). Convenience methods focus on the workflows most applications use; every other operation remains available through `query` and `mutate`.
 
 | AniList section      | Snapshot | Generic API | Convenience API                                                           |
 | -------------------- | -------: | ----------: | ------------------------------------------------------------------------- |
 | Query root fields    |       28 |        100% | Media, Character, User discovery                                          |
 | Mutation root fields |       30 |        100% | Media lists, Activities, Reviews, Recommendations, Threads, User settings |
-| Object types         |      127 |        100% | Entity classes for Media, Character, User                                 |
-| Input types          |       10 |        100% | Typed mutation arguments                                                  |
-| Enum types           |       41 |        100% | Typed filters and mutation arguments                                      |
+| Object types         |      129 |        100% | Entity classes for Media, Character, User                                 |
+| Input types          |       12 |        100% | Typed mutation arguments                                                  |
+| Enum types           |       43 |        100% | Typed filters and mutation arguments                                      |
 | Union types          |        3 |        100% | Typed inline fragments                                                    |
 | Scalar types         |        8 |        100% | Native TypeScript mappings                                                |
 

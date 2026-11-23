@@ -1,7 +1,7 @@
 {
   "metadata": {
     "endpoint": "https://graphql.anilist.co",
-    "fetchedAt": "2026-10-26T15:50:38.727Z",
+    "fetchedAt": "2026-11-23T19:13:41.131Z",
     "liveDerived": true,
     "scalarMappings": {
       "Boolean": "boolean",
@@ -214,6 +214,32 @@
         {
           "name": "SEARCH_MATCH",
           "description": "",
+          "deprecated": false
+        }
+      ]
+    },
+    {
+      "name": "CharacterStaffSubmissionCategory",
+      "description": "Character and staff submission categories, also used to filter by",
+      "values": [
+        {
+          "name": "IMAGES_ONLY",
+          "description": "Submissions that only change the image",
+          "deprecated": false
+        },
+        {
+          "name": "NOTE_ONLY",
+          "description": "Submissions with a note but no changes",
+          "deprecated": false
+        },
+        {
+          "name": "SINGLE_CHANGE",
+          "description": "Submissions with exactly one change",
+          "deprecated": false
+        },
+        {
+          "name": "TRUSTED_SUBMITTER",
+          "description": "Submissions by users with 50+ accepted and a 90%+ acceptance rate",
           "deprecated": false
         }
       ]
@@ -956,6 +982,62 @@
       ]
     },
     {
+      "name": "MediaSubmissionCategory",
+      "description": "Media submission categories, also used to filter by",
+      "values": [
+        {
+          "name": "CHARACTERS_ONLY",
+          "description": "Submissions that only change characters",
+          "deprecated": false
+        },
+        {
+          "name": "DUB",
+          "description": "Submissions adding ADR staff or voice actors not in the anime's original language",
+          "deprecated": false
+        },
+        {
+          "name": "IMAGES_ONLY",
+          "description": "Submissions that only change the cover or banner image",
+          "deprecated": false
+        },
+        {
+          "name": "NEW",
+          "description": "Submissions for media that doesn't exist yet",
+          "deprecated": false
+        },
+        {
+          "name": "NEXT_SEASON",
+          "description": "Submissions for entries releasing next season",
+          "deprecated": false
+        },
+        {
+          "name": "NOTE_ONLY",
+          "description": "Submissions with a note but no changes",
+          "deprecated": false
+        },
+        {
+          "name": "RELEASING",
+          "description": "Submissions for currently releasing media, or current-season media that hasn't started airing",
+          "deprecated": false
+        },
+        {
+          "name": "SINGLE_CHANGE",
+          "description": "Submissions with exactly one change",
+          "deprecated": false
+        },
+        {
+          "name": "STAFF_ONLY",
+          "description": "Submissions that only change staff",
+          "deprecated": false
+        },
+        {
+          "name": "TRUSTED_SUBMITTER",
+          "description": "Submissions by users with 50+ accepted and a 90%+ acceptance rate",
+          "deprecated": false
+        }
+      ]
+    },
+    {
       "name": "MediaTrendSort",
       "description": "Media trend sort enums",
       "values": [
@@ -1078,6 +1160,11 @@
         },
         {
           "name": "NOTE",
+          "description": "",
+          "deprecated": false
+        },
+        {
+          "name": "PIN",
           "description": "",
           "deprecated": false
         },
@@ -2070,6 +2157,42 @@
       ]
     },
     {
+      "name": "HeightInput",
+      "description": "A height (equal min and max), height range, or initial height",
+      "fields": [
+        {
+          "name": "initial",
+          "type": "HeightValueInput",
+          "description": "The height when first introduced, if it changes later. Cannot be combined with min and max.",
+          "deprecated": false
+        },
+        {
+          "name": "max",
+          "type": "HeightValueInput",
+          "description": "The highest height in the range, required with min",
+          "deprecated": false
+        },
+        {
+          "name": "min",
+          "type": "HeightValueInput",
+          "description": "The lowest height in the range, required with max",
+          "deprecated": false
+        }
+      ]
+    },
+    {
+      "name": "HeightValueInput",
+      "description": "A height in centimetres",
+      "fields": [
+        {
+          "name": "metric",
+          "type": "Float!",
+          "description": "Height in centimetres (169.5)",
+          "deprecated": false
+        }
+      ]
+    },
+    {
       "name": "ListActivityOptionInput",
       "description": "",
       "fields": [
@@ -2475,6 +2598,12 @@
               "name": "asHtml",
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
+              "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
               "deprecated": false
             }
           ]
@@ -2921,6 +3050,12 @@
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
               "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+              "deprecated": false
             }
           ]
         },
@@ -2935,6 +3070,13 @@
           "name": "gender",
           "type": "String",
           "description": "The character's gender. Usually Male, Female, or Non-binary but can be any string.",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "height",
+          "type": "Height",
+          "description": "The characters height",
           "deprecated": false,
           "args": []
         },
@@ -3239,6 +3381,13 @@
           "name": "assignee",
           "type": "User",
           "description": "Data Mod assigned to handle the submission",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "categories",
+          "type": "[CharacterStaffSubmissionCategory]",
+          "description": "Filter categories the submission falls into",
           "deprecated": false,
           "args": []
         },
@@ -3672,6 +3821,53 @@
       ]
     },
     {
+      "name": "Height",
+      "description": "A height, height range, or initial height. A single height has equal min and max.",
+      "fields": [
+        {
+          "name": "initial",
+          "type": "HeightValue",
+          "description": "The height when first introduced, if it changes later. Min and max are null when this is set.",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "max",
+          "type": "HeightValue",
+          "description": "The highest height in the range",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "min",
+          "type": "HeightValue",
+          "description": "The lowest height in the range",
+          "deprecated": false,
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "HeightValue",
+      "description": "A height in metric and imperial units",
+      "fields": [
+        {
+          "name": "imperial",
+          "type": "String",
+          "description": "Height in feet and inches, rounded to the nearest inch (5'7\")",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "metric",
+          "type": "Float",
+          "description": "Height in centimetres (169.5)",
+          "deprecated": false,
+          "args": []
+        }
+      ]
+    },
+    {
       "name": "InternalPage",
       "description": "Page of data. Limited to a max depth of 5000 entries. This is calculated as the page parameter multiplied by the perPage parameter.",
       "fields": [
@@ -4053,6 +4249,12 @@
               "name": "characterId",
               "type": "Int",
               "description": "",
+              "deprecated": false
+            },
+            {
+              "name": "filter",
+              "type": "CharacterStaffSubmissionCategory",
+              "description": "Filter by the kind of changes in the submission",
               "deprecated": false
             },
             {
@@ -4764,6 +4966,12 @@
               "deprecated": false
             },
             {
+              "name": "filter",
+              "type": "MediaSubmissionCategory",
+              "description": "Filter by the kind of changes in the submission",
+              "deprecated": false
+            },
+            {
               "name": "mediaId",
               "type": "Int",
               "description": "",
@@ -5306,6 +5514,12 @@
               "name": "assigneeId",
               "type": "Int",
               "description": "",
+              "deprecated": false
+            },
+            {
+              "name": "filter",
+              "type": "CharacterStaffSubmissionCategory",
+              "description": "Filter by the kind of changes in the submission",
               "deprecated": false
             },
             {
@@ -7236,6 +7450,13 @@
           "args": []
         },
         {
+          "name": "categories",
+          "type": "[MediaSubmissionCategory]",
+          "description": "Filter categories the submission falls into",
+          "deprecated": false,
+          "args": []
+        },
+        {
           "name": "changes",
           "type": "[String]",
           "description": "",
@@ -7914,6 +8135,12 @@
               "name": "asHtml",
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
+              "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
               "deprecated": false
             }
           ]
@@ -11198,6 +11425,12 @@
           "deprecated": false,
           "args": [
             {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+              "deprecated": false
+            },
+            {
               "name": "markdown",
               "type": "String!",
               "description": "The markdown to be parsed to html",
@@ -12765,6 +12998,12 @@
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
               "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+              "deprecated": false
             }
           ]
         },
@@ -13367,6 +13606,12 @@
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
               "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+              "deprecated": false
             }
           ]
         },
@@ -13381,6 +13626,13 @@
           "name": "gender",
           "type": "String",
           "description": "The staff's gender. Usually Male, Female, or Non-binary but can be any string.",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "height",
+          "type": "Height",
+          "description": "The persons height",
           "deprecated": false,
           "args": []
         },
@@ -13684,6 +13936,13 @@
       "description": "Voice actor role for a character",
       "fields": [
         {
+          "name": "characterName",
+          "type": "String",
+          "description": "Media specific character name for this voice actor role",
+          "deprecated": false,
+          "args": []
+        },
+        {
           "name": "dubGroup",
           "type": "String",
           "description": "Used for grouping roles where multiple dubs exist for the same language. Either dubbing company name or language variant.",
@@ -13748,6 +14007,13 @@
           "name": "assignee",
           "type": "User",
           "description": "Data Mod assigned to handle the submission",
+          "deprecated": false,
+          "args": []
+        },
+        {
+          "name": "categories",
+          "type": "[CharacterStaffSubmissionCategory]",
+          "description": "Filter categories the submission falls into",
           "deprecated": false,
           "args": []
         },
@@ -14198,6 +14464,12 @@
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
               "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+              "deprecated": false
             }
           ]
         },
@@ -14238,6 +14510,12 @@
               "name": "asHtml",
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
+              "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
               "deprecated": false
             }
           ]
@@ -14432,6 +14710,12 @@
               "name": "asHtml",
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
+              "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
               "deprecated": false
             }
           ]
@@ -14881,6 +15165,12 @@
               "name": "asHtml",
               "type": "Boolean",
               "description": "Return the string in pre-parsed html instead of markdown",
+              "deprecated": false
+            },
+            {
+              "name": "htmlVersion",
+              "type": "Int",
+              "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
               "deprecated": false
             }
           ]
