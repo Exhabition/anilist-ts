@@ -79,6 +79,24 @@ describe('discovery services', () => {
     await expect(client.users.getById(1, { id: true })).resolves.toBeNull();
   });
 
+  it('returns null when AniList answers a lookup with HTTP 404', async () => {
+    const notFound = (field: string) =>
+      jsonResponse({ errors: [{ message: 'Not Found.', status: 404 }], data: { [field]: null } }, 404);
+    const fetch = queuedFetch(
+      notFound('Media'),
+      notFound('Character'),
+      notFound('User'),
+      notFound('User'),
+      jsonResponse({ errors: [{ message: 'Server error' }] }, 500),
+    );
+    const client = new AniListClient({ fetch, retry: { retries: 0 } });
+    await expect(client.media.get(1, { id: true })).resolves.toBeNull();
+    await expect(client.characters.get(1, { id: true })).resolves.toBeNull();
+    await expect(client.users.getById(1, { id: true })).resolves.toBeNull();
+    await expect(client.users.getByName('private', { id: true })).resolves.toBeNull();
+    await expect(client.media.get(1, { id: true })).rejects.toMatchObject({ status: 500 });
+  });
+
   it('validates pagination locally', async () => {
     const client = new AniListClient({ fetch: queuedFetch(jsonResponse({})) });
     await expect(client.media.search({ page: 0 }, { id: true })).rejects.toThrow('page must be a positive integer');

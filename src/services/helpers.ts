@@ -1,4 +1,4 @@
-import { AniListConfigurationError, AniListGraphQLError } from '../errors.js';
+import { AniListConfigurationError, AniListGraphQLError, AniListHttpError } from '../errors.js';
 
 export function pagination(options: { readonly page?: number; readonly perPage?: number }): {
   readonly page: number;
@@ -26,4 +26,14 @@ export function pageResponse(response: Record<string, unknown>): {
     throw new AniListGraphQLError([{ message: 'AniList returned no Page.pageInfo object.' }], response);
   }
   return { page: page as Record<string, unknown>, pageInfo: pageInfo as Record<string, unknown> };
+}
+
+/** AniList answers lookups of missing, private, or blocking entities with HTTP 404 "Not Found.". */
+export async function nullIfNotFound<T>(request: Promise<T>): Promise<T | null> {
+  try {
+    return await request;
+  } catch (error) {
+    if (error instanceof AniListHttpError && error.status === 404) return null;
+    throw error;
+  }
 }

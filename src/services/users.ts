@@ -3,7 +3,7 @@ import { User } from '../entities/user.js';
 import type { MutationUpdateUserArgs, QuerySelection, UserSelection } from '../generated/schema.js';
 import { mergeSelections } from '../selection.js';
 import type { RequestOptions } from '../transport.js';
-import { pageResponse, pagination } from './helpers.js';
+import { nullIfNotFound, pageResponse, pagination } from './helpers.js';
 import {
   PAGE_INFO_SELECTION,
   type PageInfo,
@@ -48,11 +48,13 @@ export class UserService {
     options?: RequestOptions,
   ): Promise<UserEntity<TSelection> | null> {
     const hydratedSelection = mergeSelections(selection, INTERNAL_SELECTION);
-    const response = await this.context.executeQuery(
-      { User: { $args: args, $select: hydratedSelection } } as unknown as QuerySelection,
-      options,
+    const response = await nullIfNotFound(
+      this.context.executeQuery(
+        { User: { $args: args, $select: hydratedSelection } } as unknown as QuerySelection,
+        options,
+      ),
     );
-    const data = response.User;
+    const data = response?.User;
     if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
     return new User(
       this.context,

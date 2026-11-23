@@ -3,7 +3,7 @@ import { Character } from '../entities/character.js';
 import type { CharacterSelection, QuerySelection } from '../generated/schema.js';
 import { mergeSelections } from '../selection.js';
 import type { RequestOptions } from '../transport.js';
-import { pageResponse, pagination } from './helpers.js';
+import { nullIfNotFound, pageResponse, pagination } from './helpers.js';
 import {
   PAGE_INFO_SELECTION,
   type CharacterEntity,
@@ -23,11 +23,13 @@ export class CharacterService {
     options?: RequestOptions,
   ): Promise<CharacterEntity<TSelection> | null> {
     const hydratedSelection = mergeSelections(selection, INTERNAL_SELECTION);
-    const response = await this.context.executeQuery(
-      { Character: { $args: { id }, $select: hydratedSelection } } as unknown as QuerySelection,
-      options,
+    const response = await nullIfNotFound(
+      this.context.executeQuery(
+        { Character: { $args: { id }, $select: hydratedSelection } } as unknown as QuerySelection,
+        options,
+      ),
     );
-    const data = response.Character;
+    const data = response?.Character;
     if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
     return new Character(
       this.context,
