@@ -49,10 +49,30 @@ describe('live AniList schema snapshot', () => {
     );
   });
 
+  it('captures the 23/11/2026 changelog API changes', () => {
+    const field = (type: string, name: string) =>
+      object(type).fields.find((item: { name: string }) => item.name === name);
+
+    expect(field('Character', 'height').type).toBe('Height');
+    expect(field('Staff', 'height').type).toBe('Height');
+    expect(field('Height', 'initial').type).toBe('HeightValue');
+    expect(field('HeightValue', 'imperial').type).toBe('String');
+    expect(input('HeightValueInput').fields).toContainEqual(
+      expect.objectContaining({ name: 'metric', type: 'Float!' }),
+    );
+    expect(field('Thread', 'body').args.map((argument: { name: string }) => argument.name)).toEqual([
+      'asHtml',
+      'htmlVersion',
+    ]);
+    expect(field('Query', 'Markdown').args).toContainEqual(
+      expect.objectContaining({ name: 'htmlVersion', type: 'Int' }),
+    );
+  });
+
   it('captures the complete live type inventory', () => {
-    expect(manifest.objects).toHaveLength(127);
-    expect(manifest.inputs).toHaveLength(10);
-    expect(manifest.enums).toHaveLength(41);
+    expect(manifest.objects).toHaveLength(129);
+    expect(manifest.inputs).toHaveLength(12);
+    expect(manifest.enums).toHaveLength(43);
     expect(manifest.unions).toHaveLength(3);
     expect(manifest.scalars).toHaveLength(8);
     expect(object('Query').fields).toHaveLength(28);

@@ -57,6 +57,13 @@ export type CharacterSort =
   | 'ROLE_DESC'
   | 'SEARCH_MATCH';
 
+/** Character and staff submission categories, also used to filter by */
+export type CharacterStaffSubmissionCategory =
+  'IMAGES_ONLY'
+  | 'NOTE_ONLY'
+  | 'SINGLE_CHANGE'
+  | 'TRUSTED_SUBMITTER';
+
 export type ExternalLinkMediaType =
   'ANIME'
   | 'MANGA'
@@ -223,6 +230,19 @@ export type MediaStatus =
   | 'NOT_YET_RELEASED'
   | 'RELEASING';
 
+/** Media submission categories, also used to filter by */
+export type MediaSubmissionCategory =
+  'CHARACTERS_ONLY'
+  | 'DUB'
+  | 'IMAGES_ONLY'
+  | 'NEW'
+  | 'NEXT_SEASON'
+  | 'NOTE_ONLY'
+  | 'RELEASING'
+  | 'SINGLE_CHANGE'
+  | 'STAFF_ONLY'
+  | 'TRUSTED_SUBMITTER';
+
 /** Media trend sort enums */
 export type MediaTrendSort =
   'DATE'
@@ -252,6 +272,7 @@ export type ModActionType =
   | 'EDIT'
   | 'EXPIRE'
   | 'NOTE'
+  | 'PIN'
   | 'REPORT'
   | 'RESET';
 
@@ -505,6 +526,22 @@ export interface FuzzyDateInput {
   readonly month?: number | null;
   /** Numeric Year (2017) */
   readonly year?: number | null;
+}
+
+/** A height (equal min and max), height range, or initial height */
+export interface HeightInput {
+  /** The height when first introduced, if it changes later. Cannot be combined with min and max. */
+  readonly initial?: HeightValueInput | null;
+  /** The highest height in the range, required with min */
+  readonly max?: HeightValueInput | null;
+  /** The lowest height in the range, required with max */
+  readonly min?: HeightValueInput | null;
+}
+
+/** A height in centimetres */
+export interface HeightValueInput {
+  /** Height in centimetres (169.5) */
+  readonly metric: number;
 }
 
 export interface ListActivityOptionInput {
@@ -804,6 +841,8 @@ export interface CharacterData {
   readonly favourites: number | null;
   /** The character's gender. Usually Male, Female, or Non-binary but can be any string. */
   readonly gender: string | null;
+  /** The characters height */
+  readonly height: HeightData | null;
   /** The id of the character */
   readonly id: number;
   /** Character images */
@@ -886,6 +925,8 @@ export interface CharacterSubmissionData {
   readonly __typename: 'CharacterSubmission';
   /** Data Mod assigned to handle the submission */
   readonly assignee: UserData | null;
+  /** Filter categories the submission falls into */
+  readonly categories: ReadonlyArray<CharacterStaffSubmissionCategory | null> | null;
   /** Character that the submission is referencing */
   readonly character: CharacterData | null;
   readonly createdAt: number | null;
@@ -1008,6 +1049,26 @@ export interface GenreStatsData {
   readonly meanScore: number | null;
   /** The amount of time in minutes the genre has been watched by the user */
   readonly timeWatched: number | null;
+}
+
+/** A height, height range, or initial height. A single height has equal min and max. */
+export interface HeightData {
+  readonly __typename: 'Height';
+  /** The height when first introduced, if it changes later. Min and max are null when this is set. */
+  readonly initial: HeightValueData | null;
+  /** The highest height in the range */
+  readonly max: HeightValueData | null;
+  /** The lowest height in the range */
+  readonly min: HeightValueData | null;
+}
+
+/** A height in metric and imperial units */
+export interface HeightValueData {
+  readonly __typename: 'HeightValue';
+  /** Height in feet and inches, rounded to the nearest inch (5'7") */
+  readonly imperial: string | null;
+  /** Height in centimetres (169.5) */
+  readonly metric: number | null;
 }
 
 /** Page of data. Limited to a max depth of 5000 entries. This is calculated as the page parameter multiplied by the perPage parameter. */
@@ -1510,6 +1571,8 @@ export interface MediaSubmissionData {
   readonly __typename: 'MediaSubmission';
   /** Data Mod assigned to handle the submission */
   readonly assignee: UserData | null;
+  /** Filter categories the submission falls into */
+  readonly categories: ReadonlyArray<MediaSubmissionCategory | null> | null;
   readonly changes: ReadonlyArray<string | null> | null;
   readonly characters: ReadonlyArray<MediaSubmissionComparisonData | null> | null;
   readonly createdAt: number | null;
@@ -2097,6 +2160,8 @@ export interface StaffData {
   readonly favourites: number | null;
   /** The staff's gender. Usually Male, Female, or Non-binary but can be any string. */
   readonly gender: string | null;
+  /** The persons height */
+  readonly height: HeightData | null;
   /** The persons birthplace or hometown */
   readonly homeTown: string | null;
   /** The id of the staff member */
@@ -2185,6 +2250,8 @@ export interface StaffNameData {
 /** Voice actor role for a character */
 export interface StaffRoleTypeData {
   readonly __typename: 'StaffRoleType';
+  /** Media specific character name for this voice actor role */
+  readonly characterName: string | null;
   /** Used for grouping roles where multiple dubs exist for the same language. Either dubbing company name or language variant. */
   readonly dubGroup: string | null;
   /** Notes regarding the VA's role for the character */
@@ -2208,6 +2275,8 @@ export interface StaffSubmissionData {
   readonly __typename: 'StaffSubmission';
   /** Data Mod assigned to handle the submission */
   readonly assignee: UserData | null;
+  /** Filter categories the submission falls into */
+  readonly categories: ReadonlyArray<CharacterStaffSubmissionCategory | null> | null;
   readonly createdAt: number | null;
   /** The id of the submission */
   readonly id: number;
@@ -2874,11 +2943,15 @@ export type NotificationUnionData = ActivityLikeNotificationData | ActivityMenti
 export interface ActivityReplyTextArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface CharacterDescriptionArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface CharacterMediaArgs {
@@ -3061,6 +3134,8 @@ export interface InternalPageCharactersArgs {
 export interface InternalPageCharacterSubmissionsArgs {
   readonly assigneeId?: number | null;
   readonly characterId?: number | null;
+  /** Filter by the kind of changes in the submission */
+  readonly filter?: CharacterStaffSubmissionCategory | null;
   /** The order the results will be returned in */
   readonly sort?: Array<SubmissionSort | null> | null;
   /** Filter by the status of the submission */
@@ -3298,6 +3373,8 @@ export interface InternalPageMediaListArgs {
 
 export interface InternalPageMediaSubmissionsArgs {
   readonly assigneeId?: number | null;
+  /** Filter by the kind of changes in the submission */
+  readonly filter?: MediaSubmissionCategory | null;
   readonly mediaId?: number | null;
   /** The order the results will be returned in */
   readonly sort?: Array<SubmissionSort | null> | null;
@@ -3471,6 +3548,8 @@ export interface InternalPageStaffArgs {
 
 export interface InternalPageStaffSubmissionsArgs {
   readonly assigneeId?: number | null;
+  /** Filter by the kind of changes in the submission */
+  readonly filter?: CharacterStaffSubmissionCategory | null;
   /** The order the results will be returned in */
   readonly sort?: Array<SubmissionSort | null> | null;
   readonly staffId?: number | null;
@@ -3666,6 +3745,8 @@ export interface MediaTitleRomajiArgs {
 export interface MessageActivityMessageArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface MutationDeleteActivityArgs {
@@ -4694,6 +4775,8 @@ export interface QueryLikeArgs {
 }
 
 export interface QueryMarkdownArgs {
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
   /** The markdown to be parsed to html */
   readonly markdown: string;
 }
@@ -5152,6 +5235,8 @@ export interface QueryUserArgs {
 export interface ReviewBodyArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface SiteStatisticsAnimeArgs {
@@ -5230,6 +5315,8 @@ export interface StaffCharactersArgs {
 export interface StaffDescriptionArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface StaffStaffMediaArgs {
@@ -5257,21 +5344,29 @@ export interface StudioMediaArgs {
 export interface TextActivityTextArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface ThreadBodyArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface ThreadCommentCommentArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface UserAboutArgs {
   /** Return the string in pre-parsed html instead of markdown */
   readonly asHtml?: boolean | null;
+  /** Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers) */
+  readonly htmlVersion?: number | null;
 }
 
 export interface UserFavouritesArgs {
@@ -5480,6 +5575,7 @@ export interface CharacterSelection {
   readonly description?: { readonly $args: CharacterDescriptionArgs; readonly $select: true };
   readonly favourites?: true;
   readonly gender?: true;
+  readonly height?: HeightSelection;
   readonly id?: true;
   readonly image?: CharacterImageSelection;
   readonly isFavourite?: true;
@@ -5531,6 +5627,7 @@ export interface CharacterNameSelection {
 export interface CharacterSubmissionSelection {
   readonly __typename?: true;
   readonly assignee?: UserSelection;
+  readonly categories?: true;
   readonly character?: CharacterSelection;
   readonly createdAt?: true;
   readonly id?: true;
@@ -5611,6 +5708,19 @@ export interface GenreStatsSelection {
   readonly genre?: true;
   readonly meanScore?: true;
   readonly timeWatched?: true;
+}
+
+export interface HeightSelection {
+  readonly __typename?: true;
+  readonly initial?: HeightValueSelection;
+  readonly max?: HeightValueSelection;
+  readonly min?: HeightValueSelection;
+}
+
+export interface HeightValueSelection {
+  readonly __typename?: true;
+  readonly imperial?: true;
+  readonly metric?: true;
 }
 
 export interface InternalPageSelection {
@@ -5921,6 +6031,7 @@ export interface MediaStreamingEpisodeSelection {
 export interface MediaSubmissionSelection {
   readonly __typename?: true;
   readonly assignee?: UserSelection;
+  readonly categories?: true;
   readonly changes?: true;
   readonly characters?: MediaSubmissionComparisonSelection;
   readonly createdAt?: true;
@@ -6314,6 +6425,7 @@ export interface StaffSelection {
   readonly description?: { readonly $args: StaffDescriptionArgs; readonly $select: true };
   readonly favourites?: true;
   readonly gender?: true;
+  readonly height?: HeightSelection;
   readonly homeTown?: true;
   readonly id?: true;
   readonly image?: StaffImageSelection;
@@ -6368,6 +6480,7 @@ export interface StaffNameSelection {
 
 export interface StaffRoleTypeSelection {
   readonly __typename?: true;
+  readonly characterName?: true;
   readonly dubGroup?: true;
   readonly roleNotes?: true;
   readonly voiceActor?: StaffSelection;
@@ -6384,6 +6497,7 @@ export interface StaffStatsSelection {
 export interface StaffSubmissionSelection {
   readonly __typename?: true;
   readonly assignee?: UserSelection;
+  readonly categories?: true;
   readonly createdAt?: true;
   readonly id?: true;
   readonly locked?: true;
@@ -6917,6 +7031,8 @@ export interface SchemaDataTypes {
   readonly FormatStats: FormatStatsData;
   readonly FuzzyDate: FuzzyDateData;
   readonly GenreStats: GenreStatsData;
+  readonly Height: HeightData;
+  readonly HeightValue: HeightValueData;
   readonly InternalPage: InternalPageData;
   readonly ListActivity: ListActivityData;
   readonly ListActivityOption: ListActivityOptionData;

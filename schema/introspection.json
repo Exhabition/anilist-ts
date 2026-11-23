@@ -1311,6 +1311,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -2397,6 +2407,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -2426,6 +2446,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "height",
+            "description": "The characters height",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Height",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3154,6 +3186,41 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "CharacterStaffSubmissionCategory",
+        "description": "Character and staff submission categories, also used to filter by",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "IMAGES_ONLY",
+            "description": "Submissions that only change the image",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NOTE_ONLY",
+            "description": "Submissions with a note but no changes",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SINGLE_CHANGE",
+            "description": "Submissions with exactly one change",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TRUSTED_SUBMITTER",
+            "description": "Submissions by users with 50+ accepted and a 90%+ acceptance rate",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "CharacterSubmission",
         "description": "A submission for a character that features in an anime or manga",
@@ -3166,6 +3233,22 @@
               "kind": "OBJECT",
               "name": "User",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "categories",
+            "description": "Filter categories the submission falls into",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "name": "CharacterStaffSubmissionCategory",
+                "kind": "ENUM",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4074,6 +4157,154 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "Height",
+        "description": "A height, height range, or initial height. A single height has equal min and max.",
+        "fields": [
+          {
+            "name": "initial",
+            "description": "The height when first introduced, if it changes later. Min and max are null when this is set.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "HeightValue",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max",
+            "description": "The highest height in the range",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "HeightValue",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "min",
+            "description": "The lowest height in the range",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "HeightValue",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "HeightInput",
+        "description": "A height (equal min and max), height range, or initial height",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "initial",
+            "description": "The height when first introduced, if it changes later. Cannot be combined with min and max.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HeightValueInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "max",
+            "description": "The highest height in the range, required with min",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HeightValueInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "min",
+            "description": "The lowest height in the range, required with max",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HeightValueInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HeightValue",
+        "description": "A height in metric and imperial units",
+        "fields": [
+          {
+            "name": "imperial",
+            "description": "Height in feet and inches, rounded to the nearest inch (5'7\")",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "metric",
+            "description": "Height in centimetres (169.5)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "HeightValueInput",
+        "description": "A height in centimetres",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "metric",
+            "description": "Height in centimetres (169.5)",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "name": "Float",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
         "name": "ID",
         "description": "The `ID` scalar type represents a unique identifier, often used to\nrefetch an object or as key for a cache. The ID type appears in a JSON\nresponse as a String; however, it is not intended to be human-readable.\nWhen expected as an input type, any string (such as `\"4\"`) or integer\n(such as `4`) input value will be accepted as an ID.",
@@ -4820,6 +5051,16 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "filter",
+                "description": "Filter by the kind of changes in the submission",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "CharacterStaffSubmissionCategory",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -6151,6 +6392,16 @@
                 "defaultValue": null
               },
               {
+                "name": "filter",
+                "description": "Filter by the kind of changes in the submission",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "MediaSubmissionCategory",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "mediaId",
                 "description": null,
                 "type": {
@@ -7151,6 +7402,16 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "filter",
+                "description": "Filter by the kind of changes in the submission",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "CharacterStaffSubmissionCategory",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -11820,6 +12081,22 @@
             "deprecationReason": null
           },
           {
+            "name": "categories",
+            "description": "Filter categories the submission falls into",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "name": "MediaSubmissionCategory",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "changes",
             "description": null,
             "args": [],
@@ -12043,6 +12320,77 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "MediaSubmissionCategory",
+        "description": "Media submission categories, also used to filter by",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "CHARACTERS_ONLY",
+            "description": "Submissions that only change characters",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DUB",
+            "description": "Submissions adding ADR staff or voice actors not in the anime's original language",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IMAGES_ONLY",
+            "description": "Submissions that only change the cover or banner image",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NEW",
+            "description": "Submissions for media that doesn't exist yet",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NEXT_SEASON",
+            "description": "Submissions for entries releasing next season",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NOTE_ONLY",
+            "description": "Submissions with a note but no changes",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "RELEASING",
+            "description": "Submissions for currently releasing media, or current-season media that hasn't started airing",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SINGLE_CHANGE",
+            "description": "Submissions with exactly one change",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "STAFF_ONLY",
+            "description": "Submissions that only change staff",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TRUSTED_SUBMITTER",
+            "description": "Submissions by users with 50+ accepted and a 90%+ acceptance rate",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -13226,6 +13574,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -13501,6 +13859,12 @@
           },
           {
             "name": "NOTE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PIN",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -19686,6 +20050,16 @@
             "description": "Provide AniList markdown to be converted to html (Requires auth)",
             "args": [
               {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "markdown",
                 "description": "The markdown to be parsed to html",
                 "type": {
@@ -22596,6 +22970,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -23918,6 +24302,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -23947,6 +24341,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "height",
+            "description": "The persons height",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Height",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24639,6 +25045,18 @@
         "description": "Voice actor role for a character",
         "fields": [
           {
+            "name": "characterName",
+            "description": "Media specific character name for this voice actor role",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "dubGroup",
             "description": "Used for grouping roles where multiple dubs exist for the same language. Either dubbing company name or language variant.",
             "args": [],
@@ -24823,6 +25241,22 @@
               "kind": "OBJECT",
               "name": "User",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "categories",
+            "description": "Filter categories the submission falls into",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "name": "CharacterStaffSubmissionCategory",
+                "kind": "ENUM",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -25780,6 +26214,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -25847,6 +26291,16 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -26220,6 +26674,16 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -27203,6 +27667,16 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "htmlVersion",
+                "description": "Provide 2 to use the new pre-sanitized HTML with advanced spoilers (labels, inline & nested spoilers)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
