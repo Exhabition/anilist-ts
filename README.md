@@ -39,7 +39,7 @@ Every argument becomes a GraphQL variable. Values are never interpolated, and `f
 
 ## Discovery services
 
-Single lookups return an entity or `null`. Searches combine the generated AniList filter arguments with `page` and `perPage`, and return `{ items, pageInfo }`.
+Single lookups return an entity or `null`. AniList answers lookups of missing entities, private users, and users who blocked the viewer with HTTP 404; those lookups also return `null`. Searches combine the generated AniList filter arguments with `page` and `perPage`, and return `{ items, pageInfo }`.
 
 ```ts compile
 import { AniListClient } from 'anilist-ts';

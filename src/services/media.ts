@@ -3,7 +3,7 @@ import { Media } from '../entities/media.js';
 import type { MediaSelection, QuerySelection } from '../generated/schema.js';
 import { mergeSelections } from '../selection.js';
 import type { RequestOptions } from '../transport.js';
-import { pageResponse, pagination } from './helpers.js';
+import { nullIfNotFound, pageResponse, pagination } from './helpers.js';
 import {
   PAGE_INFO_SELECTION,
   type MediaEntity,
@@ -23,11 +23,13 @@ export class MediaService {
     options?: RequestOptions,
   ): Promise<MediaEntity<TSelection> | null> {
     const hydratedSelection = mergeSelections(selection, INTERNAL_SELECTION);
-    const response = await this.context.executeQuery(
-      { Media: { $args: { id }, $select: hydratedSelection } } as unknown as QuerySelection,
-      options,
+    const response = await nullIfNotFound(
+      this.context.executeQuery(
+        { Media: { $args: { id }, $select: hydratedSelection } } as unknown as QuerySelection,
+        options,
+      ),
     );
-    const data = response.Media;
+    const data = response?.Media;
     if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
     return new Media(
       this.context,
