@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v2.0.0...anilist-ts-v2.1.0) (2026-11-23)
+
+
+### Features
+
+* **schema:** sync AniList changelog of 23/11/2026 ([aee1688](https://github.com/Exhabition/anilist-ts/commit/aee1688190e14aea8f16e78aa652981a57e01fc8))
+
+
+### Bug Fixes
+
+* **services:** return null for lookups AniList answers with 404 ([eb5a07e](https://github.com/Exhabition/anilist-ts/commit/eb5a07e7c345cbc49e48f016b08caadbd4e918a4))
+
 ## [2.0.0](https://github.com/Exhabition/anilist-ts/compare/anilist-ts-v1.1.2...anilist-ts-v2.0.0) (2026-10-26)
 
 
